@@ -1,0 +1,1245 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>The Seven Kingdoms — RPG</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap"
+rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+background:#080808;
+color:#e8dfca;
+font-family:"Inter",sans-serif;
+}
+
+/* =========================
+MENU
+========================= */
+
+nav{
+
+position:fixed;
+
+top:0;
+left:0;
+
+width:100%;
+height:78px;
+
+display:flex;
+align-items:center;
+justify-content:space-between;
+
+padding:0 6%;
+
+background:rgba(8,8,8,.94);
+
+backdrop-filter:blur(12px);
+
+border-bottom:1px solid rgba(196,163,91,.25);
+
+z-index:1000;
+
+}
+
+.logo{
+
+font-family:"Cinzel",serif;
+
+font-size:21px;
+
+letter-spacing:3px;
+
+color:#d4b56a;
+
+font-weight:700;
+
+}
+
+.menu{
+
+display:flex;
+
+gap:28px;
+
+list-style:none;
+
+}
+
+.menu a{
+
+color:#cfc6b2;
+
+text-decoration:none;
+
+font-size:11px;
+
+letter-spacing:1.5px;
+
+text-transform:uppercase;
+
+transition:.3s;
+
+}
+
+.menu a:hover{
+
+color:#d4b56a;
+
+}
+
+
+/* =========================
+HERO
+========================= */
+
+.hero{
+
+min-height:100vh;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+text-align:center;
+
+padding:120px 20px 80px;
+
+position:relative;
+
+background:
+
+linear-gradient(
+rgba(5,5,5,.55),
+rgba(5,5,5,.95)
+),
+
+radial-gradient(
+circle at center,
+#382e20 0%,
+#121212 42%,
+#050505 100%
+);
+
+overflow:hidden;
+
+}
+
+.hero-content{
+
+max-width:1000px;
+
+position:relative;
+
+z-index:2;
+
+}
+
+.eyebrow{
+
+font-size:12px;
+
+letter-spacing:6px;
+
+text-transform:uppercase;
+
+color:#a9966c;
+
+margin-bottom:25px;
+
+}
+
+.hero h1{
+
+font-family:"Cinzel",serif;
+
+font-size:clamp(50px,8vw,105px);
+
+line-height:.95;
+
+letter-spacing:8px;
+
+color:#e4d7b8;
+
+text-shadow:0 4px 20px rgba(0,0,0,.8);
+
+}
+
+.hero h2{
+
+margin-top:25px;
+
+font-family:"Cinzel",serif;
+
+font-weight:400;
+
+font-size:clamp(18px,3vw,28px);
+
+color:#b89d5b;
+
+letter-spacing:5px;
+
+}
+
+.hero p{
+
+max-width:650px;
+
+margin:30px auto;
+
+line-height:1.8;
+
+color:#aaa18f;
+
+font-size:15px;
+
+}
+
+.hero-buttons{
+
+display:flex;
+
+justify-content:center;
+
+gap:15px;
+
+flex-wrap:wrap;
+
+margin-top:35px;
+
+}
+
+.button{
+
+display:inline-block;
+
+padding:15px 30px;
+
+border:1px solid #a7894d;
+
+color:#dbc58d;
+
+text-decoration:none;
+
+font-family:"Cinzel",serif;
+
+font-size:12px;
+
+letter-spacing:2px;
+
+text-transform:uppercase;
+
+transition:.3s;
+
+}
+
+.button:hover{
+
+background:#a7894d;
+
+color:#080808;
+
+}
+
+.button.primary{
+
+background:#a7894d;
+
+color:#080808;
+
+}
+
+
+/* =========================
+SEÇÕES
+========================= */
+
+section{
+
+padding:110px 7%;
+
+}
+
+.section-title{
+
+text-align:center;
+
+margin-bottom:60px;
+
+}
+
+.section-title span{
+
+display:block;
+
+font-size:11px;
+
+letter-spacing:4px;
+
+color:#a7894d;
+
+text-transform:uppercase;
+
+margin-bottom:15px;
+
+}
+
+.section-title h2{
+
+font-family:"Cinzel",serif;
+
+font-size:clamp(30px,4vw,48px);
+
+font-weight:500;
+
+color:#e0d4b8;
+
+}
+
+
+/* =========================
+CASAS
+========================= */
+
+.houses{
+
+background:#101010;
+
+}
+
+.region{
+
+max-width:1250px;
+
+margin:0 auto 80px;
+
+}
+
+.region-title{
+
+font-family:"Cinzel",serif;
+
+font-size:25px;
+
+color:#c9b276;
+
+padding-bottom:15px;
+
+margin-bottom:25px;
+
+border-bottom:1px solid rgba(212,181,106,.2);
+
+letter-spacing:2px;
+
+}
+
+.house-grid{
+
+display:grid;
+
+grid-template-columns:repeat(3,1fr);
+
+gap:18px;
+
+}
+
+.house{
+
+min-height:190px;
+
+padding:28px;
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:flex-end;
+
+border:1px solid rgba(212,181,106,.18);
+
+background:
+
+linear-gradient(
+145deg,
+#191714,
+#0b0b0b
+);
+
+transition:.35s;
+
+position:relative;
+
+overflow:hidden;
+
+cursor:pointer;
+
+}
+
+.house::before{
+
+content:"♜";
+
+position:absolute;
+
+top:18px;
+
+right:23px;
+
+font-size:43px;
+
+color:rgba(212,181,106,.09);
+
+}
+
+.house:hover{
+
+transform:translateY(-7px);
+
+border-color:rgba(212,181,106,.6);
+
+background:
+
+linear-gradient(
+145deg,
+#211d17,
+#0c0c0c
+);
+
+}
+
+.house h3{
+
+font-family:"Cinzel",serif;
+
+color:#d7c18c;
+
+font-size:20px;
+
+margin-bottom:8px;
+
+}
+
+.house p{
+
+color:#827c70;
+
+font-size:12px;
+
+}
+
+
+/* =========================
+WESTEROS
+========================= */
+
+.world{
+
+background:#0c0c0c;
+
+}
+
+.world-container{
+
+max-width:1100px;
+
+margin:auto;
+
+display:grid;
+
+grid-template-columns:1fr 1fr;
+
+gap:70px;
+
+align-items:center;
+
+}
+
+.world-image{
+
+height:430px;
+
+border:1px solid rgba(212,181,106,.2);
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+background:
+
+radial-gradient(
+circle,
+#302a20,
+#111 60%,
+#070707
+);
+
+}
+
+.world-image span{
+
+font-family:"Cinzel",serif;
+
+font-size:22px;
+
+letter-spacing:4px;
+
+color:rgba(212,181,106,.35);
+
+}
+
+.world-text h2{
+
+font-family:"Cinzel",serif;
+
+font-size:38px;
+
+color:#dfd0ae;
+
+margin-bottom:25px;
+
+}
+
+.world-text p{
+
+color:#8f897d;
+
+line-height:1.9;
+
+font-size:14px;
+
+margin-bottom:18px;
+
+}
+
+
+/* =========================
+CRÔNICAS
+========================= */
+
+.chronicles{
+
+background:#0c0c0c;
+
+}
+
+.timeline{
+
+max-width:800px;
+
+margin:auto;
+
+border-left:1px solid #725e35;
+
+padding-left:35px;
+
+}
+
+.event{
+
+margin-bottom:45px;
+
+position:relative;
+
+}
+
+.event::before{
+
+content:"";
+
+position:absolute;
+
+width:9px;
+
+height:9px;
+
+border-radius:50%;
+
+background:#b89b5a;
+
+left:-40px;
+
+top:6px;
+
+}
+
+.event-date{
+
+font-size:11px;
+
+letter-spacing:3px;
+
+color:#a7894d;
+
+text-transform:uppercase;
+
+margin-bottom:8px;
+
+}
+
+.event h3{
+
+font-family:"Cinzel",serif;
+
+color:#d6c59c;
+
+margin-bottom:8px;
+
+}
+
+.event p{
+
+color:#817b70;
+
+line-height:1.7;
+
+font-size:13px;
+
+}
+
+
+/* =========================
+RODAPÉ
+========================= */
+
+footer{
+
+padding:60px 20px;
+
+text-align:center;
+
+border-top:1px solid rgba(212,181,106,.12);
+
+background:#070707;
+
+}
+
+footer h2{
+
+font-family:"Cinzel",serif;
+
+color:#b89d5b;
+
+letter-spacing:4px;
+
+margin-bottom:15px;
+
+}
+
+footer p{
+
+color:#666;
+
+font-size:12px;
+
+}
+
+
+/* =========================
+RESPONSIVO
+========================= */
+
+@media(max-width:900px){
+
+.menu{
+
+display:none;
+
+}
+
+.house-grid{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+.world-container{
+
+grid-template-columns:1fr;
+
+}
+
+}
+
+@media(max-width:600px){
+
+section{
+
+padding:80px 6%;
+
+}
+
+.house-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.hero h1{
+
+letter-spacing:4px;
+
+}
+
+.world-image{
+
+height:300px;
+
+}
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+MENU
+========================= -->
+
+<nav>
+
+<div class="logo">
+THE SEVEN KINGDOMS
+</div>
+
+<ul class="menu">
+
+<li>
+<a href="#inicio">Início</a>
+</li>
+
+<li>
+<a href="#westeros">Westeros</a>
+</li>
+
+<li>
+<a href="#casas">Casas</a>
+</li>
+
+<li>
+<a href="#cronicas">Crônicas</a>
+</li>
+
+<li>
+<a href="#">Personagens</a>
+</li>
+
+<li>
+<a href="#">Regras</a>
+</li>
+
+</ul>
+
+</nav>
+
+
+<!-- =========================
+HERO
+========================= -->
+
+<header class="hero" id="inicio">
+
+<div class="hero-content">
+
+<div class="eyebrow">
+Um RPG de Westeros
+</div>
+
+<h1>
+
+THE SEVEN<br>
+
+KINGDOMS
+
+</h1>
+
+<h2>
+O inverno se aproxima
+</h2>
+
+<p>
+
+Em Westeros, coroas são conquistadas com aço,
+alianças são seladas com sangue e nenhuma promessa
+sobrevive para sempre.
+
+</p>
+
+<div class="hero-buttons">
+
+<a href="#casas" class="button primary">
+Explorar Westeros
+</a>
+
+<a href="#cronicas" class="button">
+Ver as Crônicas
+</a>
+
+</div>
+
+</div>
+
+</header>
+
+
+<!-- =========================
+CASAS
+========================= -->
+
+<section class="houses" id="casas">
+
+<div class="section-title">
+
+<span>
+As grandes famílias
+</span>
+
+<h2>
+As Casas de Westeros
+</h2>
+
+</div>
+
+
+<!-- NORTE -->
+
+<div class="region">
+
+<h3 class="region-title">
+Norte
+</h3>
+
+<div class="house-grid">
+
+<div class="house">
+<h3>Casa Stark</h3>
+<p>Winterfell • O Norte</p>
+</div>
+
+<div class="house">
+<h3>Casa Manderly</h3>
+<p>Porto Branco • O Norte</p>
+</div>
+
+<div class="house">
+<h3>Casa Bolton</h3>
+<p>Forte do Pavor • O Norte</p>
+</div>
+
+</div>
+
+</div>
+
+
+<!-- FLUVIAIS -->
+
+<div class="region">
+
+<h3 class="region-title">
+Terras Fluviais
+</h3>
+
+<div class="house-grid">
+
+<div class="house">
+<h3>Casa Tully</h3>
+<p>Correrrio • Terras Fluviais</p>
+</div>
+
+<div class="house">
+<h3>Casa Blackwood</h3>
+<p>Raventree Hall</p>
+</div>
+
+<div class="house">
+<h3>Casa Mallister</h3>
+<p>Seagard</p>
+</div>
+
+</div>
+
+</div>
+
+
+<!-- OCIDENTE -->
+
+<div class="region">
+
+<h3 class="region-title">
+Ocidente
+</h3>
+
+<div class="house-grid">
+
+<div class="house">
+<h3>Casa Lannister</h3>
+<p>Rochedo Casterly</p>
+</div>
+
+<div class="house">
+<h3>Casa Reyne</h3>
+<p>Castamere</p>
+</div>
+
+<div class="house">
+<h3>Casa Lefford</h3>
+<p>As Terras Ocidentais</p>
+</div>
+
+</div>
+
+</div>
+
+
+<!-- VALE -->
+
+<div class="region">
+
+<h3 class="region-title">
+Vale de Arryn
+</h3>
+
+<div class="house-grid">
+
+<div class="house">
+<h3>Casa Arryn</h3>
+<p>O Ninho da Águia</p>
+</div>
+
+<div class="house">
+<h3>Casa Grafton</h3>
+<p>Vila Gaivota</p>
+</div>
+
+<div class="house">
+<h3>Casa Royce</h3>
+<p>Runestone</p>
+</div>
+
+</div>
+
+</div>
+
+
+<!-- TEMPESTADE -->
+
+<div class="region">
+
+<h3 class="region-title">
+Terras da Tempestade
+</h3>
+
+<div class="house-grid">
+
+<div class="house">
+<h3>Casa Baratheon</h3>
+<p>Ponta Tempestade</p>
+</div>
+
+<div class="house">
+<h3>Casa Swann</h3>
+<p>Pedra Branca</p>
+</div>
+
+<div class="house">
+<h3>Casa Tarth</h3>
+<p>Ilha de Tarth</p>
+</div>
+
+</div>
+
+</div>
+
+
+<!-- COROA -->
+
+<div class="region">
+
+<h3 class="region-title">
+Terras da Coroa
+</h3>
+
+<div class="house-grid">
+
+<div class="house">
+<h3>Casa Targaryen</h3>
+<p>Porto Real</p>
+</div>
+
+<div class="house">
+<h3>Casa Velaryon</h3>
+<p>Driftmark</p>
+</div>
+
+<div class="house">
+<h3>Casa Blackfyre</h3>
+<p>Terras da Coroa</p>
+</div>
+
+<div class="house">
+<h3>Casa Celtigar</h3>
+<p>Garra de Caranguejo</p>
+</div>
+
+</div>
+
+</div>
+
+
+<!-- CAMPINA -->
+
+<div class="region">
+
+<h3 class="region-title">
+Campina
+</h3>
+
+<div class="house-grid">
+
+<div class="house">
+<h3>Casa Tyrell</h3>
+<p>Jardim de Cima</p>
+</div>
+
+<div class="house">
+<h3>Casa Hightower</h3>
+<p>Vilavelha</p>
+</div>
+
+<div class="house">
+<h3>Casa Redwyne</h3>
+<p>Arbor</p>
+</div>
+
+</div>
+
+</div>
+
+
+<!-- DORNE -->
+
+<div class="region">
+
+<h3 class="region-title">
+Dorne
+</h3>
+
+<div class="house-grid">
+
+<div class="house">
+<h3>Casa Martell</h3>
+<p>Lançassolar</p>
+</div>
+
+<div class="house">
+<h3>Casa Yronwood</h3>
+<p>Pedra Amarela</p>
+</div>
+
+</div>
+
+</div>
+
+
+</section>
+
+
+<!-- =========================
+WESTEROS
+========================= -->
+
+<section class="world" id="westeros">
+
+<div class="world-container">
+
+<div class="world-image">
+
+<span>
+MAPA DE WESTEROS
+</span>
+
+</div>
+
+
+<div class="world-text">
+
+<h2>
+Westeros
+</h2>
+
+<p>
+
+Um continente dividido por antigas rivalidades,
+juramentos, guerras e alianças.
+
+</p>
+
+<p>
+
+Das terras geladas do Norte às areias de Dorne,
+cada território possui sua própria história,
+riqueza, exército e interesses políticos.
+
+</p>
+
+<p>
+
+Escolha sua Casa.
+Construa sua influência.
+Proteja seu legado.
+
+</p>
+
+<a href="#" class="button">
+Explorar o mapa
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+CRÔNICAS
+========================= -->
+
+<section class="chronicles" id="cronicas">
+
+<div class="section-title">
+
+<span>
+História
+</span>
+
+<h2>
+Crônicas Recentes
+</h2>
+
+</div>
+
+
+<div class="timeline">
+
+
+<div class="event">
+
+<div class="event-date">
+Ano 168
+</div>
+
+<h3>
+A disputa pelo Trono
+</h3>
+
+<p>
+
+As grandes Casas começam a tomar posições
+diante da crescente disputa pelo poder.
+
+</p>
+
+</div>
+
+
+<div class="event">
+
+<div class="event-date">
+Porto Real
+</div>
+
+<h3>
+A Coroa se movimenta
+</h3>
+
+<p>
+
+Novas alianças são formadas enquanto os
+senhores de Westeros observam cada movimento
+da corte.
+
+</p>
+
+</div>
+
+
+<div class="event">
+
+<div class="event-date">
+O Norte
+</div>
+
+<h3>
+Winterfell permanece vigilante
+</h3>
+
+<p>
+
+Os lobos do Norte acompanham atentamente
+os acontecimentos que se desenrolam ao sul.
+
+</p>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =========================
+FOOTER
+========================= -->
+
+<footer>
+
+<h2>
+THE SEVEN KINGDOMS
+</h2>
+
+<p>
+Um RPG de intriga, guerra, honra e legado.
+</p>
+
+</footer>
+
+
+</body>
+
+</html>
+```
