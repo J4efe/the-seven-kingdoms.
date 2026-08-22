@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mapa de Westeros — The Seven Kingdoms</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#080808;
+    color:#e8dfca;
+    font-family:"Inter",sans-serif;
+    overflow:hidden;
+}
+
+/* MENU */
+
+.topbar{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:70px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 30px;
+
+    background:rgba(8,8,8,.95);
+
+    border-bottom:1px solid rgba(212,181,106,.25);
+
+    z-index:100;
+}
+
+.logo{
+    font-family:"Cinzel",serif;
+    color:#d4b56a;
+    letter-spacing:3px;
+    font-size:18px;
+}
+
+.back{
+    color:#c9b276;
+    text-decoration:none;
+    font-size:12px;
+    letter-spacing:1px;
+}
+
+.back:hover{
+    color:white;
+}
+
+
+/* MAPA */
+
+.map-container{
+
+    position:absolute;
+
+    top:70px;
+    left:0;
+    right:0;
+    bottom:0;
+
+    overflow:hidden;
+
+    background:#111;
+
+    cursor:grab;
+
+}
+
+.map-container:active{
+    cursor:grabbing;
+}
+
+.map{
+
+    position:absolute;
+
+    width:900px;
+
+    left:50%;
+    top:50%;
+
+    transform:
+        translate(-50%,-50%)
+        scale(1);
+
+    transform-origin:center center;
+
+}
+
+.map img{
+
+    width:100%;
+
+    display:block;
+
+    user-select:none;
+
+    pointer-events:none;
+
+}
+
+
+/* MARCADORES */
+
+.marker{
+
+    position:absolute;
+
+    width:38px;
+    height:38px;
+
+    border-radius:50%;
+
+    border:2px solid #d4b56a;
+
+    background:#111;
+
+    color:#d4b56a;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:18px;
+
+    cursor:pointer;
+
+    transform:translate(-50%,-50%);
+
+    box-shadow:
+        0 0 0 4px rgba(0,0,0,.45),
+        0 0 18px rgba(212,181,106,.45);
+
+    transition:.25s;
+
+    z-index:10;
+}
+
+.marker:hover{
+
+    transform:
+        translate(-50%,-50%)
+        scale(1.25);
+
+    background:#d4b56a;
+
+    color:#111;
+
+}
+
+
+/* POSIÇÕES */
+
+.stark{
+    left:38%;
+    top:25%;
+}
+
+.manderly{
+    left:49%;
+    top:30%;
+}
+
+.bolton{
+    left:43%;
+    top:31%;
+}
+
+.tully{
+    left:48%;
+    top:55%;
+}
+
+.lannister{
+    left:27%;
+    top:57%;
+}
+
+.reyne{
+    left:31%;
+    top:61%;
+}
+
+.arryn{
+    left:72%;
+    top:52%;
+}
+
+.baratheon{
+    left:67%;
+    top:72%;
+}
+
+.targaryen{
+    left:55%;
+    top:58%;
+}
+
+.velaryon{
+    left:65%;
+    top:60%;
+}
+
+.tyrell{
+    left:52%;
+    top:68%;
+}
+
+.hightower{
+    left:60%;
+    top:72%;
+}
+
+.martell{
+    left:52%;
+    top:91%;
+}
+
+.yronwood{
+    left:42%;
+    top:88%;
+}
+
+
+/* CONTROLES */
+
+.controls{
+
+    position:fixed;
+
+    right:25px;
+    bottom:25px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
+
+    z-index:50;
+
+}
+
+.controls button{
+
+    width:45px;
+    height:45px;
+
+    border:1px solid rgba(212,181,106,.5);
+
+    background:rgba(10,10,10,.9);
+
+    color:#d4b56a;
+
+    font-size:20px;
+
+    cursor:pointer;
+
+}
+
+.controls button:hover{
+
+    background:#d4b56a;
+
+    color:#111;
+
+}
+
+
+/* PAINEL */
+
+.info{
+
+    position:fixed;
+
+    right:25px;
+    top:95px;
+
+    width:280px;
+
+    padding:25px;
+
+    background:rgba(10,10,10,.96);
+
+    border:1px solid rgba(212,181,106,.45);
+
+    box-shadow:0 15px 40px rgba(0,0,0,.6);
+
+    z-index:60;
+
+    display:none;
+
+}
+
+.info.active{
+    display:block;
+}
+
+.info .close{
+
+    position:absolute;
+
+    top:10px;
+    right:12px;
+
+    border:none;
+
+    background:none;
+
+    color:#888;
+
+    font-size:18px;
+
+    cursor:pointer;
+
+}
+
+.info h2{
+
+    font-family:"Cinzel",serif;
+
+    color:#d4b56a;
+
+    margin-bottom:12px;
+
+}
+
+.info p{
+
+    color:#999;
+
+    font-size:13px;
+
+    line-height:1.7;
+
+    margin-bottom:8px;
+
+}
+
+.info .house-button{
+
+    display:block;
+
+    margin-top:18px;
+
+    padding:11px;
+
+    text-align:center;
+
+    border:1px solid #a7894d;
+
+    color:#d4b56a;
+
+    text-decoration:none;
+
+    font-family:"Cinzel",serif;
+
+    font-size:11px;
+
+    letter-spacing:1px;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<header class="topbar">
+
+<div class="logo">
+THE SEVEN KINGDOMS
+</div>
+
+<a href="index.html" class="back">
+← VOLTAR
+</a>
+
+</header>
+
+
+<div class="map-container" id="mapContainer">
+
+<div class="map" id="map">
+
+<img src="mapa-westeros.png" alt="Mapa de Westeros">
+
+
+<button class="marker stark"
+onclick="mostrarCasa('Casa Stark','Winterfell','Norte','🐺')">
+🐺
+</button>
+
+<button class="marker manderly"
+onclick="mostrarCasa('Casa Manderly','Porto Branco','Norte','🌊')">
+🌊
+</button>
+
+<button class="marker bolton"
+onclick="mostrarCasa('Casa Bolton','Forte do Pavor','Norte','🩸')">
+🩸
+</button>
+
+<button class="marker tully"
+onclick="mostrarCasa('Casa Tully','Correrrio','Terras Fluviais','🐟')">
+🐟
+</button>
+
+<button class="marker lannister"
+onclick="mostrarCasa('Casa Lannister','Rochedo Casterly','Ocidente','🦁')">
+🦁
+</button>
+
+<button class="marker reyne"
+onclick="mostrarCasa('Casa Reyne','Castamere','Ocidente','🏰')">
+🏰
+</button>
+
+<button class="marker arryn"
+onclick="mostrarCasa('Casa Arryn','Ninho da Águia','Vale','🦅')">
+🦅
+</button>
+
+<button class="marker baratheon"
+onclick="mostrarCasa('Casa Baratheon','Ponta Tempestade','Tempestade','🦌')">
+🦌
+</button>
+
+<button class="marker targaryen"
+onclick="mostrarCasa('Casa Targaryen','Porto Real','Terras da Coroa','🐉')">
+🐉
+</button>
+
+<button class="marker velaryon"
+onclick="mostrarCasa('Casa Velaryon','Driftmark','Terras da Coroa','🌊')">
+🌊
+</button>
+
+<button class="marker tyrell"
+onclick="mostrarCasa('Casa Tyrell','Jardim de Cima','Campina','🌹')">
+🌹
+</button>
+
+<button class="marker hightower"
+onclick="mostrarCasa('Casa Hightower','Vilavelha','Campina','🔥')">
+🔥
+</button>
+
+<button class="marker martell"
+onclick="mostrarCasa('Casa Martell','Lançassolar','Dorne','☀️')">
+☀️
+</button>
+
+<button class="marker yronwood"
+onclick="mostrarCasa('Casa Yronwood','Yronwood','Dorne','🦂')">
+🦂
+</button>
+
+</div>
+
+</div>
+
+
+<!-- CONTROLES -->
+
+<div class="controls">
+
+<button onclick="zoomIn()">+</button>
+
+<button onclick="zoomOut()">−</button>
+
+<button onclick="resetMap()">⌂</button>
+
+</div>
+
+
+<!-- PAINEL -->
+
+<div class="info" id="info">
+
+<button class="close" onclick="fecharInfo()">×</button>
+
+<div id="infoContent"></div>
+
+</div>
+
+
+<script>
+
+let zoom = 1;
+
+const map = document.getElementById("map");
+
+const container = document.getElementById("mapContainer");
+
+let positionX = 0;
+let positionY = 0;
+
+let dragging = false;
+
+let startX;
+let startY;
+
+
+/* ZOOM */
+
+function updateMap(){
+
+    map.style.transform =
+        `translate(calc(-50% + ${positionX}px), calc(-50% + ${positionY}px)) scale(${zoom})`;
+
+}
+
+
+function zoomIn(){
+
+    zoom += 0.2;
+
+    if(zoom > 3){
+        zoom = 3;
+    }
+
+    updateMap();
+
+}
+
+
+function zoomOut(){
+
+    zoom -= 0.2;
+
+    if(zoom < 0.7){
+        zoom = 0.7;
+    }
+
+    updateMap();
+
+}
+
+
+function resetMap(){
+
+    zoom = 1;
+
+    positionX = 0;
+
+    positionY = 0;
+
+    updateMap();
+
+}
+
+
+/* ARRASTAR */
+
+container.addEventListener("mousedown", function(e){
+
+    dragging = true;
+
+    startX = e.clientX - positionX;
+
+    startY = e.clientY - positionY;
+
+});
+
+
+window.addEventListener("mouseup", function(){
+
+    dragging = false;
+
+});
+
+
+window.addEventListener("mousemove", function(e){
+
+    if(!dragging) return;
+
+    positionX = e.clientX - startX;
+
+    positionY = e.clientY - startY;
+
+    updateMap();
+
+});
+
+
+/* INFORMAÇÕES */
+
+function mostrarCasa(nome, local, regiao, simbolo){
+
+    const info = document.getElementById("info");
+
+    const content = document.getElementById("infoContent");
+
+    content.innerHTML = `
+
+        <h2>${simbolo} ${nome}</h2>
+
+        <p>
+        <strong>Local:</strong> ${local}
+        </p>
+
+        <p>
+        <strong>Região:</strong> ${regiao}
+        </p>
+
+        <a href="#" class="house-button">
+        VER CASA
+        </a>
+
+    `;
+
+    info.classList.add("active");
+
+}
+
+
+function fecharInfo(){
+
+    document
+        .getElementById("info")
+        .classList.remove("active");
+
+}
+
+</script>
+
+</body>
+
+</html>
