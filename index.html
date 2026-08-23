@@ -487,32 +487,109 @@ height:430px;
 
 border:1px solid rgba(212,181,106,.2);
 
+overflow:hidden;
+
+position:relative;
+
+background:#111;
+
+}
+
+.map-preview{
+
+display:block;
+
+width:100%;
+
+height:100%;
+
+position:relative;
+
+overflow:hidden;
+
+text-decoration:none;
+
+}
+
+.map-preview img{
+
+width:100%;
+
+height:100%;
+
+object-fit:cover;
+
+object-position:center;
+
+display:block;
+
+transition:transform .6s ease;
+
+}
+
+.map-preview:hover img{
+
+transform:scale(1.06);
+
+}
+
+.map-overlay{
+
+position:absolute;
+
+inset:0;
+
 display:flex;
+
+flex-direction:column;
 
 align-items:center;
 
 justify-content:center;
 
-background:
+gap:8px;
 
-radial-gradient(
-circle,
-#302a20,
-#111 60%,
-#070707
-);
+background:rgba(0,0,0,.35);
+
+opacity:0;
+
+transition:.3s;
 
 }
 
-.world-image span{
+.map-preview:hover .map-overlay{
+
+opacity:1;
+
+}
+
+.map-overlay span{
+
+font-size:30px;
+
+}
+
+.map-overlay strong{
 
 font-family:"Cinzel",serif;
 
-font-size:22px;
+font-size:18px;
 
-letter-spacing:4px;
+letter-spacing:3px;
 
-color:rgba(212,181,106,.35);
+color:#e0c989;
+
+}
+
+.map-overlay small{
+
+color:#d0c6ae;
+
+letter-spacing:2px;
+
+text-transform:uppercase;
+
+font-size:10px;
 
 }
 
@@ -779,11 +856,8 @@ Um RPG de Westeros
 </div>
 
 <h1>
-
 THE SEVEN<br>
-
 KINGDOMS
-
 </h1>
 
 <h2>
@@ -1073,7 +1147,6 @@ Dorne
 
 </div>
 
-
 </section>
 
 
@@ -1087,9 +1160,28 @@ WESTEROS
 
 <div class="world-image">
 
-<span>
-MAPA DE WESTEROS
-</span>
+<a href="mapa.html" class="map-preview">
+
+<img
+src="mapa-westeros.png"
+alt="Mapa de Westeros"
+>
+
+<div class="map-overlay">
+
+<span>🗺️</span>
+
+<strong>
+EXPLORAR WESTEROS
+</strong>
+
+<small>
+Mapa Interativo
+</small>
+
+</div>
+
+</a>
 
 </div>
 
@@ -1123,7 +1215,7 @@ Proteja seu legado.
 
 </p>
 
-<a href="#" class="button">
+<a href="mapa.html" class="button">
 Explorar o mapa
 </a>
 
