@@ -1,14 +1,20 @@
-```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 
-<head <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>>
+<head>
 
 <meta charset="UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Mapa de Westeros — The Seven Kingdoms</title>
+
+<!-- SUPABASE -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+<!-- FONTES -->
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 
@@ -19,572 +25,1375 @@ crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap"
 rel="stylesheet">
 
+
 <style>
 
+/* =========================
+RESET
+========================= */
+
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
+
+
+/* =========================
+BODY
+========================= */
 
 body{
-background:#080808;
-color:#e8dfca;
-font-family:"Inter",sans-serif;
-overflow:hidden;
+
+    background:#080808;
+
+    color:#e8dfca;
+
+    font-family:"Inter",sans-serif;
+
+    overflow:hidden;
+
 }
 
-/* MENU */
+
+/* =========================
+MENU
+========================= */
 
 .topbar{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:70px;
 
-display:flex;
-align-items:center;
-justify-content:space-between;
+    position:fixed;
 
-padding:0 30px;
+    top:0;
+    left:0;
 
-background:rgba(8,8,8,.95);
+    width:100%;
+    height:70px;
 
-border-bottom:1px solid rgba(212,181,106,.25);
+    display:flex;
 
-z-index:100;
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:0 30px;
+
+    background:rgba(8,8,8,.96);
+
+    border-bottom:1px solid rgba(212,181,106,.25);
+
+    z-index:100;
+
 }
+
 
 .logo{
-font-family:"Cinzel",serif;
-color:#d4b56a;
-letter-spacing:3px;
-font-size:18px;
+
+    font-family:"Cinzel",serif;
+
+    color:#d4b56a;
+
+    letter-spacing:3px;
+
+    font-size:18px;
+
 }
+
 
 .back{
-color:#c9b276;
-text-decoration:none;
-font-size:12px;
-letter-spacing:1px;
+
+    color:#c9b276;
+
+    text-decoration:none;
+
+    font-size:12px;
+
+    letter-spacing:1px;
+
 }
+
 
 .back:hover{
-color:white;
+
+    color:white;
+
 }
 
-/* MAPA */
+
+/* =========================
+MAPA
+========================= */
 
 .map-container{
-position:absolute;
-top:70px;
-left:0;
-right:0;
-bottom:0;
-overflow:hidden;
-background:#111;
-cursor:grab;
+
+    position:absolute;
+
+    top:70px;
+
+    left:0;
+
+    right:0;
+
+    bottom:0;
+
+    overflow:hidden;
+
+    background:#111;
+
+    cursor:grab;
+
 }
+
 
 .map-container:active{
-cursor:grabbing;
+
+    cursor:grabbing;
+
 }
+
 
 .map{
-position:absolute;
-width:900px;
-left:50%;
-top:50%;
 
-transform:
-translate(-50%,-50%)
-scale(1);
+    position:absolute;
 
-transform-origin:center center;
+    width:900px;
+
+    left:50%;
+
+    top:50%;
+
+    transform:
+        translate(-50%,-50%)
+        scale(1);
+
+    transform-origin:center center;
+
 }
+
 
 .map img{
-width:100%;
-display:block;
-user-select:none;
-pointer-events:none;
+
+    width:100%;
+
+    display:block;
+
+    user-select:none;
+
+    pointer-events:none;
+
 }
 
-/* MARCADORES */
+
+/* =========================
+MARCADORES
+========================= */
 
 .marker{
-position:absolute;
 
-width:38px;
-height:38px;
+    position:absolute;
 
-border-radius:50%;
+    width:38px;
 
-border:2px solid #d4b56a;
+    height:38px;
 
-background:#111;
+    border-radius:50%;
 
-color:#d4b56a;
+    border:2px solid #d4b56a;
 
-display:flex;
-align-items:center;
-justify-content:center;
+    background:#111;
 
-font-size:18px;
+    color:#d4b56a;
 
-cursor:pointer;
+    display:flex;
 
-transform:translate(-50%,-50%);
+    align-items:center;
 
-box-shadow:
-0 0 0 4px rgba(0,0,0,.45),
-0 0 18px rgba(212,181,106,.45);
+    justify-content:center;
 
-transition:.25s;
+    font-size:18px;
 
-z-index:10;
+    cursor:pointer;
+
+    transform:translate(-50%,-50%);
+
+    box-shadow:
+        0 0 0 4px rgba(0,0,0,.45),
+        0 0 18px rgba(212,181,106,.45);
+
+    transition:.25s;
+
+    z-index:10;
+
 }
+
 
 .marker:hover{
-transform:
-translate(-50%,-50%)
-scale(1.25);
 
-background:#d4b56a;
-color:#111;
+    transform:
+        translate(-50%,-50%)
+        scale(1.25);
+
+    background:#d4b56a;
+
+    color:#111;
+
 }
 
-/* POSIÇÕES */
+
+/* =========================
+POSIÇÕES
+========================= */
 
 .stark{
-left:38%;
-top:25%;
+    left:38%;
+    top:25%;
 }
 
 .manderly{
-left:49%;
-top:30%;
+    left:49%;
+    top:30%;
 }
 
 .bolton{
-left:43%;
-top:31%;
+    left:43%;
+    top:31%;
 }
 
 .tully{
-left:48%;
-top:55%;
+    left:48%;
+    top:55%;
+}
+
+.blackwood{
+    left:43%;
+    top:57%;
+}
+
+.mallister{
+    left:53%;
+    top:57%;
 }
 
 .lannister{
-left:27%;
-top:57%;
+    left:27%;
+    top:57%;
 }
 
 .reyne{
-left:31%;
-top:61%;
+    left:31%;
+    top:61%;
+}
+
+.lefford{
+    left:35%;
+    top:53%;
 }
 
 .arryn{
-left:72%;
-top:52%;
+    left:72%;
+    top:52%;
+}
+
+.grafton{
+    left:76%;
+    top:57%;
+}
+
+.royce{
+    left:69%;
+    top:57%;
 }
 
 .baratheon{
-left:67%;
-top:72%;
+    left:67%;
+    top:72%;
+}
+
+.swann{
+    left:72%;
+    top:70%;
+}
+
+.tarth{
+    left:77%;
+    top:73%;
 }
 
 .targaryen{
-left:55%;
-top:58%;
+    left:55%;
+    top:58%;
 }
 
 .velaryon{
-left:65%;
-top:60%;
+    left:65%;
+    top:60%;
+}
+
+.blackfyre{
+    left:59%;
+    top:53%;
+}
+
+.celtigar{
+    left:68%;
+    top:53%;
 }
 
 .tyrell{
-left:52%;
-top:68%;
+    left:52%;
+    top:68%;
 }
 
 .hightower{
-left:60%;
-top:72%;
+    left:60%;
+    top:72%;
+}
+
+.redwyne{
+    left:54%;
+    top:76%;
 }
 
 .martell{
-left:52%;
-top:91%;
+    left:52%;
+    top:91%;
 }
 
 .yronwood{
-left:42%;
-top:88%;
+    left:42%;
+    top:88%;
 }
 
-/* CONTROLES */
+
+/* =========================
+CONTROLES
+========================= */
 
 .controls{
-position:fixed;
 
-right:25px;
-bottom:25px;
+    position:fixed;
 
-display:flex;
+    right:25px;
 
-flex-direction:column;
+    bottom:25px;
 
-gap:8px;
+    display:flex;
 
-z-index:50;
+    flex-direction:column;
+
+    gap:8px;
+
+    z-index:50;
+
 }
+
 
 .controls button{
-width:45px;
-height:45px;
 
-border:1px solid rgba(212,181,106,.5);
+    width:45px;
 
-background:rgba(10,10,10,.9);
+    height:45px;
 
-color:#d4b56a;
+    border:1px solid rgba(212,181,106,.5);
 
-font-size:20px;
+    background:rgba(10,10,10,.9);
 
-cursor:pointer;
+    color:#d4b56a;
+
+    font-size:20px;
+
+    cursor:pointer;
+
 }
+
 
 .controls button:hover{
-background:#d4b56a;
-color:#111;
+
+    background:#d4b56a;
+
+    color:#111;
+
 }
 
-/* PAINEL */
+
+/* =========================
+PAINEL
+========================= */
 
 .info{
-position:fixed;
 
-right:25px;
-top:95px;
+    position:fixed;
 
-width:280px;
+    right:25px;
 
-padding:25px;
+    top:95px;
 
-background:rgba(10,10,10,.96);
+    width:300px;
 
-border:1px solid rgba(212,181,106,.45);
+    max-height:calc(100vh - 130px);
 
-box-shadow:0 15px 40px rgba(0,0,0,.6);
+    overflow-y:auto;
 
-z-index:60;
+    padding:25px;
 
-display:none;
+    background:rgba(10,10,10,.97);
+
+    border:1px solid rgba(212,181,106,.45);
+
+    box-shadow:0 15px 40px rgba(0,0,0,.6);
+
+    z-index:60;
+
+    display:none;
+
 }
+
 
 .info.active{
-display:block;
+
+    display:block;
+
 }
+
 
 .info .close{
-position:absolute;
 
-top:10px;
-right:12px;
+    position:absolute;
 
-border:none;
+    top:10px;
 
-background:none;
+    right:12px;
 
-color:#888;
+    border:none;
 
-font-size:18px;
+    background:none;
 
-cursor:pointer;
+    color:#888;
+
+    font-size:22px;
+
+    cursor:pointer;
+
 }
+
+
+.info .close:hover{
+
+    color:white;
+
+}
+
+
+.house-symbol{
+
+    font-size:42px;
+
+    margin-bottom:10px;
+
+}
+
 
 .info h2{
-font-family:"Cinzel",serif;
-color:#d4b56a;
-margin-bottom:12px;
+
+    font-family:"Cinzel",serif;
+
+    color:#d4b56a;
+
+    margin-bottom:18px;
+
+    padding-right:20px;
+
 }
+
 
 .info p{
-color:#999;
-font-size:13px;
-line-height:1.7;
-margin-bottom:8px;
+
+    color:#999;
+
+    font-size:13px;
+
+    line-height:1.7;
+
+    margin-bottom:12px;
+
 }
 
-.info .house-button{
-display:block;
 
-margin-top:18px;
+.info strong{
 
-padding:11px;
+    color:#c9b276;
 
-text-align:center;
+}
 
-border:1px solid #a7894d;
 
-color:#d4b56a;
+.house-description{
 
-text-decoration:none;
+    margin-top:18px;
 
-font-family:"Cinzel",serif;
+    padding-top:15px;
 
-font-size:11px;
+    border-top:1px solid rgba(212,181,106,.15);
 
-letter-spacing:1px;
+}
+
+
+.house-button{
+
+    display:block;
+
+    margin-top:20px;
+
+    padding:11px;
+
+    text-align:center;
+
+    border:1px solid #a7894d;
+
+    color:#d4b56a;
+
+    text-decoration:none;
+
+    font-family:"Cinzel",serif;
+
+    font-size:11px;
+
+    letter-spacing:1px;
+
+}
+
+
+.house-button:hover{
+
+    background:#a7894d;
+
+    color:#080808;
+
+}
+
+
+/* =========================
+MENSAGEM DE ERRO
+========================= */
+
+.error-message{
+
+    position:fixed;
+
+    left:50%;
+
+    top:50%;
+
+    transform:translate(-50%,-50%);
+
+    width:min(500px,90%);
+
+    padding:30px;
+
+    background:rgba(10,10,10,.98);
+
+    border:1px solid #8c3434;
+
+    text-align:center;
+
+    z-index:200;
+
+    display:none;
+
+}
+
+
+.error-message h2{
+
+    font-family:"Cinzel",serif;
+
+    color:#d4b56a;
+
+    margin-bottom:15px;
+
+}
+
+
+.error-message p{
+
+    color:#aaa;
+
+    font-size:13px;
+
+    line-height:1.7;
+
+}
+
+
+.error-message button{
+
+    margin-top:20px;
+
+    padding:10px 20px;
+
+    background:none;
+
+    border:1px solid #a7894d;
+
+    color:#d4b56a;
+
+    cursor:pointer;
+
+}
+
+
+/* =========================
+RESPONSIVO
+========================= */
+
+@media(max-width:700px){
+
+    .logo{
+
+        font-size:14px;
+
+    }
+
+
+    .info{
+
+        left:15px;
+
+        right:15px;
+
+        top:auto;
+
+        bottom:15px;
+
+        width:auto;
+
+        max-height:55vh;
+
+    }
+
+
+    .controls{
+
+        right:15px;
+
+        bottom:15px;
+
+    }
+
+
+    .map{
+
+        width:700px;
+
+    }
+
 }
 
 </style>
 
 </head>
 
+
 <body>
+
+
+<!-- =========================
+MENU
+========================= -->
 
 <header class="topbar">
 
-<div class="logo">
-THE SEVEN KINGDOMS
-</div>
+    <div class="logo">
+        THE SEVEN KINGDOMS
+    </div>
 
-<a href="index.html" class="back">
-← VOLTAR
-</a>
+    <a href="index.html" class="back">
+        ← VOLTAR
+    </a>
 
 </header>
 
+
+<!-- =========================
+MAPA
+========================= -->
+
 <div class="map-container" id="mapContainer">
 
-<div class="map" id="map">
+    <div class="map" id="map">
 
-<img src="Westeros_Map.png" alt="Mapa de Westeros">
+        <!--
+        IMPORTANTE:
+        O nome precisa ser exatamente:
+        Westeros_map.png
+        -->
 
-<button class="marker stark"
-onclick="mostrarCasa('Casa Stark','Winterfell','Norte','🐺')">
-🐺
-</button>
+        <img
+            src="Westeros_map.png"
+            alt="Mapa de Westeros"
+        >
 
-<button class="marker manderly"
-onclick="mostrarCasa('Casa Manderly','Porto Branco','Norte','🌊')">
-🌊
-</button>
 
-<button class="marker bolton"
-onclick="mostrarCasa('Casa Bolton','Forte do Pavor','Norte','🩸')">
-🩸
-</button>
+        <!-- NORTE -->
 
-<button class="marker tully"
-onclick="mostrarCasa('Casa Tully','Correrrio','Terras Fluviais','🐟')">
-🐟
-</button>
+        <button
+            class="marker stark"
+            onclick="mostrarCasa('stark')">
+            🐺
+        </button>
 
-<button class="marker lannister"
-onclick="mostrarCasa('Casa Lannister','Rochedo Casterly','Ocidente','🦁')">
-🦁
-</button>
 
-<button class="marker reyne"
-onclick="mostrarCasa('Casa Reyne','Castamere','Ocidente','🏰')">
-🏰
-</button>
+        <button
+            class="marker manderly"
+            onclick="mostrarCasa('manderly')">
+            🌊
+        </button>
 
-<button class="marker arryn"
-onclick="mostrarCasa('Casa Arryn','Ninho da Águia','Vale','🦅')">
-🦅
-</button>
 
-<button class="marker baratheon"
-onclick="mostrarCasa('Casa Baratheon','Ponta Tempestade','Tempestade','🦌')">
-🦌
-</button>
+        <button
+            class="marker bolton"
+            onclick="mostrarCasa('bolton')">
+            🩸
+        </button>
 
-<button class="marker targaryen"
-onclick="mostrarCasa('Casa Targaryen','Porto Real','Terras da Coroa','🐉')">
-🐉
-</button>
 
-<button class="marker velaryon"
-onclick="mostrarCasa('Casa Velaryon','Driftmark','Terras da Coroa','🌊')">
-🌊
-</button>
+        <!-- FLUVIAIS -->
 
-<button class="marker tyrell"
-onclick="mostrarCasa('Casa Tyrell','Jardim de Cima','Campina','🌹')">
-🌹
-</button>
+        <button
+            class="marker tully"
+            onclick="mostrarCasa('tully')">
+            🐟
+        </button>
 
-<button class="marker hightower"
-onclick="mostrarCasa('Casa Hightower','Vilavelha','Campina','🔥')">
-🔥
-</button>
 
-<button class="marker martell"
-onclick="mostrarCasa('Casa Martell','Lançassolar','Dorne','☀️')">
-☀️
-</button>
+        <button
+            class="marker blackwood"
+            onclick="mostrarCasa('blackwood')">
+            🌲
+        </button>
 
-<button class="marker yronwood"
-onclick="mostrarCasa('Casa Yronwood','Yronwood','Dorne','🦂')">
-🦂
-</button>
+
+        <button
+            class="marker mallister"
+            onclick="mostrarCasa('mallister')">
+            🦅
+        </button>
+
+
+        <!-- OCIDENTE -->
+
+        <button
+            class="marker lannister"
+            onclick="mostrarCasa('lannister')">
+            🦁
+        </button>
+
+
+        <button
+            class="marker reyne"
+            onclick="mostrarCasa('reyne')">
+            🏰
+        </button>
+
+
+        <button
+            class="marker lefford"
+            onclick="mostrarCasa('lefford')">
+            🛡️
+        </button>
+
+
+        <!-- VALE -->
+
+        <button
+            class="marker arryn"
+            onclick="mostrarCasa('arryn')">
+            🦅
+        </button>
+
+
+        <button
+            class="marker grafton"
+            onclick="mostrarCasa('grafton')">
+            ⚓
+        </button>
+
+
+        <button
+            class="marker royce"
+            onclick="mostrarCasa('royce')">
+            🗿
+        </button>
+
+
+        <!-- TEMPESTADE -->
+
+        <button
+            class="marker baratheon"
+            onclick="mostrarCasa('baratheon')">
+            🦌
+        </button>
+
+
+        <button
+            class="marker swann"
+            onclick="mostrarCasa('swann')">
+            🦢
+        </button>
+
+
+        <button
+            class="marker tarth"
+            onclick="mostrarCasa('tarth')">
+            🌊
+        </button>
+
+
+        <!-- TERRAS DA COROA -->
+
+        <button
+            class="marker targaryen"
+            onclick="mostrarCasa('targaryen')">
+            🐉
+        </button>
+
+
+        <button
+            class="marker velaryon"
+            onclick="mostrarCasa('velaryon')">
+            🌊
+        </button>
+
+
+        <button
+            class="marker blackfyre"
+            onclick="mostrarCasa('blackfyre')">
+            🐉
+        </button>
+
+
+        <button
+            class="marker celtigar"
+            onclick="mostrarCasa('celtigar')">
+            🦀
+        </button>
+
+
+        <!-- CAMPINA -->
+
+        <button
+            class="marker tyrell"
+            onclick="mostrarCasa('tyrell')">
+            🌹
+        </button>
+
+
+        <button
+            class="marker hightower"
+            onclick="mostrarCasa('hightower')">
+            🔥
+        </button>
+
+
+        <button
+            class="marker redwyne"
+            onclick="mostrarCasa('redwyne')">
+            🍷
+        </button>
+
+
+        <!-- DORNE -->
+
+        <button
+            class="marker martell"
+            onclick="mostrarCasa('martell')">
+            ☀️
+        </button>
+
+
+        <button
+            class="marker yronwood"
+            onclick="mostrarCasa('yronwood')">
+            🦂
+        </button>
+
+    </div>
 
 </div>
 
-</div>
+
+<!-- =========================
+CONTROLES
+========================= -->
 
 <div class="controls">
 
-<button onclick="zoomIn()">+</button>
+    <button onclick="zoomIn()">+</button>
 
-<button onclick="zoomOut()">−</button>
+    <button onclick="zoomOut()">−</button>
 
-<button onclick="resetMap()">⌂</button>
+    <button onclick="resetMap()">⌂</button>
 
 </div>
+
+
+<!-- =========================
+PAINEL DA CASA
+========================= -->
 
 <div class="info" id="info">
 
-<button class="close" onclick="fecharInfo()">×</button>
+    <button
+        class="close"
+        onclick="fecharInfo()">
+        ×
+    </button>
 
-<div id="infoContent"></div>
+    <div id="infoContent"></div>
 
 </div>
 
+
+<!-- =========================
+ERRO
+========================= -->
+
+<div class="error-message" id="errorMessage">
+
+    <h2>
+        Erro ao conectar ao Supabase
+    </h2>
+
+    <p id="errorText">
+        Não foi possível carregar os dados das Casas.
+    </p>
+
+    <button onclick="fecharErro()">
+        Fechar
+    </button>
+
+</div>
+
+
+<!-- =========================
+JAVASCRIPT
+========================= -->
+
 <script>
+
+
+/* ==================================================
+SUPABASE
+================================================== */
+
+const SUPABASE_URL =
+    "https://kdxvibhziscmdmppufku.supabase.co";
+
+
+const SUPABASE_KEY =
+    "sb_publishable_OF5ZtHAY4f90jY3wPir33Q_Dy2w2_dq";
+
+
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
+
+
+/* ==================================================
+MAPA
+================================================== */
 
 let zoom = 1;
 
-const map = document.getElementById("map");
+const map =
+    document.getElementById("map");
 
-const container = document.getElementById("mapContainer");
+const container =
+    document.getElementById("mapContainer");
+
 
 let positionX = 0;
+
 let positionY = 0;
 
 let dragging = false;
 
-let startX;
-let startY;
+let startX = 0;
+
+let startY = 0;
+
+
+/* ==================================================
+ATUALIZAR MAPA
+================================================== */
 
 function updateMap(){
 
-map.style.transform =
-`translate(calc(-50% + ${positionX}px), calc(-50% + ${positionY}px)) scale(${zoom})`;
+    map.style.transform =
+        `translate(
+            calc(-50% + ${positionX}px),
+            calc(-50% + ${positionY}px)
+        )
+        scale(${zoom})`;
 
 }
+
+
+/* ==================================================
+ZOOM IN
+================================================== */
 
 function zoomIn(){
 
-zoom += 0.2;
+    zoom += 0.2;
 
-if(zoom > 3){
-zoom = 3;
+    if(zoom > 3){
+
+        zoom = 3;
+
+    }
+
+    updateMap();
+
 }
 
-updateMap();
 
-}
+/* ==================================================
+ZOOM OUT
+================================================== */
 
 function zoomOut(){
 
-zoom -= 0.2;
+    zoom -= 0.2;
 
-if(zoom < 0.7){
-zoom = 0.7;
+    if(zoom < 0.7){
+
+        zoom = 0.7;
+
+    }
+
+    updateMap();
+
 }
 
-updateMap();
 
-}
+/* ==================================================
+RESET
+================================================== */
 
 function resetMap(){
 
-zoom = 1;
+    zoom = 1;
 
-positionX = 0;
+    positionX = 0;
 
-positionY = 0;
+    positionY = 0;
 
-updateMap();
+    updateMap();
+
+}
+
+
+/* ==================================================
+ARRASTAR MAPA
+================================================== */
+
+container.addEventListener(
+    "mousedown",
+    function(e){
+
+        /*
+        Se clicou em um marcador,
+        não inicia o arrasto.
+        */
+
+        if(
+            e.target.classList.contains("marker")
+        ){
+
+            return;
+
+        }
+
+
+        dragging = true;
+
+        startX =
+            e.clientX - positionX;
+
+        startY =
+            e.clientY - positionY;
+
+    }
+);
+
+
+window.addEventListener(
+    "mouseup",
+    function(){
+
+        dragging = false;
+
+    }
+);
+
+
+window.addEventListener(
+    "mousemove",
+    function(e){
+
+        if(!dragging){
+
+            return;
+
+        }
+
+
+        positionX =
+            e.clientX - startX;
+
+        positionY =
+            e.clientY - startY;
+
+
+        updateMap();
+
+    }
+);
+
+
+/* ==================================================
+MOSTRAR CASA
+BUSCANDO NO SUPABASE
+================================================== */
+
+async function mostrarCasa(id){
+
+    const info =
+        document.getElementById("info");
+
+    const content =
+        document.getElementById("infoContent");
+
+
+    /*
+    Mostra carregando enquanto
+    o Supabase responde.
+    */
+
+    content.innerHTML = `
+
+        <div class="house-symbol">
+            ⏳
+        </div>
+
+        <h2>
+            Carregando...
+        </h2>
+
+        <p>
+            Buscando informações da Casa.
+        </p>
+
+    `;
+
+
+    info.classList.add("active");
+
+
+    /* CONSULTA */
+
+    const { data, error } =
+        await supabaseClient
+
+            .from("casas")
+
+            .select("*")
+
+            .eq("slug", id)
+
+            .single();
+
+
+    /* ERRO */
+
+    if(error){
+
+        console.error(
+            "Erro Supabase:",
+            error
+        );
+
+
+        content.innerHTML = `
+
+            <div class="house-symbol">
+                ⚠️
+            </div>
+
+            <h2>
+                Casa não encontrada
+            </h2>
+
+            <p>
+                Não foi possível carregar
+                os dados desta Casa.
+            </p>
+
+            <p>
+                Verifique se a tabela
+                <strong>casas</strong>
+                existe no Supabase e se
+                o campo <strong>slug</strong>
+                está correto.
+            </p>
+
+        `;
+
+        return;
+
+    }
+
+
+    /* DADOS ENCONTRADOS */
+
+    content.innerHTML = `
+
+        <div class="house-symbol">
+            ${data.simbolo || "🏰"}
+        </div>
+
+
+        <h2>
+            ${data.nome || "Casa"}
+        </h2>
+
+
+        <p>
+            <strong>Região:</strong><br>
+            ${data.regiao || "Não informado"}
+        </p>
+
+
+        <p>
+            <strong>Sede:</strong><br>
+            ${data.sede || "Não informado"}
+        </p>
+
+
+        <p>
+            <strong>Governante:</strong><br>
+            ${data.governante || "Não informado"}
+        </p>
+
+
+        <p>
+            <strong>Membros:</strong><br>
+            ${data.membros_atual || 0}/${data.membros_maximo || 0}
+        </p>
+
+
+        <p class="house-description">
+            ${data.descricao || "Nenhuma descrição cadastrada."}
+        </p>
+
+
+        <a
+            href="#"
+            class="house-button"
+            onclick="return false;">
+            VER CASA
+        </a>
+
+    `;
 
 }
 
-container.addEventListener("mousedown", function(e){
 
-dragging = true;
-
-startX = e.clientX - positionX;
-
-startY = e.clientY - positionY;
-
-});
-
-window.addEventListener("mouseup", function(){
-
-dragging = false;
-
-});
-
-window.addEventListener("mousemove", function(e){
-
-if(!dragging) return;
-
-positionX = e.clientX - startX;
-
-positionY = e.clientY - startY;
-
-updateMap();
-
-});
-
-function mostrarCasa(nome, local, regiao, simbolo){
-
-const info = document.getElementById("info");
-
-const content = document.getElementById("infoContent");
-
-content.innerHTML = `
-
-<h2>${simbolo} ${nome}</h2>
-
-<p>
-<strong>Local:</strong> ${local}
-</p>
-
-<p>
-<strong>Região:</strong> ${regiao}
-</p>
-
-<a href="#" class="house-button">
-VER CASA
-</a>
-
-`;
-
-info.classList.add("active");
-
-}
+/* ==================================================
+FECHAR PAINEL
+================================================== */
 
 function fecharInfo(){
 
-document
-.getElementById("info")
-.classList.remove("active");
+    document
+        .getElementById("info")
+        .classList.remove("active");
 
 }
 
+
+/* ==================================================
+ERRO
+================================================== */
+
+function fecharErro(){
+
+    document
+        .getElementById("errorMessage")
+        .style.display = "none";
+
+}
+
+
+/* ==================================================
+TESTAR SUPABASE AO ABRIR A PÁGINA
+================================================== */
+
+async function testarSupabase(){
+
+    console.log(
+        "Conectando ao Supabase..."
+    );
+
+
+    const { data, error } =
+        await supabaseClient
+
+            .from("casas")
+
+            .select("slug")
+
+            .limit(1);
+
+
+    if(error){
+
+        console.error(
+            "Supabase:",
+            error
+        );
+
+        console.log(
+            "Verifique a tabela casas e as políticas RLS."
+        );
+
+        return;
+
+    }
+
+
+    console.log(
+        "Supabase conectado com sucesso!",
+        data
+    );
+
+}
+
+
+/* Executar teste */
+
+testarSupabase();
+
+
+/* Inicializar mapa */
+
+updateMap();
+
 </script>
+
 
 </body>
 
 </html>
-```
