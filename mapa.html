@@ -13,7 +13,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap"
+rel="stylesheet">
+
 
 <style>
 
@@ -23,24 +25,43 @@
     box-sizing:border-box;
 }
 
+html,
 body{
-    background:#080808;
-    color:#e8dfca;
-    font-family:"Inter",sans-serif;
-    overflow:hidden;
+    width:100%;
+    height:100%;
 }
 
-/* MENU */
+body{
+
+    background:#080808;
+
+    color:#e8dfca;
+
+    font-family:"Inter",sans-serif;
+
+    overflow:hidden;
+
+}
+
+
+/* =========================
+MENU
+========================= */
 
 .topbar{
+
     position:fixed;
+
     top:0;
     left:0;
+
     width:100%;
     height:70px;
 
     display:flex;
+
     align-items:center;
+
     justify-content:space-between;
 
     padding:0 30px;
@@ -49,31 +70,48 @@ body{
 
     border-bottom:1px solid rgba(212,181,106,.25);
 
-    z-index:100;
+    z-index:1000;
+
 }
 
 .logo{
+
     font-family:"Cinzel",serif;
+
     color:#d4b56a;
+
     letter-spacing:3px;
+
     font-size:18px;
+
 }
 
 .back{
+
     color:#c9b276;
+
     text-decoration:none;
+
     font-size:12px;
+
     letter-spacing:1px;
+
 }
 
 .back:hover{
+
     color:white;
+
 }
 
-/* MAPA */
+
+/* =========================
+ÁREA DO MAPA
+========================= */
 
 .map-container{
-    position:absolute;
+
+    position:fixed;
 
     top:70px;
     left:0;
@@ -85,16 +123,27 @@ body{
     background:#111;
 
     cursor:grab;
+
+    touch-action:none;
+
 }
 
-.map-container:active{
+.map-container.dragging{
+
     cursor:grabbing;
+
 }
+
+
+/* =========================
+MAPA
+========================= */
 
 .map{
+
     position:absolute;
 
-    width:900px;
+    width:1100px;
 
     left:50%;
     top:50%;
@@ -104,39 +153,53 @@ body{
         scale(1);
 
     transform-origin:center center;
+
+    user-select:none;
+
+    will-change:transform;
+
 }
 
-.map img{
+.map-image{
+
     width:100%;
+
+    height:auto;
 
     display:block;
 
     user-select:none;
 
     pointer-events:none;
+
 }
 
-/* MARCADORES */
+
+/* =========================
+MARCADORES
+========================= */
 
 .marker{
+
     position:absolute;
 
-    width:38px;
-    height:38px;
+    width:42px;
+    height:42px;
 
     border-radius:50%;
 
     border:2px solid #d4b56a;
 
-    background:#111;
+    background:rgba(10,10,10,.94);
 
     color:#d4b56a;
 
     display:flex;
+
     align-items:center;
     justify-content:center;
 
-    font-size:18px;
+    font-size:19px;
 
     cursor:pointer;
 
@@ -146,21 +209,35 @@ body{
         0 0 0 4px rgba(0,0,0,.45),
         0 0 18px rgba(212,181,106,.45);
 
-    transition:.25s;
+    transition:
+        transform .2s,
+        background .2s,
+        color .2s;
 
-    z-index:10;
+    z-index:20;
+
+    user-select:none;
+
+    touch-action:auto;
+
 }
 
 .marker:hover{
+
     transform:
         translate(-50%,-50%)
-        scale(1.25);
+        scale(1.2);
 
     background:#d4b56a;
+
     color:#111;
+
 }
 
-/* POSIÇÕES */
+
+/* =========================
+POSIÇÕES
+========================= */
 
 .stark{
     left:38%;
@@ -282,51 +359,66 @@ body{
     top:88%;
 }
 
-/* CONTROLES */
+
+/* =========================
+CONTROLES
+========================= */
 
 .controls{
+
     position:fixed;
 
     right:25px;
     bottom:25px;
 
     display:flex;
+
     flex-direction:column;
 
     gap:8px;
 
-    z-index:50;
+    z-index:500;
+
 }
 
 .controls button{
+
     width:45px;
     height:45px;
 
     border:1px solid rgba(212,181,106,.5);
 
-    background:rgba(10,10,10,.9);
+    background:rgba(10,10,10,.94);
 
     color:#d4b56a;
 
     font-size:20px;
 
     cursor:pointer;
+
 }
 
 .controls button:hover{
+
     background:#d4b56a;
+
     color:#111;
+
 }
 
-/* PAINEL */
+
+/* =========================
+PAINEL
+========================= */
 
 .info{
+
     position:fixed;
 
     right:25px;
     top:95px;
 
-    width:300px;
+    width:310px;
 
     max-height:calc(100vh - 130px);
 
@@ -338,18 +430,22 @@ body{
 
     border:1px solid rgba(212,181,106,.45);
 
-    box-shadow:0 15px 40px rgba(0,0,0,.6);
+    box-shadow:0 15px 40px rgba(0,0,0,.7);
 
-    z-index:60;
+    z-index:600;
 
     display:none;
+
 }
 
 .info.active{
+
     display:block;
+
 }
 
-.info .close{
+.close{
+
     position:absolute;
 
     top:10px;
@@ -361,41 +457,68 @@ body{
 
     color:#888;
 
-    font-size:22px;
+    font-size:24px;
 
     cursor:pointer;
+
+}
+
+.close:hover{
+
+    color:white;
+
 }
 
 .house-symbol{
+
     font-size:42px;
+
     margin-bottom:10px;
+
 }
 
 .info h2{
+
     font-family:"Cinzel",serif;
+
     color:#d4b56a;
+
     margin-bottom:18px;
+
+    padding-right:25px;
+
 }
 
 .info p{
+
     color:#999;
+
     font-size:13px;
+
     line-height:1.7;
+
     margin-bottom:12px;
+
 }
 
 .info strong{
+
     color:#c9b276;
+
 }
 
 .house-description{
+
     margin-top:18px;
+
     padding-top:15px;
 
     border-top:1px solid rgba(212,181,106,.15);
+
 }
 
 .house-button{
+
     display:block;
 
     margin-top:20px;
@@ -415,22 +538,108 @@ body{
     font-size:11px;
 
     letter-spacing:1px;
+
 }
 
-.house-button:hover{
-    background:#a7894d;
-    color:#080808;
+
+/* =========================
+MENSAGEM DE ERRO
+========================= */
+
+.error{
+
+    position:fixed;
+
+    left:50%;
+    top:50%;
+
+    transform:translate(-50%,-50%);
+
+    width:min(500px,90%);
+
+    padding:30px;
+
+    background:#0b0b0b;
+
+    border:1px solid #8c3434;
+
+    text-align:center;
+
+    z-index:2000;
+
+    display:none;
+
 }
 
-/* RESPONSIVO */
+.error.active{
+
+    display:block;
+
+}
+
+.error h2{
+
+    font-family:"Cinzel",serif;
+
+    color:#d4b56a;
+
+    margin-bottom:15px;
+
+}
+
+.error p{
+
+    color:#aaa;
+
+    line-height:1.7;
+
+    font-size:13px;
+
+}
+
+.error button{
+
+    margin-top:20px;
+
+    padding:10px 20px;
+
+    background:none;
+
+    border:1px solid #a7894d;
+
+    color:#d4b56a;
+
+    cursor:pointer;
+
+}
+
+
+/* =========================
+RESPONSIVO
+========================= */
 
 @media(max-width:700px){
 
+    .topbar{
+
+        padding:0 15px;
+
+    }
+
     .logo{
+
         font-size:14px;
+
+    }
+
+    .map{
+
+        width:800px;
+
     }
 
     .info{
+
         left:15px;
         right:15px;
 
@@ -440,15 +649,14 @@ body{
         width:auto;
 
         max-height:55vh;
+
     }
 
     .controls{
+
         right:15px;
         bottom:15px;
-    }
 
-    .map{
-        width:700px;
     }
 
 }
@@ -457,7 +665,13 @@ body{
 
 </head>
 
+
 <body>
+
+
+<!-- =========================
+MENU
+========================= -->
 
 <header class="topbar">
 
@@ -472,130 +686,251 @@ body{
 </header>
 
 
+<!-- =========================
+MAPA
+========================= -->
+
 <div class="map-container" id="mapContainer">
 
     <div class="map" id="map">
 
         <!--
         ATENÇÃO:
-        O nome do arquivo precisa ser EXATAMENTE:
+
+        O nome do arquivo é EXATAMENTE:
 
         Westeros_Map.png
-
         -->
 
         <img
-            src="Westeros_Map.png"
+            src="./Westeros_Map.png"
+            class="map-image"
             alt="Mapa de Westeros"
-            id="westerosMap"
+            draggable="false"
+            onerror="mostrarErroMapa()"
         >
 
 
         <!-- NORTE -->
 
-        <button class="marker stark" onclick="mostrarCasa('stark')">🐺</button>
+        <button class="marker stark"
+            onclick="abrirCasa('stark')">
+            🐺
+        </button>
 
-        <button class="marker manderly" onclick="mostrarCasa('manderly')">🌊</button>
+        <button class="marker manderly"
+            onclick="abrirCasa('manderly')">
+            🌊
+        </button>
 
-        <button class="marker bolton" onclick="mostrarCasa('bolton')">🩸</button>
+        <button class="marker bolton"
+            onclick="abrirCasa('bolton')">
+            🩸
+        </button>
 
 
         <!-- FLUVIAIS -->
 
-        <button class="marker tully" onclick="mostrarCasa('tully')">🐟</button>
+        <button class="marker tully"
+            onclick="abrirCasa('tully')">
+            🐟
+        </button>
 
-        <button class="marker blackwood" onclick="mostrarCasa('blackwood')">🌲</button>
+        <button class="marker blackwood"
+            onclick="abrirCasa('blackwood')">
+            🌲
+        </button>
 
-        <button class="marker mallister" onclick="mostrarCasa('mallister')">🦅</button>
+        <button class="marker mallister"
+            onclick="abrirCasa('mallister')">
+            🦅
+        </button>
 
 
         <!-- OCIDENTE -->
 
-        <button class="marker lannister" onclick="mostrarCasa('lannister')">🦁</button>
+        <button class="marker lannister"
+            onclick="abrirCasa('lannister')">
+            🦁
+        </button>
 
-        <button class="marker reyne" onclick="mostrarCasa('reyne')">🏰</button>
+        <button class="marker reyne"
+            onclick="abrirCasa('reyne')">
+            🏰
+        </button>
 
-        <button class="marker lefford" onclick="mostrarCasa('lefford')">🛡️</button>
+        <button class="marker lefford"
+            onclick="abrirCasa('lefford')">
+            🛡️
+        </button>
 
 
         <!-- VALE -->
 
-        <button class="marker arryn" onclick="mostrarCasa('arryn')">🦅</button>
+        <button class="marker arryn"
+            onclick="abrirCasa('arryn')">
+            🦅
+        </button>
 
-        <button class="marker grafton" onclick="mostrarCasa('grafton')">⚓</button>
+        <button class="marker grafton"
+            onclick="abrirCasa('grafton')">
+            ⚓
+        </button>
 
-        <button class="marker royce" onclick="mostrarCasa('royce')">🗿</button>
+        <button class="marker royce"
+            onclick="abrirCasa('royce')">
+            🗿
+        </button>
 
 
         <!-- TEMPESTADE -->
 
-        <button class="marker baratheon" onclick="mostrarCasa('baratheon')">🦌</button>
+        <button class="marker baratheon"
+            onclick="abrirCasa('baratheon')">
+            🦌
+        </button>
 
-        <button class="marker swann" onclick="mostrarCasa('swann')">🦢</button>
+        <button class="marker swann"
+            onclick="abrirCasa('swann')">
+            🦢
+        </button>
 
-        <button class="marker tarth" onclick="mostrarCasa('tarth')">🌊</button>
+        <button class="marker tarth"
+            onclick="abrirCasa('tarth')">
+            🌊
+        </button>
 
 
-        <!-- TERRAS DA COROA -->
+        <!-- COROA -->
 
-        <button class="marker targaryen" onclick="mostrarCasa('targaryen')">🐉</button>
+        <button class="marker targaryen"
+            onclick="abrirCasa('targaryen')">
+            🐉
+        </button>
 
-        <button class="marker velaryon" onclick="mostrarCasa('velaryon')">🌊</button>
+        <button class="marker velaryon"
+            onclick="abrirCasa('velaryon')">
+            🌊
+        </button>
 
-        <button class="marker blackfyre" onclick="mostrarCasa('blackfyre')">🐉</button>
+        <button class="marker blackfyre"
+            onclick="abrirCasa('blackfyre')">
+            🐉
+        </button>
 
-        <button class="marker celtigar" onclick="mostrarCasa('celtigar')">🦀</button>
+        <button class="marker celtigar"
+            onclick="abrirCasa('celtigar')">
+            🦀
+        </button>
 
 
         <!-- CAMPINA -->
 
-        <button class="marker tyrell" onclick="mostrarCasa('tyrell')">🌹</button>
+        <button class="marker tyrell"
+            onclick="abrirCasa('tyrell')">
+            🌹
+        </button>
 
-        <button class="marker hightower" onclick="mostrarCasa('hightower')">🔥</button>
+        <button class="marker hightower"
+            onclick="abrirCasa('hightower')">
+            🔥
+        </button>
 
-        <button class="marker redwyne" onclick="mostrarCasa('redwyne')">🍷</button>
+        <button class="marker redwyne"
+            onclick="abrirCasa('redwyne')">
+            🍷
+        </button>
 
 
         <!-- DORNE -->
 
-        <button class="marker martell" onclick="mostrarCasa('martell')">☀️</button>
+        <button class="marker martell"
+            onclick="abrirCasa('martell')">
+            ☀️
+        </button>
 
-        <button class="marker yronwood" onclick="mostrarCasa('yronwood')">🦂</button>
+        <button class="marker yronwood"
+            onclick="abrirCasa('yronwood')">
+            🦂
+        </button>
 
     </div>
 
 </div>
 
 
-<!-- CONTROLES -->
+<!-- =========================
+CONTROLES
+========================= -->
 
 <div class="controls">
 
-    <button onclick="zoomIn()">+</button>
+    <button onclick="zoomIn()" title="Aumentar zoom">
+        +
+    </button>
 
-    <button onclick="zoomOut()">−</button>
+    <button onclick="zoomOut()" title="Diminuir zoom">
+        −
+    </button>
 
-    <button onclick="resetMap()">⌂</button>
+    <button onclick="resetMap()" title="Centralizar mapa">
+        ⌂
+    </button>
 
 </div>
 
 
-<!-- PAINEL -->
+<!-- =========================
+PAINEL
+========================= -->
 
 <div class="info" id="info">
 
-    <button class="close" onclick="fecharInfo()">×</button>
+    <button
+        class="close"
+        onclick="fecharInfo()">
+        ×
+    </button>
 
     <div id="infoContent"></div>
 
 </div>
 
 
+<!-- =========================
+ERRO DO MAPA
+========================= -->
+
+<div class="error" id="mapError">
+
+    <h2>
+        Mapa não encontrado
+    </h2>
+
+    <p>
+        O site não conseguiu encontrar:
+        <br><br>
+
+        <strong>Westeros_Map.png</strong>
+
+        <br><br>
+
+        O arquivo precisa estar na mesma pasta
+        do <strong>mapa.html</strong> no GitHub.
+    </p>
+
+    <button onclick="fecharErro()">
+        Fechar
+    </button>
+
+</div>
+
+
 <script>
 
-/* ================================
+/* ==================================================
 SUPABASE
-================================ */
+================================================== */
 
 const SUPABASE_URL =
     "https://kdxvibhziscmdmppufku.supabase.co";
@@ -610,11 +945,9 @@ const supabaseClient =
     );
 
 
-/* ================================
+/* ==================================================
 MAPA
-================================ */
-
-let zoom = 1;
+================================================== */
 
 const map =
     document.getElementById("map");
@@ -622,18 +955,27 @@ const map =
 const container =
     document.getElementById("mapContainer");
 
+
+let zoom = 1;
+
 let positionX = 0;
+
 let positionY = 0;
 
 let dragging = false;
 
-let startX = 0;
-let startY = 0;
+let pointerStartX = 0;
+
+let pointerStartY = 0;
+
+let originalX = 0;
+
+let originalY = 0;
 
 
-/* ================================
+/* ==================================================
 ATUALIZAR MAPA
-================================ */
+================================================== */
 
 function updateMap(){
 
@@ -647,16 +989,18 @@ function updateMap(){
 }
 
 
-/* ================================
+/* ==================================================
 ZOOM
-================================ */
+================================================== */
 
 function zoomIn(){
 
     zoom += 0.2;
 
     if(zoom > 3){
+
         zoom = 3;
+
     }
 
     updateMap();
@@ -668,8 +1012,10 @@ function zoomOut(){
 
     zoom -= 0.2;
 
-    if(zoom < 0.7){
-        zoom = 0.7;
+    if(zoom < 0.6){
+
+        zoom = 0.6;
+
     }
 
     updateMap();
@@ -690,55 +1036,99 @@ function resetMap(){
 }
 
 
-/* ================================
-ARRASTAR
-================================ */
+/* ==================================================
+ARRASTAR MAPA
+
+USANDO POINTER EVENTS
+
+Isso funciona com:
+
+- mouse
+- touch
+- caneta
+================================================== */
 
 container.addEventListener(
-    "mousedown",
-    function(e){
+    "pointerdown",
+    function(event){
+
+        /*
+        Se clicou em uma Casa,
+        não arrasta o mapa.
+        */
 
         if(
-            e.target.classList.contains("marker")
+            event.target.closest(".marker")
         ){
+
             return;
+
         }
+
 
         dragging = true;
 
-        startX =
-            e.clientX - positionX;
 
-        startY =
-            e.clientY - positionY;
+        container.classList.add(
+            "dragging"
+        );
+
+
+        pointerStartX =
+            event.clientX;
+
+        pointerStartY =
+            event.clientY;
+
+
+        originalX =
+            positionX;
+
+        originalY =
+            positionY;
+
+
+        /*
+        Mantém o mesmo ponteiro
+        durante o arrasto.
+        */
+
+        try{
+
+            container.setPointerCapture(
+                event.pointerId
+            );
+
+        }catch(error){}
 
     }
 );
 
 
-window.addEventListener(
-    "mouseup",
-    function(){
-
-        dragging = false;
-
-    }
-);
-
-
-window.addEventListener(
-    "mousemove",
-    function(e){
+container.addEventListener(
+    "pointermove",
+    function(event){
 
         if(!dragging){
+
             return;
+
         }
 
+
+        const differenceX =
+            event.clientX - pointerStartX;
+
+        const differenceY =
+            event.clientY - pointerStartY;
+
+
         positionX =
-            e.clientX - startX;
+            originalX + differenceX;
 
         positionY =
-            e.clientY - startY;
+            originalY + differenceY;
+
 
         updateMap();
 
@@ -746,17 +1136,311 @@ window.addEventListener(
 );
 
 
-/* ================================
-CASAS
-================================ */
+function pararArrasto(){
 
-async function mostrarCasa(id){
+    dragging = false;
+
+    container.classList.remove(
+        "dragging"
+    );
+
+}
+
+
+container.addEventListener(
+    "pointerup",
+    pararArrasto
+);
+
+
+container.addEventListener(
+    "pointercancel",
+    pararArrasto
+);
+
+
+container.addEventListener(
+    "pointerleave",
+    function(event){
+
+        /*
+        Não interrompe o arrasto
+        simplesmente porque o mouse
+        saiu da área.
+        */
+
+        if(
+            event.pointerType === "mouse"
+        ){
+
+            return;
+
+        }
+
+    }
+);
+
+
+/* ==================================================
+EVITAR ARRASTO QUANDO CLICA NAS CASAS
+================================================== */
+
+document
+    .querySelectorAll(".marker")
+    .forEach(function(marker){
+
+        marker.addEventListener(
+            "pointerdown",
+            function(event){
+
+                event.stopPropagation();
+
+            }
+        );
+
+    });
+
+
+/* ==================================================
+CASAS
+================================================== */
+
+const casasFallback = {
+
+    stark:{
+        nome:"Casa Stark",
+        regiao:"Norte",
+        sede:"Winterfell",
+        simbolo:"🐺",
+        descricao:
+        "Uma das grandes Casas do Norte, conhecida por sua honra, tradição e ligação ancestral com Winterfell."
+    },
+
+    manderly:{
+        nome:"Casa Manderly",
+        regiao:"Norte",
+        sede:"Porto Branco",
+        simbolo:"🌊",
+        descricao:
+        "Uma poderosa Casa do Norte estabelecida em Porto Branco."
+    },
+
+    bolton:{
+        nome:"Casa Bolton",
+        regiao:"Norte",
+        sede:"Forte do Pavor",
+        simbolo:"🩸",
+        descricao:
+        "Uma antiga Casa do Norte, conhecida por sua história brutal."
+    },
+
+    tully:{
+        nome:"Casa Tully",
+        regiao:"Terras Fluviais",
+        sede:"Correrrio",
+        simbolo:"🐟",
+        descricao:
+        "Casa soberana das Terras Fluviais."
+    },
+
+    blackwood:{
+        nome:"Casa Blackwood",
+        regiao:"Terras Fluviais",
+        sede:"Raventree Hall",
+        simbolo:"🌲",
+        descricao:
+        "Uma antiga Casa das Terras Fluviais."
+    },
+
+    mallister:{
+        nome:"Casa Mallister",
+        regiao:"Terras Fluviais",
+        sede:"Seagard",
+        simbolo:"🦅",
+        descricao:
+        "Uma Casa poderosa das Terras Fluviais."
+    },
+
+    lannister:{
+        nome:"Casa Lannister",
+        regiao:"Ocidente",
+        sede:"Rochedo Casterly",
+        simbolo:"🦁",
+        descricao:
+        "Uma das Casas mais ricas e influentes de Westeros."
+    },
+
+    reyne:{
+        nome:"Casa Reyne",
+        regiao:"Ocidente",
+        sede:"Castamere",
+        simbolo:"🏰",
+        descricao:
+        "Uma antiga Casa das Terras Ocidentais."
+    },
+
+    lefford:{
+        nome:"Casa Lefford",
+        regiao:"Ocidente",
+        sede:"Terras Ocidentais",
+        simbolo:"🛡️",
+        descricao:
+        "Uma Casa nobre das Terras Ocidentais."
+    },
+
+    arryn:{
+        nome:"Casa Arryn",
+        regiao:"Vale",
+        sede:"Ninho da Águia",
+        simbolo:"🦅",
+        descricao:
+        "Casa governante do Vale de Arryn."
+    },
+
+    grafton:{
+        nome:"Casa Grafton",
+        regiao:"Vale",
+        sede:"Vila Gaivota",
+        simbolo:"⚓",
+        descricao:
+        "Uma Casa importante do Vale."
+    },
+
+    royce:{
+        nome:"Casa Royce",
+        regiao:"Vale",
+        sede:"Runestone",
+        simbolo:"🗿",
+        descricao:
+        "Uma antiga e poderosa Casa do Vale."
+    },
+
+    baratheon:{
+        nome:"Casa Baratheon",
+        regiao:"Terras da Tempestade",
+        sede:"Ponta Tempestade",
+        simbolo:"🦌",
+        descricao:
+        "Uma das grandes Casas de Westeros."
+    },
+
+    swann:{
+        nome:"Casa Swann",
+        regiao:"Terras da Tempestade",
+        sede:"Pedra Branca",
+        simbolo:"🦢",
+        descricao:
+        "Uma Casa nobre das Terras da Tempestade."
+    },
+
+    tarth:{
+        nome:"Casa Tarth",
+        regiao:"Terras da Tempestade",
+        sede:"Ilha de Tarth",
+        simbolo:"🌊",
+        descricao:
+        "Casa governante da Ilha de Tarth."
+    },
+
+    targaryen:{
+        nome:"Casa Targaryen",
+        regiao:"Terras da Coroa",
+        sede:"Porto Real",
+        simbolo:"🐉",
+        descricao:
+        "A Casa dos dragões e uma das forças centrais da política de Westeros."
+    },
+
+    velaryon:{
+        nome:"Casa Velaryon",
+        regiao:"Terras da Coroa",
+        sede:"Driftmark",
+        simbolo:"🌊",
+        descricao:
+        "Uma poderosa Casa de origem valiriana, ligada ao mar e à grande frota de Driftmark."
+    },
+
+    blackfyre:{
+        nome:"Casa Blackfyre",
+        regiao:"Terras da Coroa",
+        sede:"Terras da Coroa",
+        simbolo:"🐉",
+        descricao:
+        "Uma linhagem de sangue valiriano associada aos Blackfyre."
+    },
+
+    celtigar:{
+        nome:"Casa Celtigar",
+        regiao:"Terras da Coroa",
+        sede:"Garra de Caranguejo",
+        simbolo:"🦀",
+        descricao:
+        "Uma antiga Casa de origem valiriana."
+    },
+
+    tyrell:{
+        nome:"Casa Tyrell",
+        regiao:"Campina",
+        sede:"Jardim de Cima",
+        simbolo:"🌹",
+        descricao:
+        "A grande Casa que governa a Campina."
+    },
+
+    hightower:{
+        nome:"Casa Hightower",
+        regiao:"Campina",
+        sede:"Vilavelha",
+        simbolo:"🔥",
+        descricao:
+        "Uma das Casas mais antigas e poderosas da Campina."
+    },
+
+    redwyne:{
+        nome:"Casa Redwyne",
+        regiao:"Campina",
+        sede:"Arbor",
+        simbolo:"🍷",
+        descricao:
+        "Uma poderosa Casa marítima da Campina."
+    },
+
+    martell:{
+        nome:"Casa Martell",
+        regiao:"Dorne",
+        sede:"Lançassolar",
+        simbolo:"☀️",
+        descricao:
+        "A Casa governante de Dorne."
+    },
+
+    yronwood:{
+        nome:"Casa Yronwood",
+        regiao:"Dorne",
+        sede:"Yronwood",
+        simbolo:"🦂",
+        descricao:
+        "Uma das mais poderosas Casas de Dorne."
+    }
+
+};
+
+
+/* ==================================================
+ABRIR CASA
+================================================== */
+
+async function abrirCasa(id){
 
     const info =
         document.getElementById("info");
 
     const content =
         document.getElementById("infoContent");
+
+
+    info.classList.add("active");
+
 
     content.innerHTML = `
 
@@ -774,48 +1458,88 @@ async function mostrarCasa(id){
 
     `;
 
-    info.classList.add("active");
+
+    /*
+    Primeiro tenta Supabase.
+    */
 
 
-    const { data, error } =
-        await supabaseClient
+    try{
 
-            .from("casas")
-
-            .select("*")
-
-            .eq("slug", id)
-
-            .single();
+        const result =
+            await supabaseClient
+                .from("casas")
+                .select("*")
+                .eq("slug",id)
+                .maybeSingle();
 
 
-    if(error){
+        const data =
+            result.data;
+
+
+        const error =
+            result.error;
+
+
+        if(
+            !error &&
+            data
+        ){
+
+            mostrarDadosCasa(data);
+
+            return;
+
+        }
+
+    }catch(error){
 
         console.error(
             "Erro Supabase:",
             error
         );
 
-        content.innerHTML = `
+    }
 
-            <div class="house-symbol">
-                ⚠️
-            </div>
+
+    /*
+    Se o Supabase ainda não estiver
+    configurado, usa os dados locais.
+    */
+
+    const casa =
+        casasFallback[id];
+
+
+    if(!casa){
+
+        content.innerHTML = `
 
             <h2>
                 Casa não encontrada
             </h2>
-
-            <p>
-                Não foi possível carregar os
-                dados desta Casa.
-            </p>
 
         `;
 
         return;
 
     }
+
+
+    mostrarDadosCasa(casa);
+
+}
+
+
+/* ==================================================
+MOSTRAR DADOS
+================================================== */
+
+function mostrarDadosCasa(data){
+
+    const content =
+        document.getElementById("infoContent");
 
 
     content.innerHTML = `
@@ -845,22 +1569,113 @@ async function mostrarCasa(id){
 
         <p>
             <strong>Membros:</strong><br>
-            ${data.membros_atual || 0}/${data.membros_maximo || 0}
+            ${data.membros_atual ?? 0}
+            /
+            ${data.membros_maximo ?? 0}
         </p>
 
         <p class="house-description">
             ${data.descricao || "Nenhuma descrição cadastrada."}
         </p>
 
-        }
-    );
+        <a
+            href="#"
+            class="house-button"
+            onclick="return false;">
+            VER CASA
+        </a>
+
+    `;
+
+}
 
 
-/* ================================
-INICIALIZAR
-================================ */
+/* ==================================================
+FECHAR CASA
+================================================== */
+
+function fecharInfo(){
+
+    document
+        .getElementById("info")
+        .classList.remove("active");
+
+}
+
+
+/* ==================================================
+ERRO MAPA
+================================================== */
+
+function mostrarErroMapa(){
+
+    document
+        .getElementById("mapError")
+        .classList.add("active");
+
+}
+
+
+function fecharErro(){
+
+    document
+        .getElementById("mapError")
+        .classList.remove("active");
+
+}
+
+
+/* ==================================================
+INICIALIZAÇÃO
+================================================== */
 
 updateMap();
+
+
+/*
+Testa se o Supabase está acessível,
+mas não impede o mapa de funcionar
+caso a tabela ainda não esteja criada.
+*/
+
+async function testarSupabase(){
+
+    try{
+
+        const result =
+            await supabaseClient
+                .from("casas")
+                .select("slug")
+                .limit(1);
+
+
+        if(result.error){
+
+            console.warn(
+                "Supabase ainda não está pronto:",
+                result.error.message
+            );
+
+            return;
+
+        }
+
+
+        console.log(
+            "Supabase conectado!"
+        );
+
+    }catch(error){
+
+        console.warn(
+            "Supabase indisponível."
+        );
+
+    }
+
+}
+
+testarSupabase();
 
 </script>
 
