@@ -1,6 +1,3 @@
-# `index.html`
-
-```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -19,6 +16,10 @@ rel="stylesheet">
 
 <style>
 
+/* =========================
+RESET
+========================= */
+
 *{
     margin:0;
     padding:0;
@@ -35,12 +36,18 @@ body{
     font-family:"Inter",sans-serif;
 }
 
-/* MENU */
+
+/* =========================
+MENU
+========================= */
 
 nav{
+
     position:fixed;
+
     top:0;
     left:0;
+
     width:100%;
     height:78px;
 
@@ -51,47 +58,74 @@ nav{
     padding:0 6%;
 
     background:rgba(8,8,8,.94);
+
     backdrop-filter:blur(12px);
 
     border-bottom:1px solid rgba(196,163,91,.25);
 
     z-index:1000;
+
 }
 
 .logo{
+
     font-family:"Cinzel",serif;
+
     font-size:21px;
+
     letter-spacing:3px;
+
     color:#d4b56a;
+
     font-weight:700;
+
 }
 
 .menu{
+
     display:flex;
+
     gap:28px;
+
     list-style:none;
+
 }
 
 .menu a{
+
     color:#cfc6b2;
+
     text-decoration:none;
+
     font-size:11px;
+
     letter-spacing:1.5px;
+
     text-transform:uppercase;
+
     transition:.3s;
+
 }
 
 .menu a:hover{
+
     color:#d4b56a;
+
 }
 
-/* HERO */
+
+/* =========================
+HERO
+========================= */
 
 .hero{
+
     min-height:100vh;
 
     display:flex;
+
     align-items:center;
+
     justify-content:center;
 
     text-align:center;
@@ -101,159 +135,251 @@ nav{
     position:relative;
 
     background:
+
     linear-gradient(
         rgba(5,5,5,.55),
         rgba(5,5,5,.95)
     ),
+
     radial-gradient(
         circle at center,
         #382e20 0%,
         #121212 42%,
         #050505 100%
     );
+
 }
 
 .hero-content{
+
     max-width:1000px;
+
 }
 
 .eyebrow{
+
     font-size:12px;
+
     letter-spacing:6px;
+
     text-transform:uppercase;
+
     color:#a9966c;
+
     margin-bottom:25px;
+
 }
 
 .hero h1{
+
     font-family:"Cinzel",serif;
+
     font-size:clamp(50px,8vw,105px);
+
     line-height:.95;
+
     letter-spacing:8px;
+
     color:#e4d7b8;
+
     text-shadow:0 4px 20px rgba(0,0,0,.8);
+
 }
 
 .hero h2{
+
     margin-top:25px;
+
     font-family:"Cinzel",serif;
+
     font-weight:400;
+
     font-size:clamp(18px,3vw,28px);
+
     color:#b89d5b;
+
     letter-spacing:5px;
+
 }
 
 .hero p{
+
     max-width:650px;
+
     margin:30px auto;
+
     line-height:1.8;
+
     color:#aaa18f;
+
     font-size:15px;
+
 }
 
 .hero-buttons{
+
     display:flex;
+
     justify-content:center;
+
     gap:15px;
+
     flex-wrap:wrap;
+
     margin-top:35px;
+
 }
 
 .button{
+
     display:inline-block;
+
     padding:15px 30px;
 
     border:1px solid #a7894d;
 
     color:#dbc58d;
+
     text-decoration:none;
 
     font-family:"Cinzel",serif;
+
     font-size:12px;
+
     letter-spacing:2px;
+
     text-transform:uppercase;
 
     transition:.3s;
+
 }
 
 .button:hover{
+
     background:#a7894d;
+
     color:#080808;
+
 }
 
 .button.primary{
+
     background:#a7894d;
+
     color:#080808;
+
 }
 
-/* SEÇÕES */
+
+/* =========================
+SEÇÕES
+========================= */
 
 section{
+
     padding:110px 7%;
+
 }
 
 .section-title{
+
     text-align:center;
+
     margin-bottom:60px;
+
 }
 
 .section-title span{
+
     display:block;
+
     font-size:11px;
+
     letter-spacing:4px;
+
     color:#a7894d;
+
     text-transform:uppercase;
+
     margin-bottom:15px;
+
 }
 
 .section-title h2{
+
     font-family:"Cinzel",serif;
+
     font-size:clamp(30px,4vw,48px);
+
     font-weight:500;
+
     color:#e0d4b8;
+
 }
 
-/* CASAS */
+
+/* =========================
+CASAS
+========================= */
 
 .houses{
+
     background:#101010;
+
 }
 
 .region{
+
     max-width:1250px;
+
     margin:0 auto 80px;
+
 }
 
 .region-title{
+
     font-family:"Cinzel",serif;
+
     font-size:25px;
+
     color:#c9b276;
 
     padding-bottom:15px;
+
     margin-bottom:25px;
 
     border-bottom:1px solid rgba(212,181,106,.2);
 
     letter-spacing:2px;
+
 }
 
 .house-grid{
+
     display:grid;
+
     grid-template-columns:repeat(3,1fr);
+
     gap:18px;
+
 }
 
 .house{
+
     min-height:190px;
+
     padding:28px;
 
     display:flex;
+
     flex-direction:column;
+
     justify-content:flex-end;
 
     border:1px solid rgba(212,181,106,.18);
 
     background:
+
     linear-gradient(
         145deg,
         #191714,
@@ -261,123 +387,200 @@ section{
     );
 
     transition:.35s;
+
 }
 
 .house:hover{
+
     transform:translateY(-7px);
+
     border-color:rgba(212,181,106,.6);
+
 }
 
 .house h3{
+
     font-family:"Cinzel",serif;
+
     color:#d7c18c;
+
     font-size:20px;
+
     margin-bottom:8px;
+
 }
 
 .house p{
+
     color:#827c70;
+
     font-size:12px;
+
 }
 
-/* WESTEROS */
+
+/* =========================
+WESTEROS
+========================= */
 
 .world{
+
     background:#0c0c0c;
+
 }
 
 .world-container{
-    max-width:1100px;
+
+    max-width:1200px;
+
     margin:auto;
 
     display:grid;
-    grid-template-columns:1fr 1fr;
+
+    grid-template-columns:1.2fr 1fr;
 
     gap:70px;
+
     align-items:center;
+
 }
+
+
+/* =========================
+MAPA NA PÁGINA INICIAL
+========================= */
 
 .world-image{
-    height:430px;
 
-    border:1px solid rgba(212,181,106,.2);
+    height:520px;
+
+    border:1px solid rgba(212,181,106,.35);
 
     display:flex;
+
     align-items:center;
+
     justify-content:center;
 
-    background:
-    radial-gradient(
-        circle,
-        #302a20,
-        #111 60%,
-        #070707
-    );
+    background:#111;
+
+    overflow:hidden;
+
+    position:relative;
+
 }
 
-.world-image span{
-    font-family:"Cinzel",serif;
-    font-size:22px;
-    letter-spacing:4px;
-    color:rgba(212,181,106,.35);
+.world-image img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:contain;
+
+    display:block;
+
 }
+
+
+/* =========================
+TEXTO WESTEROS
+========================= */
 
 .world-text h2{
+
     font-family:"Cinzel",serif;
+
     font-size:38px;
+
     color:#dfd0ae;
+
     margin-bottom:25px;
+
 }
 
 .world-text p{
+
     color:#8f897d;
+
     line-height:1.9;
+
     font-size:14px;
+
     margin-bottom:18px;
+
 }
 
-/* CRÔNICAS */
+
+/* =========================
+CRÔNICAS
+========================= */
 
 .chronicles{
+
     background:#0c0c0c;
+
 }
 
 .timeline{
+
     max-width:800px;
+
     margin:auto;
 
     border-left:1px solid #725e35;
 
     padding-left:35px;
+
 }
 
 .event{
+
     margin-bottom:45px;
+
 }
 
 .event-date{
+
     font-size:11px;
+
     letter-spacing:3px;
+
     color:#a7894d;
+
     text-transform:uppercase;
+
     margin-bottom:8px;
+
 }
 
 .event h3{
+
     font-family:"Cinzel",serif;
+
     color:#d6c59c;
+
     margin-bottom:8px;
+
 }
 
 .event p{
+
     color:#817b70;
+
     line-height:1.7;
+
     font-size:13px;
+
 }
 
-/* RODAPÉ */
+
+/* =========================
+RODAPÉ
+========================= */
 
 footer{
+
     padding:60px 20px;
 
     text-align:center;
@@ -385,34 +588,58 @@ footer{
     border-top:1px solid rgba(212,181,106,.12);
 
     background:#070707;
+
 }
 
 footer h2{
+
     font-family:"Cinzel",serif;
+
     color:#b89d5b;
+
     letter-spacing:4px;
+
     margin-bottom:15px;
+
 }
 
 footer p{
+
     color:#666;
+
     font-size:12px;
+
 }
 
-/* RESPONSIVO */
+
+/* =========================
+RESPONSIVO
+========================= */
 
 @media(max-width:900px){
 
     .menu{
+
         display:none;
+
     }
 
     .house-grid{
+
         grid-template-columns:repeat(2,1fr);
+
     }
 
     .world-container{
+
         grid-template-columns:1fr;
+
+    }
+
+    .world-image{
+
+        height:450px;
+
     }
 
 }
@@ -420,19 +647,27 @@ footer p{
 @media(max-width:600px){
 
     section{
+
         padding:80px 6%;
+
     }
 
     .house-grid{
+
         grid-template-columns:1fr;
+
     }
 
     .hero h1{
+
         letter-spacing:4px;
+
     }
 
     .world-image{
-        height:300px;
+
+        height:350px;
+
     }
 
 }
@@ -441,7 +676,13 @@ footer p{
 
 </head>
 
+
 <body>
+
+
+<!-- =========================
+MENU
+========================= -->
 
 <nav>
 
@@ -452,32 +693,49 @@ THE SEVEN KINGDOMS
 <ul class="menu">
 
 <li>
-<a href="#inicio">Início</a>
+<a href="#inicio">
+Início
+</a>
 </li>
 
 <li>
-<a href="#westeros">Westeros</a>
+<a href="#westeros">
+Westeros
+</a>
 </li>
 
 <li>
-<a href="#casas">Casas</a>
+<a href="#casas">
+Casas
+</a>
 </li>
 
 <li>
-<a href="#cronicas">Crônicas</a>
+<a href="#cronicas">
+Crônicas
+</a>
 </li>
 
 <li>
-<a href="#">Personagens</a>
+<a href="#">
+Personagens
+</a>
 </li>
 
 <li>
-<a href="#">Regras</a>
+<a href="#">
+Regras
+</a>
 </li>
 
 </ul>
 
 </nav>
+
+
+<!-- =========================
+HERO
+========================= -->
 
 <header class="hero" id="inicio">
 
@@ -520,6 +778,11 @@ Ver o Mapa
 
 </header>
 
+
+<!-- =========================
+CASAS
+========================= -->
+
 <section class="houses" id="casas">
 
 <div class="section-title">
@@ -533,6 +796,9 @@ As Casas de Westeros
 </h2>
 
 </div>
+
+
+<!-- NORTE -->
 
 <div class="region">
 
@@ -561,6 +827,9 @@ Norte
 
 </div>
 
+
+<!-- FLUVIAIS -->
+
 <div class="region">
 
 <h3 class="region-title">
@@ -587,6 +856,9 @@ Terras Fluviais
 </div>
 
 </div>
+
+
+<!-- OCIDENTE -->
 
 <div class="region">
 
@@ -615,6 +887,9 @@ Ocidente
 
 </div>
 
+
+<!-- VALE -->
+
 <div class="region">
 
 <h3 class="region-title">
@@ -642,6 +917,9 @@ Vale
 
 </div>
 
+
+<!-- TEMPESTADE -->
+
 <div class="region">
 
 <h3 class="region-title">
@@ -668,6 +946,9 @@ Terras da Tempestade
 </div>
 
 </div>
+
+
+<!-- COROA -->
 
 <div class="region">
 
@@ -701,6 +982,9 @@ Terras da Coroa
 
 </div>
 
+
+<!-- CAMPINA -->
+
 <div class="region">
 
 <h3 class="region-title">
@@ -728,6 +1012,9 @@ Campina
 
 </div>
 
+
+<!-- DORNE -->
+
 <div class="region">
 
 <h3 class="region-title">
@@ -752,17 +1039,30 @@ Dorne
 
 </section>
 
+
+<!-- =========================
+WESTEROS
+========================= -->
+
 <section class="world" id="westeros">
 
 <div class="world-container">
 
+
+<!-- MAPA -->
+
 <div class="world-image">
 
-<span>
-MAPA DE WESTEROS
-</span>
+<img
+    src="Westeros_Map.png"
+    alt="Mapa de Westeros"
+    onerror="mostrarErroMapa()"
+>
 
 </div>
+
+
+<!-- TEXTO -->
 
 <div class="world-text">
 
@@ -771,18 +1071,24 @@ Westeros
 </h2>
 
 <p>
+
 Um continente dividido por antigas rivalidades,
 juramentos, guerras e alianças.
+
 </p>
 
 <p>
+
 Das terras geladas do Norte às areias de Dorne,
 cada território possui sua própria história,
 riqueza, exército e interesses políticos.
+
 </p>
 
 <p>
-O RPG se passa no ano 168.
+
+O RPG se passa no ano <strong>168</strong>.
+
 </p>
 
 <a href="mapa.html" class="button">
@@ -794,6 +1100,11 @@ Explorar o mapa
 </div>
 
 </section>
+
+
+<!-- =========================
+CRÔNICAS
+========================= -->
 
 <section class="chronicles" id="cronicas">
 
@@ -809,7 +1120,9 @@ Crônicas Recentes
 
 </div>
 
+
 <div class="timeline">
+
 
 <div class="event">
 
@@ -822,11 +1135,14 @@ A disputa pelo Trono
 </h3>
 
 <p>
+
 As grandes Casas começam a tomar posições
 diante da crescente disputa pelo poder.
+
 </p>
 
 </div>
+
 
 <div class="event">
 
@@ -839,12 +1155,15 @@ A Coroa se movimenta
 </h3>
 
 <p>
+
 Novas alianças são formadas enquanto os
 senhores de Westeros observam cada movimento
 da corte.
+
 </p>
 
 </div>
+
 
 <div class="event">
 
@@ -857,15 +1176,23 @@ Winterfell permanece vigilante
 </h3>
 
 <p>
+
 Os lobos do Norte acompanham atentamente
 os acontecimentos que se desenrolam ao sul.
+
 </p>
 
 </div>
 
+
 </div>
 
 </section>
+
+
+<!-- =========================
+RODAPÉ
+========================= -->
 
 <footer>
 
@@ -879,7 +1206,64 @@ Um RPG de intriga, guerra, honra e legado.
 
 </footer>
 
+
+<script>
+
+/*
+==================================================
+VERIFICAÇÃO DO MAPA
+==================================================
+*/
+
+function mostrarErroMapa(){
+
+    const mapa =
+        document.querySelector(".world-image");
+
+    mapa.innerHTML = `
+
+        <div style="
+            text-align:center;
+            padding:30px;
+            color:#d4b56a;
+            font-family:'Cinzel',serif;
+        ">
+
+            <h3 style="margin-bottom:15px;">
+                MAPA NÃO ENCONTRADO
+            </h3>
+
+            <p style="
+                font-family:'Inter',sans-serif;
+                color:#999;
+                font-size:13px;
+                line-height:1.7;
+            ">
+
+                O site procurou exatamente por:
+
+                <br><br>
+
+                <strong style="color:#fff;">
+                    Westeros_Map.png
+                </strong>
+
+                <br><br>
+
+                Verifique se esse arquivo está
+                na mesma pasta do index.html.
+
+            </p>
+
+        </div>
+
+    `;
+
+}
+
+</script>
+
+
 </body>
 
 </html>
-```
