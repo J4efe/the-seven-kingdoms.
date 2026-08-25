@@ -1,1100 +1,590 @@
+```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Mapa de Westeros — The Seven Kingdoms</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap"
+rel="stylesheet">
 
 <style>
 
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-html,
-body{
-    width:100%;
-    height:100%;
+margin:0;
+padding:0;
+box-sizing:border-box;
 }
 
 body{
-    background:#080808;
-    color:#e8dfca;
-    font-family:"Inter",sans-serif;
-    overflow:hidden;
+background:#080808;
+color:#e8dfca;
+font-family:"Inter",sans-serif;
+overflow:hidden;
 }
 
-
-/* =====================================================
-MENU
-===================================================== */
+/* MENU */
 
 .topbar{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:70px;
 
-    position:fixed;
+display:flex;
+align-items:center;
+justify-content:space-between;
 
-    top:0;
-    left:0;
+padding:0 30px;
 
-    width:100%;
-    height:70px;
+background:rgba(8,8,8,.95);
 
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
+border-bottom:1px solid rgba(212,181,106,.25);
 
-    padding:0 30px;
-
-    background:rgba(8,8,8,.96);
-
-    border-bottom:1px solid rgba(212,181,106,.25);
-
-    z-index:1000;
-
+z-index:100;
 }
 
 .logo{
-
-    font-family:"Cinzel",serif;
-
-    color:#d4b56a;
-
-    letter-spacing:3px;
-
-    font-size:18px;
-
+font-family:"Cinzel",serif;
+color:#d4b56a;
+letter-spacing:3px;
+font-size:18px;
 }
 
 .back{
-
-    color:#c9b276;
-
-    text-decoration:none;
-
-    font-size:12px;
-
-    letter-spacing:1px;
-
-    transition:.3s;
-
+color:#c9b276;
+text-decoration:none;
+font-size:12px;
+letter-spacing:1px;
 }
 
 .back:hover{
-
-    color:white;
-
+color:white;
 }
 
-
-/* =====================================================
-ÁREA DO MAPA
-===================================================== */
+/* MAPA */
 
 .map-container{
-
-    position:fixed;
-
-    top:70px;
-    left:0;
-    right:0;
-    bottom:0;
-
-    overflow:hidden;
-
-    background:
-
-        radial-gradient(
-            circle at center,
-            #29251e 0%,
-            #151515 45%,
-            #080808 100%
-        );
-
-    cursor:grab;
-
+position:absolute;
+top:70px;
+left:0;
+right:0;
+bottom:0;
+overflow:hidden;
+background:#111;
+cursor:grab;
 }
 
 .map-container:active{
-
-    cursor:grabbing;
-
+cursor:grabbing;
 }
-
-
-/* =====================================================
-MAPA
-===================================================== */
 
 .map{
+position:absolute;
+width:900px;
+left:50%;
+top:50%;
 
-    position:absolute;
+transform:
+translate(-50%,-50%)
+scale(1);
 
-    width:900px;
-
-    max-width:none;
-
-    left:50%;
-    top:50%;
-
-    transform:
-        translate(-50%,-50%)
-        scale(1);
-
-    transform-origin:center center;
-
+transform-origin:center center;
 }
-
-
-/* AQUI ESTÁ O ARQUIVO DO MAPA */
 
 .map img{
-
-    display:block;
-
-    width:900px;
-
-    height:auto;
-
-    max-width:none;
-
-    user-select:none;
-
-    pointer-events:none;
-
+width:100%;
+display:block;
+user-select:none;
+pointer-events:none;
 }
 
-
-/* =====================================================
-MENSAGEM DE ERRO DO MAPA
-===================================================== */
-
-.map-error{
-
-    position:absolute;
-
-    left:50%;
-    top:50%;
-
-    transform:translate(-50%,-50%);
-
-    width:420px;
-
-    padding:30px;
-
-    text-align:center;
-
-    background:rgba(10,10,10,.95);
-
-    border:1px solid rgba(212,181,106,.5);
-
-    color:#c9b276;
-
-    z-index:5;
-
-}
-
-.map-error h2{
-
-    font-family:"Cinzel",serif;
-
-    margin-bottom:15px;
-
-    color:#d4b56a;
-
-}
-
-.map-error p{
-
-    color:#999;
-
-    font-size:13px;
-
-    line-height:1.7;
-
-}
-
-.map-error strong{
-
-    color:#e0d4b8;
-
-}
-
-
-/* =====================================================
-MARCADORES
-===================================================== */
+/* MARCADORES */
 
 .marker{
+position:absolute;
 
-    position:absolute;
+width:38px;
+height:38px;
 
-    width:38px;
-    height:38px;
+border-radius:50%;
 
-    border-radius:50%;
+border:2px solid #d4b56a;
 
-    border:2px solid #d4b56a;
+background:#111;
 
-    background:#111;
+color:#d4b56a;
 
-    color:#d4b56a;
+display:flex;
+align-items:center;
+justify-content:center;
 
-    display:flex;
+font-size:18px;
 
-    align-items:center;
-    justify-content:center;
+cursor:pointer;
 
-    font-size:18px;
+transform:translate(-50%,-50%);
 
-    cursor:pointer;
+box-shadow:
+0 0 0 4px rgba(0,0,0,.45),
+0 0 18px rgba(212,181,106,.45);
 
-    transform:translate(-50%,-50%);
+transition:.25s;
 
-    box-shadow:
-        0 0 0 4px rgba(0,0,0,.45),
-        0 0 18px rgba(212,181,106,.45);
-
-    transition:.25s;
-
-    z-index:20;
-
+z-index:10;
 }
 
 .marker:hover{
+transform:
+translate(-50%,-50%)
+scale(1.25);
 
-    transform:
-        translate(-50%,-50%)
-        scale(1.25);
-
-    background:#d4b56a;
-
-    color:#111;
-
+background:#d4b56a;
+color:#111;
 }
 
-
-/* =====================================================
-POSIÇÕES DAS CASAS
-===================================================== */
+/* POSIÇÕES */
 
 .stark{
-    left:38%;
-    top:25%;
+left:38%;
+top:25%;
 }
 
 .manderly{
-    left:49%;
-    top:30%;
+left:49%;
+top:30%;
 }
 
 .bolton{
-    left:43%;
-    top:31%;
+left:43%;
+top:31%;
 }
 
 .tully{
-    left:48%;
-    top:55%;
+left:48%;
+top:55%;
 }
 
 .lannister{
-    left:27%;
-    top:57%;
+left:27%;
+top:57%;
 }
 
 .reyne{
-    left:31%;
-    top:61%;
+left:31%;
+top:61%;
 }
 
 .arryn{
-    left:72%;
-    top:52%;
+left:72%;
+top:52%;
 }
 
 .baratheon{
-    left:67%;
-    top:72%;
+left:67%;
+top:72%;
 }
 
 .targaryen{
-    left:55%;
-    top:58%;
+left:55%;
+top:58%;
 }
 
 .velaryon{
-    left:65%;
-    top:60%;
+left:65%;
+top:60%;
 }
 
 .tyrell{
-    left:52%;
-    top:68%;
+left:52%;
+top:68%;
 }
 
 .hightower{
-    left:60%;
-    top:72%;
+left:60%;
+top:72%;
 }
 
 .martell{
-    left:52%;
-    top:91%;
+left:52%;
+top:91%;
 }
 
 .yronwood{
-    left:42%;
-    top:88%;
+left:42%;
+top:88%;
 }
 
-
-/* =====================================================
-CONTROLES
-===================================================== */
+/* CONTROLES */
 
 .controls{
+position:fixed;
 
-    position:fixed;
+right:25px;
+bottom:25px;
 
-    right:25px;
-    bottom:25px;
+display:flex;
 
-    display:flex;
+flex-direction:column;
 
-    flex-direction:column;
+gap:8px;
 
-    gap:8px;
-
-    z-index:500;
-
+z-index:50;
 }
 
 .controls button{
+width:45px;
+height:45px;
 
-    width:45px;
-    height:45px;
+border:1px solid rgba(212,181,106,.5);
 
-    border:1px solid rgba(212,181,106,.5);
+background:rgba(10,10,10,.9);
 
-    background:rgba(10,10,10,.9);
+color:#d4b56a;
 
-    color:#d4b56a;
+font-size:20px;
 
-    font-size:20px;
-
-    cursor:pointer;
-
-    transition:.25s;
-
+cursor:pointer;
 }
 
 .controls button:hover{
-
-    background:#d4b56a;
-
-    color:#111;
-
+background:#d4b56a;
+color:#111;
 }
 
-
-/* =====================================================
-PAINEL DAS CASAS
-===================================================== */
+/* PAINEL */
 
 .info{
+position:fixed;
 
-    position:fixed;
+right:25px;
+top:95px;
 
-    right:25px;
-    top:95px;
+width:280px;
 
-    width:280px;
+padding:25px;
 
-    padding:25px;
+background:rgba(10,10,10,.96);
 
-    background:rgba(10,10,10,.97);
+border:1px solid rgba(212,181,106,.45);
 
-    border:1px solid rgba(212,181,106,.45);
+box-shadow:0 15px 40px rgba(0,0,0,.6);
 
-    box-shadow:0 15px 40px rgba(0,0,0,.6);
+z-index:60;
 
-    z-index:600;
-
-    display:none;
-
+display:none;
 }
 
 .info.active{
-
-    display:block;
-
+display:block;
 }
 
 .info .close{
+position:absolute;
 
-    position:absolute;
+top:10px;
+right:12px;
 
-    top:10px;
-    right:12px;
+border:none;
 
-    border:none;
+background:none;
 
-    background:none;
+color:#888;
 
-    color:#888;
+font-size:18px;
 
-    font-size:18px;
-
-    cursor:pointer;
-
+cursor:pointer;
 }
 
 .info h2{
-
-    font-family:"Cinzel",serif;
-
-    color:#d4b56a;
-
-    margin-bottom:12px;
-
+font-family:"Cinzel",serif;
+color:#d4b56a;
+margin-bottom:12px;
 }
 
 .info p{
-
-    color:#999;
-
-    font-size:13px;
-
-    line-height:1.7;
-
-    margin-bottom:8px;
-
+color:#999;
+font-size:13px;
+line-height:1.7;
+margin-bottom:8px;
 }
 
 .info .house-button{
+display:block;
 
-    display:block;
+margin-top:18px;
 
-    margin-top:18px;
+padding:11px;
 
-    padding:11px;
+text-align:center;
 
-    text-align:center;
+border:1px solid #a7894d;
 
-    border:1px solid #a7894d;
+color:#d4b56a;
 
-    color:#d4b56a;
+text-decoration:none;
 
-    text-decoration:none;
+font-family:"Cinzel",serif;
 
-    font-family:"Cinzel",serif;
+font-size:11px;
 
-    font-size:11px;
-
-    letter-spacing:1px;
-
-}
-
-
-/* =====================================================
-CELULAR
-===================================================== */
-
-@media(max-width:600px){
-
-    .topbar{
-
-        padding:0 15px;
-
-    }
-
-    .logo{
-
-        font-size:14px;
-
-        letter-spacing:2px;
-
-    }
-
-    .map{
-
-        width:750px;
-
-    }
-
-    .map img{
-
-        width:750px;
-
-    }
-
-    .info{
-
-        right:15px;
-
-        left:15px;
-
-        width:auto;
-
-    }
-
+letter-spacing:1px;
 }
 
 </style>
 
 </head>
 
-
 <body>
-
-
-<!-- =====================================================
-MENU
-===================================================== -->
 
 <header class="topbar">
 
-    <div class="logo">
-        THE SEVEN KINGDOMS
-    </div>
+<div class="logo">
+THE SEVEN KINGDOMS
+</div>
 
-    <a href="index.html" class="back">
-        ← VOLTAR
-    </a>
+<a href="index.html" class="back">
+← VOLTAR
+</a>
 
 </header>
 
-
-<!-- =====================================================
-MAPA
-===================================================== -->
-
 <div class="map-container" id="mapContainer">
 
-    <div class="map" id="map">
+<div class="map" id="map">
 
-        <!--
-        ==================================================
-        ARQUIVO DO MAPA
+<img src="Westeros_Map.png" alt="Mapa de Westeros">
 
-        O NOME PRECISA SER EXATAMENTE:
+<button class="marker stark"
+onclick="mostrarCasa('Casa Stark','Winterfell','Norte','🐺')">
+🐺
+</button>
 
-        Westeros_map.png
+<button class="marker manderly"
+onclick="mostrarCasa('Casa Manderly','Porto Branco','Norte','🌊')">
+🌊
+</button>
 
-        E o arquivo precisa estar na mesma pasta deste
-        arquivo HTML.
-        ==================================================
-        -->
+<button class="marker bolton"
+onclick="mostrarCasa('Casa Bolton','Forte do Pavor','Norte','🩸')">
+🩸
+</button>
 
-        <img
-            id="westerosMap"
-            src="./Westeros_map.png"
-            alt="Mapa de Westeros"
-        >
+<button class="marker tully"
+onclick="mostrarCasa('Casa Tully','Correrrio','Terras Fluviais','🐟')">
+🐟
+</button>
 
+<button class="marker lannister"
+onclick="mostrarCasa('Casa Lannister','Rochedo Casterly','Ocidente','🦁')">
+🦁
+</button>
 
-        <!-- =================================================
-        MARCADORES
-        ================================================= -->
+<button class="marker reyne"
+onclick="mostrarCasa('Casa Reyne','Castamere','Ocidente','🏰')">
+🏰
+</button>
 
-        <button
-            class="marker stark"
-            onclick="mostrarCasa(
-                'Casa Stark',
-                'Winterfell',
-                'Norte',
-                '🐺'
-            )">
-            🐺
-        </button>
+<button class="marker arryn"
+onclick="mostrarCasa('Casa Arryn','Ninho da Águia','Vale','🦅')">
+🦅
+</button>
 
+<button class="marker baratheon"
+onclick="mostrarCasa('Casa Baratheon','Ponta Tempestade','Tempestade','🦌')">
+🦌
+</button>
 
-        <button
-            class="marker manderly"
-            onclick="mostrarCasa(
-                'Casa Manderly',
-                'Porto Branco',
-                'Norte',
-                '🌊'
-            )">
-            🌊
-        </button>
+<button class="marker targaryen"
+onclick="mostrarCasa('Casa Targaryen','Porto Real','Terras da Coroa','🐉')">
+🐉
+</button>
 
+<button class="marker velaryon"
+onclick="mostrarCasa('Casa Velaryon','Driftmark','Terras da Coroa','🌊')">
+🌊
+</button>
 
-        <button
-            class="marker bolton"
-            onclick="mostrarCasa(
-                'Casa Bolton',
-                'Forte do Pavor',
-                'Norte',
-                '🩸'
-            )">
-            🩸
-        </button>
+<button class="marker tyrell"
+onclick="mostrarCasa('Casa Tyrell','Jardim de Cima','Campina','🌹')">
+🌹
+</button>
 
+<button class="marker hightower"
+onclick="mostrarCasa('Casa Hightower','Vilavelha','Campina','🔥')">
+🔥
+</button>
 
-        <button
-            class="marker tully"
-            onclick="mostrarCasa(
-                'Casa Tully',
-                'Correrrio',
-                'Terras Fluviais',
-                '🐟'
-            )">
-            🐟
-        </button>
+<button class="marker martell"
+onclick="mostrarCasa('Casa Martell','Lançassolar','Dorne','☀️')">
+☀️
+</button>
 
-
-        <button
-            class="marker lannister"
-            onclick="mostrarCasa(
-                'Casa Lannister',
-                'Rochedo Casterly',
-                'Ocidente',
-                '🦁'
-            )">
-            🦁
-        </button>
-
-
-        <button
-            class="marker reyne"
-            onclick="mostrarCasa(
-                'Casa Reyne',
-                'Castamere',
-                'Ocidente',
-                '🏰'
-            )">
-            🏰
-        </button>
-
-
-        <button
-            class="marker arryn"
-            onclick="mostrarCasa(
-                'Casa Arryn',
-                'Ninho da Águia',
-                'Vale',
-                '🦅'
-            )">
-            🦅
-        </button>
-
-
-        <button
-            class="marker baratheon"
-            onclick="mostrarCasa(
-                'Casa Baratheon',
-                'Ponta Tempestade',
-                'Terras da Tempestade',
-                '🦌'
-            )">
-            🦌
-        </button>
-
-
-        <button
-            class="marker targaryen"
-            onclick="mostrarCasa(
-                'Casa Targaryen',
-                'Porto Real',
-                'Terras da Coroa',
-                '🐉'
-            )">
-            🐉
-        </button>
-
-
-        <button
-            class="marker velaryon"
-            onclick="mostrarCasa(
-                'Casa Velaryon',
-                'Driftmark',
-                'Terras da Coroa',
-                '🌊'
-            )">
-            🌊
-        </button>
-
-
-        <button
-            class="marker tyrell"
-            onclick="mostrarCasa(
-                'Casa Tyrell',
-                'Jardim de Cima',
-                'Campina',
-                '🌹'
-            )">
-            🌹
-        </button>
-
-
-        <button
-            class="marker hightower"
-            onclick="mostrarCasa(
-                'Casa Hightower',
-                'Vilavelha',
-                'Campina',
-                '🔥'
-            )">
-            🔥
-        </button>
-
-
-        <button
-            class="marker martell"
-            onclick="mostrarCasa(
-                'Casa Martell',
-                'Lançassolar',
-                'Dorne',
-                '☀️'
-            )">
-            ☀️
-        </button>
-
-
-        <button
-            class="marker yronwood"
-            onclick="mostrarCasa(
-                'Casa Yronwood',
-                'Yronwood',
-                'Dorne',
-                '🦂'
-            )">
-            🦂
-        </button>
-
-    </div>
+<button class="marker yronwood"
+onclick="mostrarCasa('Casa Yronwood','Yronwood','Dorne','🦂')">
+🦂
+</button>
 
 </div>
 
-
-<!-- =====================================================
-CONTROLES
-===================================================== -->
+</div>
 
 <div class="controls">
 
-    <button onclick="zoomIn()">
-        +
-    </button>
+<button onclick="zoomIn()">+</button>
 
-    <button onclick="zoomOut()">
-        −
-    </button>
+<button onclick="zoomOut()">−</button>
 
-    <button onclick="resetMap()">
-        ⌂
-    </button>
+<button onclick="resetMap()">⌂</button>
 
 </div>
-
-
-<!-- =====================================================
-PAINEL
-===================================================== -->
 
 <div class="info" id="info">
 
-    <button
-        class="close"
-        onclick="fecharInfo()">
-        ×
-    </button>
+<button class="close" onclick="fecharInfo()">×</button>
 
-    <div id="infoContent"></div>
+<div id="infoContent"></div>
 
 </div>
-
-
-<!-- =====================================================
-JAVASCRIPT
-===================================================== -->
 
 <script>
 
 let zoom = 1;
 
-const map =
-    document.getElementById("map");
+const map = document.getElementById("map");
 
-const container =
-    document.getElementById("mapContainer");
-
-const image =
-    document.getElementById("westerosMap");
-
+const container = document.getElementById("mapContainer");
 
 let positionX = 0;
-
 let positionY = 0;
 
 let dragging = false;
 
 let startX;
-
 let startY;
-
-
-/* =====================================================
-VERIFICAR SE O MAPA FOI CARREGADO
-===================================================== */
-
-image.addEventListener("error", function(){
-
-    const error = document.createElement("div");
-
-    error.className = "map-error";
-
-    error.innerHTML = `
-
-        <h2>Mapa não encontrado</h2>
-
-        <p>
-            O site não conseguiu encontrar o arquivo:
-        </p>
-
-        <p>
-            <strong>Westeros_map.png</strong>
-        </p>
-
-        <p>
-            Verifique se o nome do arquivo está
-            exatamente igual, incluindo as letras
-            maiúsculas e minúsculas.
-        </p>
-
-        <p>
-            O arquivo deve estar na mesma pasta
-            deste arquivo HTML.
-        </p>
-
-    `;
-
-    container.appendChild(error);
-
-});
-
-
-/* =====================================================
-ATUALIZAR MAPA
-===================================================== */
 
 function updateMap(){
 
-    map.style.transform =
-        `translate(
-            calc(-50% + ${positionX}px),
-            calc(-50% + ${positionY}px)
-        )
-        scale(${zoom})`;
+map.style.transform =
+`translate(calc(-50% + ${positionX}px), calc(-50% + ${positionY}px)) scale(${zoom})`;
 
 }
-
-
-/* =====================================================
-ZOOM +
-===================================================== */
 
 function zoomIn(){
 
-    zoom += 0.2;
+zoom += 0.2;
 
-    if(zoom > 3){
-
-        zoom = 3;
-
-    }
-
-    updateMap();
-
+if(zoom > 3){
+zoom = 3;
 }
 
+updateMap();
 
-/* =====================================================
-ZOOM -
-===================================================== */
+}
 
 function zoomOut(){
 
-    zoom -= 0.2;
+zoom -= 0.2;
 
-    if(zoom < 0.7){
-
-        zoom = 0.7;
-
-    }
-
-    updateMap();
-
+if(zoom < 0.7){
+zoom = 0.7;
 }
 
+updateMap();
 
-/* =====================================================
-RESETAR MAPA
-===================================================== */
+}
 
 function resetMap(){
 
-    zoom = 1;
+zoom = 1;
 
-    positionX = 0;
+positionX = 0;
 
-    positionY = 0;
+positionY = 0;
 
-    updateMap();
-
-}
-
-
-/* =====================================================
-ARRASTAR MAPA
-===================================================== */
-
-container.addEventListener(
-    "mousedown",
-    function(e){
-
-        if(
-            e.target.classList.contains("marker")
-        ){
-
-            return;
-
-        }
-
-        dragging = true;
-
-        startX =
-            e.clientX - positionX;
-
-        startY =
-            e.clientY - positionY;
-
-    }
-);
-
-
-window.addEventListener(
-    "mouseup",
-    function(){
-
-        dragging = false;
-
-    }
-);
-
-
-window.addEventListener(
-    "mousemove",
-    function(e){
-
-        if(!dragging){
-
-            return;
-
-        }
-
-        positionX =
-            e.clientX - startX;
-
-        positionY =
-            e.clientY - startY;
-
-        updateMap();
-
-    }
-);
-
-
-/* =====================================================
-INFORMAÇÕES DAS CASAS
-===================================================== */
-
-function mostrarCasa(
-    nome,
-    local,
-    regiao,
-    simbolo
-){
-
-    const info =
-        document.getElementById("info");
-
-    const content =
-        document.getElementById("infoContent");
-
-
-    content.innerHTML = `
-
-        <h2>
-            ${simbolo} ${nome}
-        </h2>
-
-        <p>
-            <strong>Local:</strong>
-            ${local}
-        </p>
-
-        <p>
-            <strong>Região:</strong>
-            ${regiao}
-        </p>
-
-        <a
-            href="#"
-            class="house-button"
-            onclick="return false;"
-        >
-            VER CASA
-        </a>
-
-    `;
-
-
-    info.classList.add("active");
+updateMap();
 
 }
 
+container.addEventListener("mousedown", function(e){
 
-/* =====================================================
-FECHAR PAINEL
-===================================================== */
+dragging = true;
+
+startX = e.clientX - positionX;
+
+startY = e.clientY - positionY;
+
+});
+
+window.addEventListener("mouseup", function(){
+
+dragging = false;
+
+});
+
+window.addEventListener("mousemove", function(e){
+
+if(!dragging) return;
+
+positionX = e.clientX - startX;
+
+positionY = e.clientY - startY;
+
+updateMap();
+
+});
+
+function mostrarCasa(nome, local, regiao, simbolo){
+
+const info = document.getElementById("info");
+
+const content = document.getElementById("infoContent");
+
+content.innerHTML = `
+
+<h2>${simbolo} ${nome}</h2>
+
+<p>
+<strong>Local:</strong> ${local}
+</p>
+
+<p>
+<strong>Região:</strong> ${regiao}
+</p>
+
+<a href="#" class="house-button">
+VER CASA
+</a>
+
+`;
+
+info.classList.add("active");
+
+}
 
 function fecharInfo(){
 
-    document
-        .getElementById("info")
-        .classList.remove("active");
+document
+.getElementById("info")
+.classList.remove("active");
 
 }
 
-
-/* =====================================================
-GARANTIR POSIÇÃO INICIAL
-===================================================== */
-
-window.addEventListener(
-    "load",
-    function(){
-
-        updateMap();
-
-    }
-);
-
 </script>
-
 
 </body>
 
 </html>
+```
