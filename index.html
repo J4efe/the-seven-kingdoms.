@@ -52,6 +52,7 @@ nav{
     height:78px;
 
     display:flex;
+
     align-items:center;
     justify-content:space-between;
 
@@ -67,6 +68,7 @@ nav{
 
 }
 
+
 .logo{
 
     font-family:"Cinzel",serif;
@@ -81,6 +83,7 @@ nav{
 
 }
 
+
 .menu{
 
     display:flex;
@@ -90,6 +93,7 @@ nav{
     list-style:none;
 
 }
+
 
 .menu a{
 
@@ -107,7 +111,17 @@ nav{
 
 }
 
+
 .menu a:hover{
+
+    color:#d4b56a;
+
+}
+
+
+/* BOTÃO ATIVO */
+
+.menu a.active{
 
     color:#d4b56a;
 
@@ -150,11 +164,13 @@ HERO
 
 }
 
+
 .hero-content{
 
     max-width:1000px;
 
 }
+
 
 .eyebrow{
 
@@ -169,6 +185,7 @@ HERO
     margin-bottom:25px;
 
 }
+
 
 .hero h1{
 
@@ -186,6 +203,7 @@ HERO
 
 }
 
+
 .hero h2{
 
     margin-top:25px;
@@ -202,6 +220,7 @@ HERO
 
 }
 
+
 .hero p{
 
     max-width:650px;
@@ -216,6 +235,7 @@ HERO
 
 }
 
+
 .hero-buttons{
 
     display:flex;
@@ -229,6 +249,7 @@ HERO
     margin-top:35px;
 
 }
+
 
 .button{
 
@@ -254,6 +275,7 @@ HERO
 
 }
 
+
 .button:hover{
 
     background:#a7894d;
@@ -261,6 +283,7 @@ HERO
     color:#080808;
 
 }
+
 
 .button.primary{
 
@@ -279,7 +302,10 @@ section{
 
     padding:110px 7%;
 
+    scroll-margin-top:78px;
+
 }
+
 
 .section-title{
 
@@ -288,6 +314,7 @@ section{
     margin-bottom:60px;
 
 }
+
 
 .section-title span{
 
@@ -304,6 +331,7 @@ section{
     margin-bottom:15px;
 
 }
+
 
 .section-title h2{
 
@@ -328,6 +356,7 @@ CASAS
 
 }
 
+
 .region{
 
     max-width:1250px;
@@ -335,6 +364,7 @@ CASAS
     margin:0 auto 80px;
 
 }
+
 
 .region-title{
 
@@ -354,6 +384,7 @@ CASAS
 
 }
 
+
 .house-grid{
 
     display:grid;
@@ -363,6 +394,7 @@ CASAS
     gap:18px;
 
 }
+
 
 .house{
 
@@ -388,7 +420,10 @@ CASAS
 
     transition:.35s;
 
+    cursor:pointer;
+
 }
+
 
 .house:hover{
 
@@ -397,6 +432,7 @@ CASAS
     border-color:rgba(212,181,106,.6);
 
 }
+
 
 .house h3{
 
@@ -409,6 +445,7 @@ CASAS
     margin-bottom:8px;
 
 }
+
 
 .house p{
 
@@ -429,15 +466,16 @@ WESTEROS
 
 }
 
+
 .world-container{
 
-    max-width:1200px;
+    max-width:1100px;
 
     margin:auto;
 
     display:grid;
 
-    grid-template-columns:1.2fr 1fr;
+    grid-template-columns:1fr 1fr;
 
     gap:70px;
 
@@ -446,15 +484,11 @@ WESTEROS
 }
 
 
-/* =========================
-MAPA NA PÁGINA INICIAL
-========================= */
-
 .world-image{
 
-    height:520px;
+    height:430px;
 
-    border:1px solid rgba(212,181,106,.35);
+    border:1px solid rgba(212,181,106,.2);
 
     display:flex;
 
@@ -462,13 +496,12 @@ MAPA NA PÁGINA INICIAL
 
     justify-content:center;
 
-    background:#111;
-
     overflow:hidden;
 
-    position:relative;
+    background:#111;
 
 }
+
 
 .world-image img{
 
@@ -476,16 +509,12 @@ MAPA NA PÁGINA INICIAL
 
     height:100%;
 
-    object-fit:contain;
+    object-fit:cover;
 
     display:block;
 
 }
 
-
-/* =========================
-TEXTO WESTEROS
-========================= */
 
 .world-text h2{
 
@@ -498,6 +527,7 @@ TEXTO WESTEROS
     margin-bottom:25px;
 
 }
+
 
 .world-text p{
 
@@ -522,6 +552,7 @@ CRÔNICAS
 
 }
 
+
 .timeline{
 
     max-width:800px;
@@ -534,11 +565,13 @@ CRÔNICAS
 
 }
 
+
 .event{
 
     margin-bottom:45px;
 
 }
+
 
 .event-date{
 
@@ -554,6 +587,7 @@ CRÔNICAS
 
 }
 
+
 .event h3{
 
     font-family:"Cinzel",serif;
@@ -563,6 +597,7 @@ CRÔNICAS
     margin-bottom:8px;
 
 }
+
 
 .event p{
 
@@ -591,6 +626,7 @@ footer{
 
 }
 
+
 footer h2{
 
     font-family:"Cinzel",serif;
@@ -602,6 +638,7 @@ footer h2{
     margin-bottom:15px;
 
 }
+
 
 footer p{
 
@@ -636,13 +673,8 @@ RESPONSIVO
 
     }
 
-    .world-image{
-
-        height:450px;
-
-    }
-
 }
+
 
 @media(max-width:600px){
 
@@ -666,7 +698,7 @@ RESPONSIVO
 
     .world-image{
 
-        height:350px;
+        height:300px;
 
     }
 
@@ -690,13 +722,15 @@ MENU
 THE SEVEN KINGDOMS
 </div>
 
+
 <ul class="menu">
 
 <li>
-<a href="#inicio">
+<a href="#inicio" class="active">
 Início
 </a>
 </li>
+
 
 <li>
 <a href="#westeros">
@@ -704,11 +738,13 @@ Westeros
 </a>
 </li>
 
+
 <li>
 <a href="#casas">
 Casas
 </a>
 </li>
+
 
 <li>
 <a href="#cronicas">
@@ -716,14 +752,23 @@ Crônicas
 </a>
 </li>
 
+
 <li>
-<a href="#">
+<a href="mapa.html">
+Mapa
+</a>
+</li>
+
+
+<li>
+<a href="personagens.html">
 Personagens
 </a>
 </li>
 
+
 <li>
-<a href="#">
+<a href="regras.html">
 Regras
 </a>
 </li>
@@ -745,14 +790,20 @@ HERO
 Um RPG de Westeros
 </div>
 
+
 <h1>
+
 THE SEVEN<br>
+
 KINGDOMS
+
 </h1>
+
 
 <h2>
 Sete reinos. Uma única coroa.
 </h2>
+
 
 <p>
 
@@ -762,11 +813,13 @@ sobrevive para sempre.
 
 </p>
 
+
 <div class="hero-buttons">
 
 <a href="#casas" class="button primary">
 Explorar Westeros
 </a>
+
 
 <a href="mapa.html" class="button">
 Ver o Mapa
@@ -1049,20 +1102,20 @@ WESTEROS
 <div class="world-container">
 
 
-<!-- MAPA -->
-
 <div class="world-image">
 
 <img
-    src="Westeros_Map.png"
-    alt="Mapa de Westeros"
-    onerror="mostrarErroMapa()"
+src="Westeros_Map.png"
+alt="Mapa de Westeros"
+onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
 >
+
+<span style="display:none;">
+MAPA DE WESTEROS
+</span>
 
 </div>
 
-
-<!-- TEXTO -->
 
 <div class="world-text">
 
@@ -1070,12 +1123,14 @@ WESTEROS
 Westeros
 </h2>
 
+
 <p>
 
 Um continente dividido por antigas rivalidades,
 juramentos, guerras e alianças.
 
 </p>
+
 
 <p>
 
@@ -1085,11 +1140,13 @@ riqueza, exército e interesses políticos.
 
 </p>
 
+
 <p>
 
-O RPG se passa no ano <strong>168</strong>.
+O RPG se passa no ano 168.
 
 </p>
+
 
 <a href="mapa.html" class="button">
 Explorar o mapa
@@ -1207,59 +1264,74 @@ Um RPG de intriga, guerra, honra e legado.
 </footer>
 
 
+<!-- =========================
+JAVASCRIPT DO MENU
+========================= -->
+
 <script>
 
-/*
-==================================================
-VERIFICAÇÃO DO MAPA
-==================================================
-*/
+const menuLinks =
+document.querySelectorAll(".menu a");
 
-function mostrarErroMapa(){
 
-    const mapa =
-        document.querySelector(".world-image");
+menuLinks.forEach(function(link){
 
-    mapa.innerHTML = `
+    link.addEventListener("click", function(){
 
-        <div style="
-            text-align:center;
-            padding:30px;
-            color:#d4b56a;
-            font-family:'Cinzel',serif;
-        ">
+        menuLinks.forEach(function(item){
 
-            <h3 style="margin-bottom:15px;">
-                MAPA NÃO ENCONTRADO
-            </h3>
+            item.classList.remove("active");
 
-            <p style="
-                font-family:'Inter',sans-serif;
-                color:#999;
-                font-size:13px;
-                line-height:1.7;
-            ">
+        });
 
-                O site procurou exatamente por:
+        this.classList.add("active");
 
-                <br><br>
+    });
 
-                <strong style="color:#fff;">
-                    Westeros_Map.png
-                </strong>
+});
 
-                <br><br>
 
-                Verifique se esse arquivo está
-                na mesma pasta do index.html.
+/* Atualiza automaticamente o botão
+   conforme a seção visualizada */
 
-            </p>
+const sections =
+document.querySelectorAll("header[id], section[id]");
 
-        </div>
 
-    `;
+window.addEventListener("scroll", function(){
 
-}
+    let current = "";
+
+    sections.forEach(function(section){
+
+        const sectionTop =
+            section.offsetTop - 150;
+
+        if(window.scrollY >= sectionTop){
+
+            current = section.getAttribute("id");
+
+        }
+
+    });
+
+
+    menuLinks.forEach(function(link){
+
+        link.classList.remove("active");
+
+        const href =
+            link.getAttribute("href");
+
+        if(href === "#" + current){
+
+            link.classList.add("active");
+
+        }
+
+    });
+
+});
 
 </script>
 
