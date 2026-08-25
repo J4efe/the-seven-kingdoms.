@@ -8,15 +8,12 @@
 
 <title>Mapa de Westeros — The Seven Kingdoms</title>
 
-<!-- SUPABASE -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<!-- FONTES -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-
 
 <style>
 
@@ -33,18 +30,12 @@ body{
     overflow:hidden;
 }
 
-
-/* =========================
-MENU
-========================= */
+/* MENU */
 
 .topbar{
-
     position:fixed;
-
     top:0;
     left:0;
-
     width:100%;
     height:70px;
 
@@ -59,44 +50,29 @@ MENU
     border-bottom:1px solid rgba(212,181,106,.25);
 
     z-index:100;
-
 }
 
 .logo{
-
     font-family:"Cinzel",serif;
-
     color:#d4b56a;
-
     letter-spacing:3px;
-
     font-size:18px;
-
 }
 
 .back{
-
     color:#c9b276;
-
     text-decoration:none;
-
     font-size:12px;
-
     letter-spacing:1px;
-
 }
 
 .back:hover{
     color:white;
 }
 
-
-/* =========================
-MAPA
-========================= */
+/* MAPA */
 
 .map-container{
-
     position:absolute;
 
     top:70px;
@@ -109,16 +85,13 @@ MAPA
     background:#111;
 
     cursor:grab;
-
 }
 
 .map-container:active{
     cursor:grabbing;
 }
 
-
 .map{
-
     position:absolute;
 
     width:900px;
@@ -131,12 +104,9 @@ MAPA
         scale(1);
 
     transform-origin:center center;
-
 }
 
-
 .map img{
-
     width:100%;
 
     display:block;
@@ -144,16 +114,11 @@ MAPA
     user-select:none;
 
     pointer-events:none;
-
 }
 
-
-/* =========================
-MARCADORES
-========================= */
+/* MARCADORES */
 
 .marker{
-
     position:absolute;
 
     width:38px;
@@ -168,7 +133,6 @@ MARCADORES
     color:#d4b56a;
 
     display:flex;
-
     align-items:center;
     justify-content:center;
 
@@ -185,25 +149,18 @@ MARCADORES
     transition:.25s;
 
     z-index:10;
-
 }
 
 .marker:hover{
-
     transform:
         translate(-50%,-50%)
         scale(1.25);
 
     background:#d4b56a;
-
     color:#111;
-
 }
 
-
-/* =========================
-POSIÇÕES
-========================= */
+/* POSIÇÕES */
 
 .stark{
     left:38%;
@@ -325,30 +282,23 @@ POSIÇÕES
     top:88%;
 }
 
-
-/* =========================
-CONTROLES
-========================= */
+/* CONTROLES */
 
 .controls{
-
     position:fixed;
 
     right:25px;
     bottom:25px;
 
     display:flex;
-
     flex-direction:column;
 
     gap:8px;
 
     z-index:50;
-
 }
 
 .controls button{
-
     width:45px;
     height:45px;
 
@@ -361,24 +311,16 @@ CONTROLES
     font-size:20px;
 
     cursor:pointer;
-
 }
 
 .controls button:hover{
-
     background:#d4b56a;
-
     color:#111;
-
 }
 
-
-/* =========================
-PAINEL DA CASA
-========================= */
+/* PAINEL */
 
 .info{
-
     position:fixed;
 
     right:25px;
@@ -401,7 +343,6 @@ PAINEL DA CASA
     z-index:60;
 
     display:none;
-
 }
 
 .info.active{
@@ -409,7 +350,6 @@ PAINEL DA CASA
 }
 
 .info .close{
-
     position:absolute;
 
     top:10px;
@@ -424,43 +364,24 @@ PAINEL DA CASA
     font-size:22px;
 
     cursor:pointer;
-
-}
-
-.info .close:hover{
-    color:white;
 }
 
 .house-symbol{
-
     font-size:42px;
-
     margin-bottom:10px;
-
 }
 
 .info h2{
-
     font-family:"Cinzel",serif;
-
     color:#d4b56a;
-
     margin-bottom:18px;
-
-    padding-right:20px;
-
 }
 
 .info p{
-
     color:#999;
-
     font-size:13px;
-
     line-height:1.7;
-
     margin-bottom:12px;
-
 }
 
 .info strong{
@@ -468,17 +389,13 @@ PAINEL DA CASA
 }
 
 .house-description{
-
     margin-top:18px;
-
     padding-top:15px;
 
     border-top:1px solid rgba(212,181,106,.15);
-
 }
 
 .house-button{
-
     display:block;
 
     margin-top:20px;
@@ -498,93 +415,14 @@ PAINEL DA CASA
     font-size:11px;
 
     letter-spacing:1px;
-
 }
 
 .house-button:hover{
-
     background:#a7894d;
-
     color:#080808;
-
 }
 
-
-/* =========================
-ERRO DO MAPA
-========================= */
-
-.map-error{
-
-    position:fixed;
-
-    left:50%;
-    top:50%;
-
-    transform:translate(-50%,-50%);
-
-    width:min(550px,90%);
-
-    padding:35px;
-
-    background:rgba(8,8,8,.98);
-
-    border:1px solid #8c3434;
-
-    text-align:center;
-
-    z-index:500;
-
-    display:none;
-
-}
-
-.map-error h2{
-
-    font-family:"Cinzel",serif;
-
-    color:#d4b56a;
-
-    margin-bottom:18px;
-
-}
-
-.map-error p{
-
-    color:#aaa;
-
-    font-size:13px;
-
-    line-height:1.8;
-
-}
-
-.map-error strong{
-
-    color:#fff;
-
-}
-
-.map-error button{
-
-    margin-top:20px;
-
-    padding:10px 25px;
-
-    background:none;
-
-    border:1px solid #a7894d;
-
-    color:#d4b56a;
-
-    cursor:pointer;
-
-}
-
-
-/* =========================
-RESPONSIVO
-========================= */
+/* RESPONSIVO */
 
 @media(max-width:700px){
 
@@ -593,7 +431,6 @@ RESPONSIVO
     }
 
     .info{
-
         left:15px;
         right:15px;
 
@@ -603,14 +440,11 @@ RESPONSIVO
         width:auto;
 
         max-height:55vh;
-
     }
 
     .controls{
-
         right:15px;
         bottom:15px;
-
     }
 
     .map{
@@ -623,13 +457,7 @@ RESPONSIVO
 
 </head>
 
-
 <body>
-
-
-<!-- =========================
-MENU
-========================= -->
 
 <header class="topbar">
 
@@ -644,188 +472,102 @@ MENU
 </header>
 
 
-<!-- =========================
-MAPA
-========================= -->
-
 <div class="map-container" id="mapContainer">
 
     <div class="map" id="map">
 
         <!--
-        ==================================================
-        ARQUIVO DO MAPA
-        ==================================================
-
-        O NOME DO ARQUIVO DEVE SER EXATAMENTE:
-
-        Westeros_map.png
-
         ATENÇÃO:
-        W = MAIÚSCULO
-        m = minúsculo
+        O nome do arquivo precisa ser EXATAMENTE:
+
+        Westeros_Map.png
 
         -->
 
-
         <img
-            id="westerosMap"
-            src="./Westeros_map.png"
+            src="Westeros_Map.png"
             alt="Mapa de Westeros"
+            id="westerosMap"
         >
 
 
         <!-- NORTE -->
 
-        <button class="marker stark"
-            onclick="mostrarCasa('stark')">
-            🐺
-        </button>
+        <button class="marker stark" onclick="mostrarCasa('stark')">🐺</button>
 
-        <button class="marker manderly"
-            onclick="mostrarCasa('manderly')">
-            🌊
-        </button>
+        <button class="marker manderly" onclick="mostrarCasa('manderly')">🌊</button>
 
-        <button class="marker bolton"
-            onclick="mostrarCasa('bolton')">
-            🩸
-        </button>
+        <button class="marker bolton" onclick="mostrarCasa('bolton')">🩸</button>
 
 
         <!-- FLUVIAIS -->
 
-        <button class="marker tully"
-            onclick="mostrarCasa('tully')">
-            🐟
-        </button>
+        <button class="marker tully" onclick="mostrarCasa('tully')">🐟</button>
 
-        <button class="marker blackwood"
-            onclick="mostrarCasa('blackwood')">
-            🌲
-        </button>
+        <button class="marker blackwood" onclick="mostrarCasa('blackwood')">🌲</button>
 
-        <button class="marker mallister"
-            onclick="mostrarCasa('mallister')">
-            🦅
-        </button>
+        <button class="marker mallister" onclick="mostrarCasa('mallister')">🦅</button>
 
 
         <!-- OCIDENTE -->
 
-        <button class="marker lannister"
-            onclick="mostrarCasa('lannister')">
-            🦁
-        </button>
+        <button class="marker lannister" onclick="mostrarCasa('lannister')">🦁</button>
 
-        <button class="marker reyne"
-            onclick="mostrarCasa('reyne')">
-            🏰
-        </button>
+        <button class="marker reyne" onclick="mostrarCasa('reyne')">🏰</button>
 
-        <button class="marker lefford"
-            onclick="mostrarCasa('lefford')">
-            🛡️
-        </button>
+        <button class="marker lefford" onclick="mostrarCasa('lefford')">🛡️</button>
 
 
         <!-- VALE -->
 
-        <button class="marker arryn"
-            onclick="mostrarCasa('arryn')">
-            🦅
-        </button>
+        <button class="marker arryn" onclick="mostrarCasa('arryn')">🦅</button>
 
-        <button class="marker grafton"
-            onclick="mostrarCasa('grafton')">
-            ⚓
-        </button>
+        <button class="marker grafton" onclick="mostrarCasa('grafton')">⚓</button>
 
-        <button class="marker royce"
-            onclick="mostrarCasa('royce')">
-            🗿
-        </button>
+        <button class="marker royce" onclick="mostrarCasa('royce')">🗿</button>
 
 
         <!-- TEMPESTADE -->
 
-        <button class="marker baratheon"
-            onclick="mostrarCasa('baratheon')">
-            🦌
-        </button>
+        <button class="marker baratheon" onclick="mostrarCasa('baratheon')">🦌</button>
 
-        <button class="marker swann"
-            onclick="mostrarCasa('swann')">
-            🦢
-        </button>
+        <button class="marker swann" onclick="mostrarCasa('swann')">🦢</button>
 
-        <button class="marker tarth"
-            onclick="mostrarCasa('tarth')">
-            🌊
-        </button>
+        <button class="marker tarth" onclick="mostrarCasa('tarth')">🌊</button>
 
 
         <!-- TERRAS DA COROA -->
 
-        <button class="marker targaryen"
-            onclick="mostrarCasa('targaryen')">
-            🐉
-        </button>
+        <button class="marker targaryen" onclick="mostrarCasa('targaryen')">🐉</button>
 
-        <button class="marker velaryon"
-            onclick="mostrarCasa('velaryon')">
-            🌊
-        </button>
+        <button class="marker velaryon" onclick="mostrarCasa('velaryon')">🌊</button>
 
-        <button class="marker blackfyre"
-            onclick="mostrarCasa('blackfyre')">
-            🐉
-        </button>
+        <button class="marker blackfyre" onclick="mostrarCasa('blackfyre')">🐉</button>
 
-        <button class="marker celtigar"
-            onclick="mostrarCasa('celtigar')">
-            🦀
-        </button>
+        <button class="marker celtigar" onclick="mostrarCasa('celtigar')">🦀</button>
 
 
         <!-- CAMPINA -->
 
-        <button class="marker tyrell"
-            onclick="mostrarCasa('tyrell')">
-            🌹
-        </button>
+        <button class="marker tyrell" onclick="mostrarCasa('tyrell')">🌹</button>
 
-        <button class="marker hightower"
-            onclick="mostrarCasa('hightower')">
-            🔥
-        </button>
+        <button class="marker hightower" onclick="mostrarCasa('hightower')">🔥</button>
 
-        <button class="marker redwyne"
-            onclick="mostrarCasa('redwyne')">
-            🍷
-        </button>
+        <button class="marker redwyne" onclick="mostrarCasa('redwyne')">🍷</button>
 
 
         <!-- DORNE -->
 
-        <button class="marker martell"
-            onclick="mostrarCasa('martell')">
-            ☀️
-        </button>
+        <button class="marker martell" onclick="mostrarCasa('martell')">☀️</button>
 
-        <button class="marker yronwood"
-            onclick="mostrarCasa('yronwood')">
-            🦂
-        </button>
+        <button class="marker yronwood" onclick="mostrarCasa('yronwood')">🦂</button>
 
     </div>
 
 </div>
 
 
-<!-- =========================
-CONTROLES
-========================= -->
+<!-- CONTROLES -->
 
 <div class="controls">
 
@@ -838,72 +580,28 @@ CONTROLES
 </div>
 
 
-<!-- =========================
-PAINEL
-========================= -->
+<!-- PAINEL -->
 
 <div class="info" id="info">
 
-    <button class="close"
-        onclick="fecharInfo()">
-        ×
-    </button>
+    <button class="close" onclick="fecharInfo()">×</button>
 
     <div id="infoContent"></div>
 
 </div>
 
 
-<!-- =========================
-ERRO DO MAPA
-========================= -->
-
-<div class="map-error" id="mapError">
-
-    <h2>
-        Mapa não encontrado
-    </h2>
-
-    <p>
-
-        O site não conseguiu encontrar o arquivo:
-
-        <br><br>
-
-        <strong>Westeros_map.png</strong>
-
-        <br><br>
-
-        O arquivo precisa estar na
-        <strong>mesma pasta do index.html</strong>
-        no GitHub.
-
-    </p>
-
-    <button onclick="document.getElementById('mapError').style.display='none'">
-        Fechar
-    </button>
-
-</div>
-
-
-<!-- =========================
-JAVASCRIPT
-========================= -->
-
 <script>
 
-
-/* ==================================================
+/* ================================
 SUPABASE
-================================================== */
+================================ */
 
 const SUPABASE_URL =
     "https://kdxvibhziscmdmppufku.supabase.co";
 
 const SUPABASE_KEY =
     "sb_publishable_OF5ZtHAY4f90jY3wPir33Q_Dy2w2_dq";
-
 
 const supabaseClient =
     window.supabase.createClient(
@@ -912,45 +610,9 @@ const supabaseClient =
     );
 
 
-/* ==================================================
-VERIFICAR MAPA
-================================================== */
-
-const mapaImagem =
-    document.getElementById("westerosMap");
-
-
-mapaImagem.addEventListener(
-    "error",
-    function(){
-
-        console.error(
-            "ERRO: Westeros_map.png não foi encontrado."
-        );
-
-        document
-            .getElementById("mapError")
-            .style.display = "block";
-
-    }
-);
-
-
-mapaImagem.addEventListener(
-    "load",
-    function(){
-
-        console.log(
-            "Mapa Westeros_map.png carregado com sucesso!"
-        );
-
-    }
-);
-
-
-/* ==================================================
+/* ================================
 MAPA
-================================================== */
+================================ */
 
 let zoom = 1;
 
@@ -959,7 +621,6 @@ const map =
 
 const container =
     document.getElementById("mapContainer");
-
 
 let positionX = 0;
 let positionY = 0;
@@ -970,9 +631,9 @@ let startX = 0;
 let startY = 0;
 
 
-/* ==================================================
+/* ================================
 ATUALIZAR MAPA
-================================================== */
+================================ */
 
 function updateMap(){
 
@@ -986,9 +647,9 @@ function updateMap(){
 }
 
 
-/* ==================================================
+/* ================================
 ZOOM
-================================================== */
+================================ */
 
 function zoomIn(){
 
@@ -1021,6 +682,7 @@ function resetMap(){
     zoom = 1;
 
     positionX = 0;
+
     positionY = 0;
 
     updateMap();
@@ -1028,9 +690,9 @@ function resetMap(){
 }
 
 
-/* ==================================================
-ARRASTAR MAPA
-================================================== */
+/* ================================
+ARRASTAR
+================================ */
 
 container.addEventListener(
     "mousedown",
@@ -1084,9 +746,9 @@ window.addEventListener(
 );
 
 
-/* ==================================================
-MOSTRAR CASA
-================================================== */
+/* ================================
+CASAS
+================================ */
 
 async function mostrarCasa(id){
 
@@ -1095,7 +757,6 @@ async function mostrarCasa(id){
 
     const content =
         document.getElementById("infoContent");
-
 
     content.innerHTML = `
 
@@ -1116,101 +777,24 @@ async function mostrarCasa(id){
     info.classList.add("active");
 
 
-    try{
+    const { data, error } =
+        await supabaseClient
 
-        const { data, error } =
-            await supabaseClient
+            .from("casas")
 
-                .from("casas")
+            .select("*")
 
-                .select("*")
+            .eq("slug", id)
 
-                .eq("slug", id)
-
-                .single();
+            .single();
 
 
-        if(error){
+    if(error){
 
-            console.error(
-                "Erro Supabase:",
-                error
-            );
-
-
-            content.innerHTML = `
-
-                <div class="house-symbol">
-                    ⚠️
-                </div>
-
-                <h2>
-                    Casa não encontrada
-                </h2>
-
-                <p>
-                    Não foi possível carregar os
-                    dados desta Casa.
-                </p>
-
-            `;
-
-            return;
-
-        }
-
-
-        content.innerHTML = `
-
-            <div class="house-symbol">
-                ${data.simbolo || "🏰"}
-            </div>
-
-            <h2>
-                ${data.nome || "Casa"}
-            </h2>
-
-            <p>
-                <strong>Região:</strong><br>
-                ${data.regiao || "Não informado"}
-            </p>
-
-            <p>
-                <strong>Sede:</strong><br>
-                ${data.sede || "Não informado"}
-            </p>
-
-            <p>
-                <strong>Governante:</strong><br>
-                ${data.governante || "Não informado"}
-            </p>
-
-            <p>
-                <strong>Membros:</strong><br>
-                ${data.membros_atual || 0}
-                /
-                ${data.membros_maximo || 0}
-            </p>
-
-            <p class="house-description">
-                ${data.descricao ||
-                "Nenhuma descrição cadastrada."}
-            </p>
-
-            <a
-                href="#"
-                class="house-button"
-                onclick="return false;">
-                VER CASA
-            </a>
-
-        `;
-
-    }
-
-    catch(error){
-
-        console.error(error);
+        console.error(
+            "Erro Supabase:",
+            error
+        );
 
         content.innerHTML = `
 
@@ -1219,74 +803,62 @@ async function mostrarCasa(id){
             </div>
 
             <h2>
-                Erro
+                Casa não encontrada
             </h2>
 
             <p>
-                Não foi possível conectar
-                ao Supabase.
+                Não foi possível carregar os
+                dados desta Casa.
             </p>
 
         `;
-
-    }
-
-}
-
-
-/* ==================================================
-FECHAR PAINEL
-================================================== */
-
-function fecharInfo(){
-
-    document
-        .getElementById("info")
-        .classList.remove("active");
-
-}
-
-
-/* ==================================================
-TESTAR SUPABASE
-================================================== */
-
-async function testarSupabase(){
-
-    const { data, error } =
-        await supabaseClient
-
-            .from("casas")
-
-            .select("slug")
-            .limit(1);
-
-
-    if(error){
-
-        console.error(
-            "Erro ao conectar ao Supabase:",
-            error
-        );
 
         return;
 
     }
 
 
-    console.log(
-        "Supabase conectado!",
-        data
+    content.innerHTML = `
+
+        <div class="house-symbol">
+            ${data.simbolo || "🏰"}
+        </div>
+
+        <h2>
+            ${data.nome || "Casa"}
+        </h2>
+
+        <p>
+            <strong>Região:</strong><br>
+            ${data.regiao || "Não informado"}
+        </p>
+
+        <p>
+            <strong>Sede:</strong><br>
+            ${data.sede || "Não informado"}
+        </p>
+
+        <p>
+            <strong>Governante:</strong><br>
+            ${data.governante || "Não informado"}
+        </p>
+
+        <p>
+            <strong>Membros:</strong><br>
+            ${data.membros_atual || 0}/${data.membros_maximo || 0}
+        </p>
+
+        <p class="house-description">
+            ${data.descricao || "Nenhuma descrição cadastrada."}
+        </p>
+
+        }
     );
 
-}
 
-
-/* ==================================================
-INICIALIZAÇÃO
-================================================== */
-
-testarSupabase();
+/* ================================
+INICIALIZAR
+================================ */
 
 updateMap();
 
