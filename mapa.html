@@ -20,6 +20,12 @@
     box-sizing:border-box;
 }
 
+html,
+body{
+    width:100%;
+    height:100%;
+}
+
 body{
     background:#080808;
     color:#e8dfca;
@@ -27,14 +33,18 @@ body{
     overflow:hidden;
 }
 
-/* =========================
+
+/* =====================================================
 MENU
-========================= */
+===================================================== */
 
 .topbar{
+
     position:fixed;
+
     top:0;
     left:0;
+
     width:100%;
     height:70px;
 
@@ -44,39 +54,54 @@ MENU
 
     padding:0 30px;
 
-    background:rgba(8,8,8,.95);
+    background:rgba(8,8,8,.96);
 
     border-bottom:1px solid rgba(212,181,106,.25);
 
-    z-index:100;
+    z-index:1000;
+
 }
 
 .logo{
+
     font-family:"Cinzel",serif;
+
     color:#d4b56a;
+
     letter-spacing:3px;
+
     font-size:18px;
+
 }
 
 .back{
+
     color:#c9b276;
+
     text-decoration:none;
+
     font-size:12px;
+
     letter-spacing:1px;
+
+    transition:.3s;
+
 }
 
 .back:hover{
+
     color:white;
+
 }
 
 
-/* =========================
-MAPA
-========================= */
+/* =====================================================
+ÁREA DO MAPA
+===================================================== */
 
 .map-container{
 
-    position:absolute;
+    position:fixed;
 
     top:70px;
     left:0;
@@ -85,21 +110,37 @@ MAPA
 
     overflow:hidden;
 
-    background:#111;
+    background:
+
+        radial-gradient(
+            circle at center,
+            #29251e 0%,
+            #151515 45%,
+            #080808 100%
+        );
 
     cursor:grab;
 
 }
 
 .map-container:active{
+
     cursor:grabbing;
+
 }
+
+
+/* =====================================================
+MAPA
+===================================================== */
 
 .map{
 
     position:absolute;
 
     width:900px;
+
+    max-width:none;
 
     left:50%;
     top:50%;
@@ -112,11 +153,18 @@ MAPA
 
 }
 
+
+/* AQUI ESTÁ O ARQUIVO DO MAPA */
+
 .map img{
 
-    width:100%;
-
     display:block;
+
+    width:900px;
+
+    height:auto;
+
+    max-width:none;
 
     user-select:none;
 
@@ -125,9 +173,65 @@ MAPA
 }
 
 
-/* =========================
+/* =====================================================
+MENSAGEM DE ERRO DO MAPA
+===================================================== */
+
+.map-error{
+
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    transform:translate(-50%,-50%);
+
+    width:420px;
+
+    padding:30px;
+
+    text-align:center;
+
+    background:rgba(10,10,10,.95);
+
+    border:1px solid rgba(212,181,106,.5);
+
+    color:#c9b276;
+
+    z-index:5;
+
+}
+
+.map-error h2{
+
+    font-family:"Cinzel",serif;
+
+    margin-bottom:15px;
+
+    color:#d4b56a;
+
+}
+
+.map-error p{
+
+    color:#999;
+
+    font-size:13px;
+
+    line-height:1.7;
+
+}
+
+.map-error strong{
+
+    color:#e0d4b8;
+
+}
+
+
+/* =====================================================
 MARCADORES
-========================= */
+===================================================== */
 
 .marker{
 
@@ -145,6 +249,7 @@ MARCADORES
     color:#d4b56a;
 
     display:flex;
+
     align-items:center;
     justify-content:center;
 
@@ -160,7 +265,8 @@ MARCADORES
 
     transition:.25s;
 
-    z-index:10;
+    z-index:20;
+
 }
 
 .marker:hover{
@@ -176,9 +282,9 @@ MARCADORES
 }
 
 
-/* =========================
-POSIÇÕES
-========================= */
+/* =====================================================
+POSIÇÕES DAS CASAS
+===================================================== */
 
 .stark{
     left:38%;
@@ -251,9 +357,9 @@ POSIÇÕES
 }
 
 
-/* =========================
+/* =====================================================
 CONTROLES
-========================= */
+===================================================== */
 
 .controls{
 
@@ -268,7 +374,7 @@ CONTROLES
 
     gap:8px;
 
-    z-index:50;
+    z-index:500;
 
 }
 
@@ -287,6 +393,8 @@ CONTROLES
 
     cursor:pointer;
 
+    transition:.25s;
+
 }
 
 .controls button:hover{
@@ -298,9 +406,9 @@ CONTROLES
 }
 
 
-/* =========================
-PAINEL
-========================= */
+/* =====================================================
+PAINEL DAS CASAS
+===================================================== */
 
 .info{
 
@@ -313,20 +421,22 @@ PAINEL
 
     padding:25px;
 
-    background:rgba(10,10,10,.96);
+    background:rgba(10,10,10,.97);
 
     border:1px solid rgba(212,181,106,.45);
 
     box-shadow:0 15px 40px rgba(0,0,0,.6);
 
-    z-index:60;
+    z-index:600;
 
     display:none;
 
 }
 
 .info.active{
+
     display:block;
+
 }
 
 .info .close{
@@ -394,225 +504,444 @@ PAINEL
 
 }
 
+
+/* =====================================================
+CELULAR
+===================================================== */
+
+@media(max-width:600px){
+
+    .topbar{
+
+        padding:0 15px;
+
+    }
+
+    .logo{
+
+        font-size:14px;
+
+        letter-spacing:2px;
+
+    }
+
+    .map{
+
+        width:750px;
+
+    }
+
+    .map img{
+
+        width:750px;
+
+    }
+
+    .info{
+
+        right:15px;
+
+        left:15px;
+
+        width:auto;
+
+    }
+
+}
+
 </style>
 
 </head>
 
+
 <body>
 
 
-<!-- =========================
+<!-- =====================================================
 MENU
-========================= -->
+===================================================== -->
 
 <header class="topbar">
 
-<div class="logo">
-THE SEVEN KINGDOMS
-</div>
+    <div class="logo">
+        THE SEVEN KINGDOMS
+    </div>
 
-<a href="index.html" class="back">
-← VOLTAR
-</a>
+    <a href="index.html" class="back">
+        ← VOLTAR
+    </a>
 
 </header>
 
 
-<!-- =========================
+<!-- =====================================================
 MAPA
-========================= -->
+===================================================== -->
 
 <div class="map-container" id="mapContainer">
 
-<div class="map" id="map">
+    <div class="map" id="map">
 
-<!-- NOME EXATO DO ARQUIVO NO GITHUB -->
+        <!--
+        ==================================================
+        ARQUIVO DO MAPA
 
-<img
-    src="Westeros_map.png"
-    alt="Mapa de Westeros"
->
+        O NOME PRECISA SER EXATAMENTE:
+
+        Westeros_map.png
+
+        E o arquivo precisa estar na mesma pasta deste
+        arquivo HTML.
+        ==================================================
+        -->
+
+        <img
+            id="westerosMap"
+            src="./Westeros_map.png"
+            alt="Mapa de Westeros"
+        >
 
 
-<!-- =========================
-CASAS
-========================= -->
+        <!-- =================================================
+        MARCADORES
+        ================================================= -->
 
-<button
-class="marker stark"
-onclick="mostrarCasa('Casa Stark','Winterfell','Norte','🐺')">
-🐺
-</button>
+        <button
+            class="marker stark"
+            onclick="mostrarCasa(
+                'Casa Stark',
+                'Winterfell',
+                'Norte',
+                '🐺'
+            )">
+            🐺
+        </button>
 
-<button
-class="marker manderly"
-onclick="mostrarCasa('Casa Manderly','Porto Branco','Norte','🌊')">
-🌊
-</button>
 
-<button
-class="marker bolton"
-onclick="mostrarCasa('Casa Bolton','Forte do Pavor','Norte','🩸')">
-🩸
-</button>
+        <button
+            class="marker manderly"
+            onclick="mostrarCasa(
+                'Casa Manderly',
+                'Porto Branco',
+                'Norte',
+                '🌊'
+            )">
+            🌊
+        </button>
 
-<button
-class="marker tully"
-onclick="mostrarCasa('Casa Tully','Correrrio','Terras Fluviais','🐟')">
-🐟
-</button>
 
-<button
-class="marker lannister"
-onclick="mostrarCasa('Casa Lannister','Rochedo Casterly','Ocidente','🦁')">
-🦁
-</button>
+        <button
+            class="marker bolton"
+            onclick="mostrarCasa(
+                'Casa Bolton',
+                'Forte do Pavor',
+                'Norte',
+                '🩸'
+            )">
+            🩸
+        </button>
 
-<button
-class="marker reyne"
-onclick="mostrarCasa('Casa Reyne','Castamere','Ocidente','🏰')">
-🏰
-</button>
 
-<button
-class="marker arryn"
-onclick="mostrarCasa('Casa Arryn','Ninho da Águia','Vale','🦅')">
-🦅
-</button>
+        <button
+            class="marker tully"
+            onclick="mostrarCasa(
+                'Casa Tully',
+                'Correrrio',
+                'Terras Fluviais',
+                '🐟'
+            )">
+            🐟
+        </button>
 
-<button
-class="marker baratheon"
-onclick="mostrarCasa('Casa Baratheon','Ponta Tempestade','Tempestade','🦌')">
-🦌
-</button>
 
-<button
-class="marker targaryen"
-onclick="mostrarCasa('Casa Targaryen','Porto Real','Terras da Coroa','🐉')">
-🐉
-</button>
+        <button
+            class="marker lannister"
+            onclick="mostrarCasa(
+                'Casa Lannister',
+                'Rochedo Casterly',
+                'Ocidente',
+                '🦁'
+            )">
+            🦁
+        </button>
 
-<button
-class="marker velaryon"
-onclick="mostrarCasa('Casa Velaryon','Driftmark','Terras da Coroa','🌊')">
-🌊
-</button>
 
-<button
-class="marker tyrell"
-onclick="mostrarCasa('Casa Tyrell','Jardim de Cima','Campina','🌹')">
-🌹
-</button>
+        <button
+            class="marker reyne"
+            onclick="mostrarCasa(
+                'Casa Reyne',
+                'Castamere',
+                'Ocidente',
+                '🏰'
+            )">
+            🏰
+        </button>
 
-<button
-class="marker hightower"
-onclick="mostrarCasa('Casa Hightower','Vilavelha','Campina','🔥')">
-🔥
-</button>
 
-<button
-class="marker martell"
-onclick="mostrarCasa('Casa Martell','Lançassolar','Dorne','☀️')">
-☀️
-</button>
+        <button
+            class="marker arryn"
+            onclick="mostrarCasa(
+                'Casa Arryn',
+                'Ninho da Águia',
+                'Vale',
+                '🦅'
+            )">
+            🦅
+        </button>
 
-<button
-class="marker yronwood"
-onclick="mostrarCasa('Casa Yronwood','Yronwood','Dorne','🦂')">
-🦂
-</button>
+
+        <button
+            class="marker baratheon"
+            onclick="mostrarCasa(
+                'Casa Baratheon',
+                'Ponta Tempestade',
+                'Terras da Tempestade',
+                '🦌'
+            )">
+            🦌
+        </button>
+
+
+        <button
+            class="marker targaryen"
+            onclick="mostrarCasa(
+                'Casa Targaryen',
+                'Porto Real',
+                'Terras da Coroa',
+                '🐉'
+            )">
+            🐉
+        </button>
+
+
+        <button
+            class="marker velaryon"
+            onclick="mostrarCasa(
+                'Casa Velaryon',
+                'Driftmark',
+                'Terras da Coroa',
+                '🌊'
+            )">
+            🌊
+        </button>
+
+
+        <button
+            class="marker tyrell"
+            onclick="mostrarCasa(
+                'Casa Tyrell',
+                'Jardim de Cima',
+                'Campina',
+                '🌹'
+            )">
+            🌹
+        </button>
+
+
+        <button
+            class="marker hightower"
+            onclick="mostrarCasa(
+                'Casa Hightower',
+                'Vilavelha',
+                'Campina',
+                '🔥'
+            )">
+            🔥
+        </button>
+
+
+        <button
+            class="marker martell"
+            onclick="mostrarCasa(
+                'Casa Martell',
+                'Lançassolar',
+                'Dorne',
+                '☀️'
+            )">
+            ☀️
+        </button>
+
+
+        <button
+            class="marker yronwood"
+            onclick="mostrarCasa(
+                'Casa Yronwood',
+                'Yronwood',
+                'Dorne',
+                '🦂'
+            )">
+            🦂
+        </button>
+
+    </div>
 
 </div>
 
-</div>
 
-
-<!-- =========================
+<!-- =====================================================
 CONTROLES
-========================= -->
+===================================================== -->
 
 <div class="controls">
 
-<button onclick="zoomIn()">+</button>
+    <button onclick="zoomIn()">
+        +
+    </button>
 
-<button onclick="zoomOut()">−</button>
+    <button onclick="zoomOut()">
+        −
+    </button>
 
-<button onclick="resetMap()">⌂</button>
+    <button onclick="resetMap()">
+        ⌂
+    </button>
 
 </div>
 
 
-<!-- =========================
+<!-- =====================================================
 PAINEL
-========================= -->
+===================================================== -->
 
 <div class="info" id="info">
 
-<button
-class="close"
-onclick="fecharInfo()">
-×
-</button>
+    <button
+        class="close"
+        onclick="fecharInfo()">
+        ×
+    </button>
 
-<div id="infoContent"></div>
+    <div id="infoContent"></div>
 
 </div>
 
+
+<!-- =====================================================
+JAVASCRIPT
+===================================================== -->
 
 <script>
 
 let zoom = 1;
 
-const map = document.getElementById("map");
+const map =
+    document.getElementById("map");
 
-const container = document.getElementById("mapContainer");
+const container =
+    document.getElementById("mapContainer");
+
+const image =
+    document.getElementById("westerosMap");
+
 
 let positionX = 0;
+
 let positionY = 0;
 
 let dragging = false;
 
 let startX;
+
 let startY;
 
 
-/* =========================
-ZOOM
-========================= */
+/* =====================================================
+VERIFICAR SE O MAPA FOI CARREGADO
+===================================================== */
+
+image.addEventListener("error", function(){
+
+    const error = document.createElement("div");
+
+    error.className = "map-error";
+
+    error.innerHTML = `
+
+        <h2>Mapa não encontrado</h2>
+
+        <p>
+            O site não conseguiu encontrar o arquivo:
+        </p>
+
+        <p>
+            <strong>Westeros_map.png</strong>
+        </p>
+
+        <p>
+            Verifique se o nome do arquivo está
+            exatamente igual, incluindo as letras
+            maiúsculas e minúsculas.
+        </p>
+
+        <p>
+            O arquivo deve estar na mesma pasta
+            deste arquivo HTML.
+        </p>
+
+    `;
+
+    container.appendChild(error);
+
+});
+
+
+/* =====================================================
+ATUALIZAR MAPA
+===================================================== */
 
 function updateMap(){
 
     map.style.transform =
-        `translate(calc(-50% + ${positionX}px), calc(-50% + ${positionY}px)) scale(${zoom})`;
+        `translate(
+            calc(-50% + ${positionX}px),
+            calc(-50% + ${positionY}px)
+        )
+        scale(${zoom})`;
 
 }
 
+
+/* =====================================================
+ZOOM +
+===================================================== */
 
 function zoomIn(){
 
     zoom += 0.2;
 
     if(zoom > 3){
+
         zoom = 3;
+
     }
 
     updateMap();
 
 }
 
+
+/* =====================================================
+ZOOM -
+===================================================== */
 
 function zoomOut(){
 
     zoom -= 0.2;
 
     if(zoom < 0.7){
+
         zoom = 0.7;
+
     }
 
     updateMap();
 
 }
 
+
+/* =====================================================
+RESETAR MAPA
+===================================================== */
 
 function resetMap(){
 
@@ -627,77 +956,119 @@ function resetMap(){
 }
 
 
-/* =========================
-ARRASTAR
-========================= */
+/* =====================================================
+ARRASTAR MAPA
+===================================================== */
 
-container.addEventListener("mousedown", function(e){
+container.addEventListener(
+    "mousedown",
+    function(e){
 
-    dragging = true;
+        if(
+            e.target.classList.contains("marker")
+        ){
 
-    startX = e.clientX - positionX;
+            return;
 
-    startY = e.clientY - positionY;
+        }
 
-});
+        dragging = true;
 
+        startX =
+            e.clientX - positionX;
 
-window.addEventListener("mouseup", function(){
+        startY =
+            e.clientY - positionY;
 
-    dragging = false;
-
-});
-
-
-window.addEventListener("mousemove", function(e){
-
-    if(!dragging) return;
-
-    positionX = e.clientX - startX;
-
-    positionY = e.clientY - startY;
-
-    updateMap();
-
-});
+    }
+);
 
 
-/* =========================
+window.addEventListener(
+    "mouseup",
+    function(){
+
+        dragging = false;
+
+    }
+);
+
+
+window.addEventListener(
+    "mousemove",
+    function(e){
+
+        if(!dragging){
+
+            return;
+
+        }
+
+        positionX =
+            e.clientX - startX;
+
+        positionY =
+            e.clientY - startY;
+
+        updateMap();
+
+    }
+);
+
+
+/* =====================================================
 INFORMAÇÕES DAS CASAS
-========================= */
+===================================================== */
 
-function mostrarCasa(nome, local, regiao, simbolo){
+function mostrarCasa(
+    nome,
+    local,
+    regiao,
+    simbolo
+){
 
-    const info = document.getElementById("info");
+    const info =
+        document.getElementById("info");
 
-    const content = document.getElementById("infoContent");
+    const content =
+        document.getElementById("infoContent");
+
 
     content.innerHTML = `
 
-        <h2>${simbolo} ${nome}</h2>
+        <h2>
+            ${simbolo} ${nome}
+        </h2>
 
         <p>
-        <strong>Local:</strong> ${local}
+            <strong>Local:</strong>
+            ${local}
         </p>
 
         <p>
-        <strong>Região:</strong> ${regiao}
+            <strong>Região:</strong>
+            ${regiao}
         </p>
 
-        <a href="#" class="house-button">
-        VER CASA
+        <a
+            href="#"
+            class="house-button"
+            onclick="return false;"
+        >
+            VER CASA
         </a>
 
     `;
+
 
     info.classList.add("active");
 
 }
 
 
-/* =========================
+/* =====================================================
 FECHAR PAINEL
-========================= */
+===================================================== */
 
 function fecharInfo(){
 
@@ -707,7 +1078,22 @@ function fecharInfo(){
 
 }
 
+
+/* =====================================================
+GARANTIR POSIÇÃO INICIAL
+===================================================== */
+
+window.addEventListener(
+    "load",
+    function(){
+
+        updateMap();
+
+    }
+);
+
 </script>
+
 
 </body>
 
