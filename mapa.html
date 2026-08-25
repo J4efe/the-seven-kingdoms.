@@ -27,7 +27,9 @@ body{
     overflow:hidden;
 }
 
-/* MENU */
+/* =========================
+MENU
+========================= */
 
 .topbar{
     position:fixed;
@@ -68,7 +70,9 @@ body{
 }
 
 
-/* MAPA */
+/* =========================
+MAPA
+========================= */
 
 .map-container{
 
@@ -121,7 +125,9 @@ body{
 }
 
 
-/* MARCADORES */
+/* =========================
+MARCADORES
+========================= */
 
 .marker{
 
@@ -170,7 +176,9 @@ body{
 }
 
 
-/* POSIÇÕES */
+/* =========================
+POSIÇÕES
+========================= */
 
 .stark{
     left:38%;
@@ -243,7 +251,9 @@ body{
 }
 
 
-/* CONTROLES */
+/* =========================
+CONTROLES
+========================= */
 
 .controls{
 
@@ -288,7 +298,9 @@ body{
 }
 
 
-/* PAINEL */
+/* =========================
+PAINEL
+========================= */
 
 .info{
 
@@ -389,6 +401,10 @@ body{
 <body>
 
 
+<!-- =========================
+MENU
+========================= -->
+
 <header class="topbar">
 
 <div class="logo">
@@ -402,79 +418,106 @@ THE SEVEN KINGDOMS
 </header>
 
 
+<!-- =========================
+MAPA
+========================= -->
+
 <div class="map-container" id="mapContainer">
 
 <div class="map" id="map">
 
-<img src="mapa-westeros.png" alt="Mapa de Westeros">
+<!-- NOME EXATO DO ARQUIVO NO GITHUB -->
+
+<img
+    src="Westeros_map.png"
+    alt="Mapa de Westeros"
+>
 
 
-<button class="marker stark"
+<!-- =========================
+CASAS
+========================= -->
+
+<button
+class="marker stark"
 onclick="mostrarCasa('Casa Stark','Winterfell','Norte','🐺')">
 🐺
 </button>
 
-<button class="marker manderly"
+<button
+class="marker manderly"
 onclick="mostrarCasa('Casa Manderly','Porto Branco','Norte','🌊')">
 🌊
 </button>
 
-<button class="marker bolton"
+<button
+class="marker bolton"
 onclick="mostrarCasa('Casa Bolton','Forte do Pavor','Norte','🩸')">
 🩸
 </button>
 
-<button class="marker tully"
+<button
+class="marker tully"
 onclick="mostrarCasa('Casa Tully','Correrrio','Terras Fluviais','🐟')">
 🐟
 </button>
 
-<button class="marker lannister"
+<button
+class="marker lannister"
 onclick="mostrarCasa('Casa Lannister','Rochedo Casterly','Ocidente','🦁')">
 🦁
 </button>
 
-<button class="marker reyne"
+<button
+class="marker reyne"
 onclick="mostrarCasa('Casa Reyne','Castamere','Ocidente','🏰')">
 🏰
 </button>
 
-<button class="marker arryn"
+<button
+class="marker arryn"
 onclick="mostrarCasa('Casa Arryn','Ninho da Águia','Vale','🦅')">
 🦅
 </button>
 
-<button class="marker baratheon"
+<button
+class="marker baratheon"
 onclick="mostrarCasa('Casa Baratheon','Ponta Tempestade','Tempestade','🦌')">
 🦌
 </button>
 
-<button class="marker targaryen"
+<button
+class="marker targaryen"
 onclick="mostrarCasa('Casa Targaryen','Porto Real','Terras da Coroa','🐉')">
 🐉
 </button>
 
-<button class="marker velaryon"
+<button
+class="marker velaryon"
 onclick="mostrarCasa('Casa Velaryon','Driftmark','Terras da Coroa','🌊')">
 🌊
 </button>
 
-<button class="marker tyrell"
+<button
+class="marker tyrell"
 onclick="mostrarCasa('Casa Tyrell','Jardim de Cima','Campina','🌹')">
 🌹
 </button>
 
-<button class="marker hightower"
+<button
+class="marker hightower"
 onclick="mostrarCasa('Casa Hightower','Vilavelha','Campina','🔥')">
 🔥
 </button>
 
-<button class="marker martell"
+<button
+class="marker martell"
 onclick="mostrarCasa('Casa Martell','Lançassolar','Dorne','☀️')">
 ☀️
 </button>
 
-<button class="marker yronwood"
+<button
+class="marker yronwood"
 onclick="mostrarCasa('Casa Yronwood','Yronwood','Dorne','🦂')">
 🦂
 </button>
@@ -484,7 +527,9 @@ onclick="mostrarCasa('Casa Yronwood','Yronwood','Dorne','🦂')">
 </div>
 
 
-<!-- CONTROLES -->
+<!-- =========================
+CONTROLES
+========================= -->
 
 <div class="controls">
 
@@ -497,11 +542,17 @@ onclick="mostrarCasa('Casa Yronwood','Yronwood','Dorne','🦂')">
 </div>
 
 
-<!-- PAINEL -->
+<!-- =========================
+PAINEL
+========================= -->
 
 <div class="info" id="info">
 
-<button class="close" onclick="fecharInfo()">×</button>
+<button
+class="close"
+onclick="fecharInfo()">
+×
+</button>
 
 <div id="infoContent"></div>
 
@@ -525,7 +576,9 @@ let startX;
 let startY;
 
 
-/* ZOOM */
+/* =========================
+ZOOM
+========================= */
 
 function updateMap(){
 
@@ -574,7 +627,9 @@ function resetMap(){
 }
 
 
-/* ARRASTAR */
+/* =========================
+ARRASTAR
+========================= */
 
 container.addEventListener("mousedown", function(e){
 
@@ -607,7 +662,9 @@ window.addEventListener("mousemove", function(e){
 });
 
 
-/* INFORMAÇÕES */
+/* =========================
+INFORMAÇÕES DAS CASAS
+========================= */
 
 function mostrarCasa(nome, local, regiao, simbolo){
 
@@ -637,6 +694,10 @@ function mostrarCasa(nome, local, regiao, simbolo){
 
 }
 
+
+/* =========================
+FECHAR PAINEL
+========================= */
 
 function fecharInfo(){
 
