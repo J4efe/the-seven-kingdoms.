@@ -20,20 +20,11 @@
 
 <style>
 
-/* =========================
-RESET
-========================= */
-
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
 }
-
-
-/* =========================
-BODY
-========================= */
 
 body{
     background:#080808;
@@ -67,9 +58,9 @@ MENU
 
     border-bottom:1px solid rgba(212,181,106,.25);
 
-    z-index:1000;
-}
+    z-index:100;
 
+}
 
 .logo{
 
@@ -83,7 +74,6 @@ MENU
 
 }
 
-
 .back{
 
     color:#c9b276;
@@ -96,7 +86,6 @@ MENU
 
 }
 
-
 .back:hover{
     color:white;
 }
@@ -108,7 +97,7 @@ MAPA
 
 .map-container{
 
-    position:fixed;
+    position:absolute;
 
     top:70px;
     left:0;
@@ -123,7 +112,6 @@ MAPA
 
 }
 
-
 .map-container:active{
     cursor:grabbing;
 }
@@ -133,7 +121,7 @@ MAPA
 
     position:absolute;
 
-    width:1000px;
+    width:900px;
 
     left:50%;
     top:50%;
@@ -147,22 +135,9 @@ MAPA
 }
 
 
-/*
-IMPORTANTE:
-
-O arquivo precisa estar na mesma pasta
-deste mapa.html.
-
-Nome EXATO:
-
-Westeros_map.png
-*/
-
 .map img{
 
     width:100%;
-
-    height:auto;
 
     display:block;
 
@@ -209,10 +184,9 @@ MARCADORES
 
     transition:.25s;
 
-    z-index:20;
+    z-index:10;
 
 }
-
 
 .marker:hover{
 
@@ -369,10 +343,9 @@ CONTROLES
 
     gap:8px;
 
-    z-index:100;
+    z-index:50;
 
 }
-
 
 .controls button{
 
@@ -391,7 +364,6 @@ CONTROLES
 
 }
 
-
 .controls button:hover{
 
     background:#d4b56a;
@@ -402,7 +374,7 @@ CONTROLES
 
 
 /* =========================
-PAINEL
+PAINEL DA CASA
 ========================= */
 
 .info{
@@ -412,7 +384,7 @@ PAINEL
     right:25px;
     top:95px;
 
-    width:310px;
+    width:300px;
 
     max-height:calc(100vh - 130px);
 
@@ -426,17 +398,15 @@ PAINEL
 
     box-shadow:0 15px 40px rgba(0,0,0,.6);
 
-    z-index:200;
+    z-index:60;
 
     display:none;
 
 }
 
-
 .info.active{
     display:block;
 }
-
 
 .info .close{
 
@@ -457,11 +427,9 @@ PAINEL
 
 }
 
-
 .info .close:hover{
     color:white;
 }
-
 
 .house-symbol{
 
@@ -470,7 +438,6 @@ PAINEL
     margin-bottom:10px;
 
 }
-
 
 .info h2{
 
@@ -484,7 +451,6 @@ PAINEL
 
 }
 
-
 .info p{
 
     color:#999;
@@ -497,11 +463,9 @@ PAINEL
 
 }
 
-
 .info strong{
     color:#c9b276;
 }
-
 
 .house-description{
 
@@ -512,7 +476,6 @@ PAINEL
     border-top:1px solid rgba(212,181,106,.15);
 
 }
-
 
 .house-button{
 
@@ -538,7 +501,6 @@ PAINEL
 
 }
 
-
 .house-button:hover{
 
     background:#a7894d;
@@ -549,10 +511,10 @@ PAINEL
 
 
 /* =========================
-ERRO
+ERRO DO MAPA
 ========================= */
 
-.error-message{
+.map-error{
 
     position:fixed;
 
@@ -561,11 +523,11 @@ ERRO
 
     transform:translate(-50%,-50%);
 
-    width:min(500px,90%);
+    width:min(550px,90%);
 
-    padding:30px;
+    padding:35px;
 
-    background:rgba(10,10,10,.98);
+    background:rgba(8,8,8,.98);
 
     border:1px solid #8c3434;
 
@@ -577,34 +539,37 @@ ERRO
 
 }
 
-
-.error-message h2{
+.map-error h2{
 
     font-family:"Cinzel",serif;
 
     color:#d4b56a;
 
-    margin-bottom:15px;
+    margin-bottom:18px;
 
 }
 
-
-.error-message p{
+.map-error p{
 
     color:#aaa;
 
     font-size:13px;
 
-    line-height:1.7;
+    line-height:1.8;
 
 }
 
+.map-error strong{
 
-.error-message button{
+    color:#fff;
+
+}
+
+.map-error button{
 
     margin-top:20px;
 
-    padding:10px 20px;
+    padding:10px 25px;
 
     background:none;
 
@@ -649,9 +614,7 @@ RESPONSIVO
     }
 
     .map{
-
-        width:750px;
-
+        width:700px;
     }
 
 }
@@ -689,202 +652,168 @@ MAPA
 
     <div class="map" id="map">
 
+        <!--
+        ==================================================
+        ARQUIVO DO MAPA
+        ==================================================
 
-        <!-- ==================================================
-        MAPA
-
-        O NOME ABAIXO PRECISA SER EXATAMENTE:
+        O NOME DO ARQUIVO DEVE SER EXATAMENTE:
 
         Westeros_map.png
 
-        ================================================== -->
+        ATENÇÃO:
+        W = MAIÚSCULO
+        m = minúsculo
+
+        -->
+
 
         <img
+            id="westerosMap"
             src="./Westeros_map.png"
             alt="Mapa de Westeros"
-            draggable="false"
         >
 
 
-        <!-- =========================
-        NORTE
-        ========================= -->
+        <!-- NORTE -->
 
-        <button
-            class="marker stark"
+        <button class="marker stark"
             onclick="mostrarCasa('stark')">
             🐺
         </button>
 
-        <button
-            class="marker manderly"
+        <button class="marker manderly"
             onclick="mostrarCasa('manderly')">
             🌊
         </button>
 
-        <button
-            class="marker bolton"
+        <button class="marker bolton"
             onclick="mostrarCasa('bolton')">
             🩸
         </button>
 
 
-        <!-- =========================
-        FLUVIAIS
-        ========================= -->
+        <!-- FLUVIAIS -->
 
-        <button
-            class="marker tully"
+        <button class="marker tully"
             onclick="mostrarCasa('tully')">
             🐟
         </button>
 
-        <button
-            class="marker blackwood"
+        <button class="marker blackwood"
             onclick="mostrarCasa('blackwood')">
             🌲
         </button>
 
-        <button
-            class="marker mallister"
+        <button class="marker mallister"
             onclick="mostrarCasa('mallister')">
             🦅
         </button>
 
 
-        <!-- =========================
-        OCIDENTE
-        ========================= -->
+        <!-- OCIDENTE -->
 
-        <button
-            class="marker lannister"
+        <button class="marker lannister"
             onclick="mostrarCasa('lannister')">
             🦁
         </button>
 
-        <button
-            class="marker reyne"
+        <button class="marker reyne"
             onclick="mostrarCasa('reyne')">
             🏰
         </button>
 
-        <button
-            class="marker lefford"
+        <button class="marker lefford"
             onclick="mostrarCasa('lefford')">
             🛡️
         </button>
 
 
-        <!-- =========================
-        VALE
-        ========================= -->
+        <!-- VALE -->
 
-        <button
-            class="marker arryn"
+        <button class="marker arryn"
             onclick="mostrarCasa('arryn')">
             🦅
         </button>
 
-        <button
-            class="marker grafton"
+        <button class="marker grafton"
             onclick="mostrarCasa('grafton')">
             ⚓
         </button>
 
-        <button
-            class="marker royce"
+        <button class="marker royce"
             onclick="mostrarCasa('royce')">
             🗿
         </button>
 
 
-        <!-- =========================
-        TEMPESTADE
-        ========================= -->
+        <!-- TEMPESTADE -->
 
-        <button
-            class="marker baratheon"
+        <button class="marker baratheon"
             onclick="mostrarCasa('baratheon')">
             🦌
         </button>
 
-        <button
-            class="marker swann"
+        <button class="marker swann"
             onclick="mostrarCasa('swann')">
             🦢
         </button>
 
-        <button
-            class="marker tarth"
+        <button class="marker tarth"
             onclick="mostrarCasa('tarth')">
             🌊
         </button>
 
 
-        <!-- =========================
-        TERRAS DA COROA
-        ========================= -->
+        <!-- TERRAS DA COROA -->
 
-        <button
-            class="marker targaryen"
+        <button class="marker targaryen"
             onclick="mostrarCasa('targaryen')">
             🐉
         </button>
 
-        <button
-            class="marker velaryon"
+        <button class="marker velaryon"
             onclick="mostrarCasa('velaryon')">
             🌊
         </button>
 
-        <button
-            class="marker blackfyre"
+        <button class="marker blackfyre"
             onclick="mostrarCasa('blackfyre')">
             🐉
         </button>
 
-        <button
-            class="marker celtigar"
+        <button class="marker celtigar"
             onclick="mostrarCasa('celtigar')">
             🦀
         </button>
 
 
-        <!-- =========================
-        CAMPINA
-        ========================= -->
+        <!-- CAMPINA -->
 
-        <button
-            class="marker tyrell"
+        <button class="marker tyrell"
             onclick="mostrarCasa('tyrell')">
             🌹
         </button>
 
-        <button
-            class="marker hightower"
+        <button class="marker hightower"
             onclick="mostrarCasa('hightower')">
             🔥
         </button>
 
-        <button
-            class="marker redwyne"
+        <button class="marker redwyne"
             onclick="mostrarCasa('redwyne')">
             🍷
         </button>
 
 
-        <!-- =========================
-        DORNE
-        ========================= -->
+        <!-- DORNE -->
 
-        <button
-            class="marker martell"
+        <button class="marker martell"
             onclick="mostrarCasa('martell')">
             ☀️
         </button>
 
-        <button
-            class="marker yronwood"
+        <button class="marker yronwood"
             onclick="mostrarCasa('yronwood')">
             🦂
         </button>
@@ -915,8 +844,7 @@ PAINEL
 
 <div class="info" id="info">
 
-    <button
-        class="close"
+    <button class="close"
         onclick="fecharInfo()">
         ×
     </button>
@@ -927,27 +855,44 @@ PAINEL
 
 
 <!-- =========================
-ERRO
+ERRO DO MAPA
 ========================= -->
 
-<div class="error-message" id="errorMessage">
+<div class="map-error" id="mapError">
 
     <h2>
-        Erro ao conectar ao Supabase
+        Mapa não encontrado
     </h2>
 
-    <p id="errorText">
-        Não foi possível carregar os dados das Casas.
+    <p>
+
+        O site não conseguiu encontrar o arquivo:
+
+        <br><br>
+
+        <strong>Westeros_map.png</strong>
+
+        <br><br>
+
+        O arquivo precisa estar na
+        <strong>mesma pasta do index.html</strong>
+        no GitHub.
+
     </p>
 
-    <button onclick="fecharErro()">
+    <button onclick="document.getElementById('mapError').style.display='none'">
         Fechar
     </button>
 
 </div>
 
 
+<!-- =========================
+JAVASCRIPT
+========================= -->
+
 <script>
+
 
 /* ==================================================
 SUPABASE
@@ -959,11 +904,48 @@ const SUPABASE_URL =
 const SUPABASE_KEY =
     "sb_publishable_OF5ZtHAY4f90jY3wPir33Q_Dy2w2_dq";
 
+
 const supabaseClient =
     window.supabase.createClient(
         SUPABASE_URL,
         SUPABASE_KEY
     );
+
+
+/* ==================================================
+VERIFICAR MAPA
+================================================== */
+
+const mapaImagem =
+    document.getElementById("westerosMap");
+
+
+mapaImagem.addEventListener(
+    "error",
+    function(){
+
+        console.error(
+            "ERRO: Westeros_map.png não foi encontrado."
+        );
+
+        document
+            .getElementById("mapError")
+            .style.display = "block";
+
+    }
+);
+
+
+mapaImagem.addEventListener(
+    "load",
+    function(){
+
+        console.log(
+            "Mapa Westeros_map.png carregado com sucesso!"
+        );
+
+    }
+);
 
 
 /* ==================================================
@@ -977,6 +959,7 @@ const map =
 
 const container =
     document.getElementById("mapContainer");
+
 
 let positionX = 0;
 let positionY = 0;
@@ -1102,7 +1085,7 @@ window.addEventListener(
 
 
 /* ==================================================
-SUPABASE — MOSTRAR CASA
+MOSTRAR CASA
 ================================================== */
 
 async function mostrarCasa(id){
@@ -1125,11 +1108,10 @@ async function mostrarCasa(id){
         </h2>
 
         <p>
-            Buscando informações da Casa...
+            Buscando informações da Casa.
         </p>
 
     `;
-
 
     info.classList.add("active");
 
@@ -1155,10 +1137,6 @@ async function mostrarCasa(id){
                 error
             );
 
-            /*
-            Se ainda não houver dados no Supabase,
-            mostramos uma mensagem amigável.
-            */
 
             content.innerHTML = `
 
@@ -1167,20 +1145,12 @@ async function mostrarCasa(id){
                 </div>
 
                 <h2>
-                    Dados não encontrados
+                    Casa não encontrada
                 </h2>
 
                 <p>
-                    A Casa <strong>${id}</strong>
-                    ainda não possui dados cadastrados
-                    no Supabase.
-                </p>
-
-                <p>
-                    Verifique a tabela
-                    <strong>casas</strong>
-                    e o campo
-                    <strong>slug</strong>.
+                    Não foi possível carregar os
+                    dados desta Casa.
                 </p>
 
             `;
@@ -1189,10 +1159,6 @@ async function mostrarCasa(id){
 
         }
 
-
-        /* =========================
-        DADOS
-        ========================= */
 
         content.innerHTML = `
 
@@ -1227,8 +1193,16 @@ async function mostrarCasa(id){
             </p>
 
             <p class="house-description">
-                ${data.descricao || "Nenhuma descrição cadastrada."}
+                ${data.descricao ||
+                "Nenhuma descrição cadastrada."}
             </p>
+
+            <a
+                href="#"
+                class="house-button"
+                onclick="return false;">
+                VER CASA
+            </a>
 
         `;
 
@@ -1250,7 +1224,7 @@ async function mostrarCasa(id){
 
             <p>
                 Não foi possível conectar
-                ao banco de dados.
+                ao Supabase.
             </p>
 
         `;
@@ -1279,44 +1253,31 @@ TESTAR SUPABASE
 
 async function testarSupabase(){
 
-    try{
+    const { data, error } =
+        await supabaseClient
 
-        const { data, error } =
-            await supabaseClient
+            .from("casas")
 
-                .from("casas")
-
-                .select("slug")
-                .limit(1);
+            .select("slug")
+            .limit(1);
 
 
-        if(error){
-
-            console.error(
-                "Supabase:",
-                error
-            );
-
-            return;
-
-        }
-
-
-        console.log(
-            "Supabase conectado!",
-            data
-        );
-
-    }
-
-    catch(error){
+    if(error){
 
         console.error(
-            "Erro de conexão:",
+            "Erro ao conectar ao Supabase:",
             error
         );
 
+        return;
+
     }
+
+
+    console.log(
+        "Supabase conectado!",
+        data
+    );
 
 }
 
