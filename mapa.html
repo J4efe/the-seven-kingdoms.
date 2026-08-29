@@ -1,7 +1,54 @@
+```javascript
+/* ==================================================
+MOSTRAR DADOS
+================================================== */
+
 function mostrarDadosCasa(data){
 
     const content =
         document.getElementById("infoContent");
+
+
+    /*
+    Usa o slug vindo do Supabase.
+    Se estiver usando o fallback, o slug será
+    recuperado pelo nome da casa.
+    */
+
+    let slug = data.slug;
+
+
+    /*
+    Caso o Supabase não tenha enviado o slug,
+    tenta descobrir pelo nome.
+    */
+
+    if(!slug){
+
+        const encontrada =
+            Object.entries(casasFallback)
+                .find(([key, casa]) =>
+                    casa.nome === data.nome
+                );
+
+        if(encontrada){
+
+            slug = encontrada[0];
+
+        }
+
+    }
+
+
+    /*
+    Se ainda não encontrou o slug,
+    impede que o botão gere um link inválido.
+    */
+
+    const linkCasa =
+        slug
+            ? `casa.html?casa=${encodeURIComponent(slug)}`
+            : "#";
 
 
     content.innerHTML = `
@@ -41,11 +88,14 @@ function mostrarDadosCasa(data){
         </p>
 
         <a
-            href="casa.html?slug=${data.slug}"
+            href="${linkCasa}"
             class="house-button">
+
             VER CASA
+
         </a>
 
     `;
 
 }
+```
