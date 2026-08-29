@@ -1,0 +1,1256 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Casa — The Seven Kingdoms</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap"
+rel="stylesheet">
+
+
+<style>
+
+/* ==================================================
+RESET
+================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,
+body{
+    width:100%;
+    min-height:100%;
+}
+
+body{
+
+    background:
+        radial-gradient(
+            circle at center,
+            #151515 0%,
+            #080808 65%,
+            #050505 100%
+        );
+
+    color:#e8dfca;
+
+    font-family:"Inter",sans-serif;
+
+    min-height:100vh;
+
+}
+
+
+/* ==================================================
+MENU
+================================================== */
+
+.topbar{
+
+    width:100%;
+    height:70px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:0 30px;
+
+    background:rgba(8,8,8,.97);
+
+    border-bottom:1px solid rgba(212,181,106,.25);
+
+}
+
+.logo{
+
+    font-family:"Cinzel",serif;
+
+    color:#d4b56a;
+
+    letter-spacing:3px;
+
+    font-size:18px;
+
+}
+
+.back{
+
+    color:#c9b276;
+
+    text-decoration:none;
+
+    font-size:12px;
+
+    letter-spacing:1px;
+
+    transition:.2s;
+
+}
+
+.back:hover{
+
+    color:white;
+
+}
+
+
+/* ==================================================
+CONTAINER
+================================================== */
+
+.house-page{
+
+    width:min(1000px,92%);
+
+    margin:0 auto;
+
+    padding:70px 0 80px;
+
+}
+
+
+/* ==================================================
+CARREGANDO
+================================================== */
+
+.loading{
+
+    text-align:center;
+
+    padding:100px 20px;
+
+}
+
+.loading-symbol{
+
+    font-size:60px;
+
+    margin-bottom:25px;
+
+    animation:pulse 1.5s infinite;
+
+}
+
+.loading h1{
+
+    font-family:"Cinzel",serif;
+
+    color:#d4b56a;
+
+    font-weight:500;
+
+    letter-spacing:2px;
+
+}
+
+.loading p{
+
+    margin-top:12px;
+
+    color:#777;
+
+    font-size:13px;
+
+}
+
+@keyframes pulse{
+
+    0%,100%{
+        opacity:.4;
+    }
+
+    50%{
+        opacity:1;
+    }
+
+}
+
+
+/* ==================================================
+CASA
+================================================== */
+
+.house-card{
+
+    position:relative;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(20,20,20,.98),
+            rgba(8,8,8,.98)
+        );
+
+    border:1px solid rgba(212,181,106,.35);
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.7);
+
+    padding:60px;
+
+}
+
+
+/* ==================================================
+TOPO DA CASA
+================================================== */
+
+.house-header{
+
+    text-align:center;
+
+    padding-bottom:45px;
+
+    border-bottom:1px solid rgba(212,181,106,.18);
+
+}
+
+.house-symbol{
+
+    font-size:80px;
+
+    line-height:1;
+
+    margin-bottom:25px;
+
+    filter:
+        drop-shadow(
+            0 0 18px
+            rgba(212,181,106,.25)
+        );
+
+}
+
+.house-region{
+
+    font-size:10px;
+
+    text-transform:uppercase;
+
+    letter-spacing:4px;
+
+    color:#8d794d;
+
+    margin-bottom:15px;
+
+}
+
+.house-name{
+
+    font-family:"Cinzel",serif;
+
+    font-size:38px;
+
+    font-weight:500;
+
+    color:#d4b56a;
+
+    letter-spacing:2px;
+
+}
+
+.house-seat{
+
+    margin-top:15px;
+
+    color:#aaa;
+
+    font-size:13px;
+
+}
+
+.house-seat strong{
+
+    color:#c9b276;
+
+}
+
+
+/* ==================================================
+INFORMAÇÕES
+================================================== */
+
+.house-content{
+
+    display:grid;
+
+    grid-template-columns:
+        1fr
+        1fr;
+
+    gap:1px;
+
+    margin-top:40px;
+
+    background:
+        rgba(212,181,106,.12);
+
+    border:1px solid
+        rgba(212,181,106,.12);
+
+}
+
+.info-box{
+
+    padding:30px;
+
+    background:#0c0c0c;
+
+}
+
+.info-label{
+
+    font-family:"Cinzel",serif;
+
+    font-size:10px;
+
+    letter-spacing:2px;
+
+    color:#806d45;
+
+    text-transform:uppercase;
+
+    margin-bottom:10px;
+
+}
+
+.info-value{
+
+    color:#ddd;
+
+    font-size:15px;
+
+}
+
+
+/* ==================================================
+MEMBROS
+================================================== */
+
+.members{
+
+    margin-top:40px;
+
+    padding:30px;
+
+    background:#0c0c0c;
+
+    border:1px solid
+        rgba(212,181,106,.15);
+
+}
+
+.members-title{
+
+    font-family:"Cinzel",serif;
+
+    color:#d4b56a;
+
+    font-size:13px;
+
+    letter-spacing:2px;
+
+    margin-bottom:20px;
+
+}
+
+.members-number{
+
+    font-family:"Cinzel",serif;
+
+    color:#eee;
+
+    font-size:28px;
+
+}
+
+.members-number span{
+
+    color:#766645;
+
+    font-size:17px;
+
+}
+
+
+/* ==================================================
+BARRA DE MEMBROS
+================================================== */
+
+.members-bar{
+
+    height:5px;
+
+    margin-top:18px;
+
+    background:#222;
+
+    overflow:hidden;
+
+}
+
+.members-progress{
+
+    height:100%;
+
+    width:0%;
+
+    background:#d4b56a;
+
+    transition:
+        width .8s ease;
+
+}
+
+
+/* ==================================================
+DESCRIÇÃO
+================================================== */
+
+.description{
+
+    margin-top:40px;
+
+    padding:35px;
+
+    border-top:
+        1px solid
+        rgba(212,181,106,.18);
+
+    border-bottom:
+        1px solid
+        rgba(212,181,106,.18);
+
+}
+
+.description-title{
+
+    font-family:"Cinzel",serif;
+
+    color:#d4b56a;
+
+    font-size:13px;
+
+    letter-spacing:2px;
+
+    margin-bottom:18px;
+
+}
+
+.description p{
+
+    color:#aaa;
+
+    font-size:14px;
+
+    line-height:1.9;
+
+}
+
+
+/* ==================================================
+RODAPÉ
+================================================== */
+
+.house-footer{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-top:35px;
+
+}
+
+.footer-link{
+
+    display:inline-block;
+
+    padding:12px 20px;
+
+    border:1px solid #8c7443;
+
+    color:#d4b56a;
+
+    text-decoration:none;
+
+    font-family:"Cinzel",serif;
+
+    font-size:10px;
+
+    letter-spacing:1.5px;
+
+    transition:.2s;
+
+}
+
+.footer-link:hover{
+
+    background:#d4b56a;
+
+    color:#111;
+
+}
+
+.footer-text{
+
+    color:#555;
+
+    font-size:10px;
+
+    letter-spacing:1px;
+
+}
+
+
+/* ==================================================
+ERRO
+================================================== */
+
+.error{
+
+    text-align:center;
+
+    padding:100px 20px;
+
+}
+
+.error-symbol{
+
+    font-size:55px;
+
+    margin-bottom:25px;
+
+}
+
+.error h1{
+
+    font-family:"Cinzel",serif;
+
+    color:#d4b56a;
+
+    font-size:26px;
+
+    margin-bottom:15px;
+
+}
+
+.error p{
+
+    color:#888;
+
+    font-size:13px;
+
+    line-height:1.8;
+
+}
+
+.error a{
+
+    display:inline-block;
+
+    margin-top:25px;
+
+    padding:12px 22px;
+
+    border:1px solid #8c7443;
+
+    color:#d4b56a;
+
+    text-decoration:none;
+
+    font-family:"Cinzel",serif;
+
+    font-size:10px;
+
+    letter-spacing:1px;
+
+}
+
+
+/* ==================================================
+RESPONSIVO
+================================================== */
+
+@media(max-width:700px){
+
+    .topbar{
+
+        padding:0 15px;
+
+    }
+
+    .logo{
+
+        font-size:13px;
+
+    }
+
+    .house-page{
+
+        width:94%;
+
+        padding:35px 0 50px;
+
+    }
+
+    .house-card{
+
+        padding:30px 20px;
+
+    }
+
+    .house-symbol{
+
+        font-size:65px;
+
+    }
+
+    .house-name{
+
+        font-size:27px;
+
+    }
+
+    .house-content{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .house-footer{
+
+        flex-direction:column;
+
+        gap:20px;
+
+        align-items:stretch;
+
+    }
+
+    .footer-link{
+
+        text-align:center;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- ==================================================
+MENU
+================================================== -->
+
+<header class="topbar">
+
+    <div class="logo">
+
+        THE SEVEN KINGDOMS
+
+    </div>
+
+
+    <a
+        href="mapa.html"
+        class="back">
+
+        ← VOLTAR AO MAPA
+
+    </a>
+
+</header>
+
+
+
+<!-- ==================================================
+CONTEÚDO
+================================================== -->
+
+<main class="house-page">
+
+    <div id="pageContent">
+
+        <div class="loading">
+
+            <div class="loading-symbol">
+                🏰
+            </div>
+
+            <h1>
+                Carregando Casa...
+            </h1>
+
+            <p>
+                Consultando os registros de Westeros.
+            </p>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+
+<script>
+
+/* ==================================================
+SUPABASE
+================================================== */
+
+const SUPABASE_URL =
+    "https://kdxvibhziscmdmppufku.supabase.co";
+
+
+const SUPABASE_KEY =
+    "sb_publishable_OF5ZtHAY4f90jY3wPir33Q_Dy2w2_dq";
+
+
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
+
+
+
+/* ==================================================
+ELEMENTO PRINCIPAL
+================================================== */
+
+const pageContent =
+    document.getElementById(
+        "pageContent"
+    );
+
+
+
+/* ==================================================
+PEGAR SLUG DA URL
+================================================== */
+
+const parametros =
+    new URLSearchParams(
+        window.location.search
+    );
+
+
+const slug =
+    parametros.get("casa");
+
+
+
+/* ==================================================
+ESCAPAR HTML
+Evita problemas caso algum dado
+do Supabase contenha caracteres especiais.
+================================================== */
+
+function escaparHTML(valor){
+
+    if(valor === null || valor === undefined){
+
+        return "";
+
+    }
+
+    return String(valor)
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+
+/* ==================================================
+CARREGAR CASA
+================================================== */
+
+async function carregarCasa(){
+
+
+    /* ----------------------------------------------
+    Verifica se existe uma casa na URL
+    ---------------------------------------------- */
+
+    if(!slug){
+
+        mostrarErro(
+            "Casa não especificada",
+            "Nenhuma Casa foi selecionada. Retorne ao mapa e escolha uma Casa."
+        );
+
+        return;
+
+    }
+
+
+
+    /* ----------------------------------------------
+    Consulta o Supabase
+    ---------------------------------------------- */
+
+    try{
+
+        const resultado =
+            await supabaseClient
+                .from("casas")
+                .select("*")
+                .eq("slug",slug)
+                .maybeSingle();
+
+
+
+        if(resultado.error){
+
+            console.error(
+                "Erro Supabase:",
+                resultado.error
+            );
+
+            mostrarErro(
+                "Erro ao carregar Casa",
+                "Não foi possível consultar os registros de Westeros."
+            );
+
+            return;
+
+        }
+
+
+
+        const casa =
+            resultado.data;
+
+
+
+        /* ------------------------------------------
+        Casa não encontrada
+        ------------------------------------------ */
+
+        if(!casa){
+
+            mostrarErro(
+                "Casa não encontrada",
+                `Não existe nenhuma Casa cadastrada com o identificador "${slug}".`
+            );
+
+            return;
+
+        }
+
+
+
+        /* ------------------------------------------
+        Mostra a Casa
+        ------------------------------------------ */
+
+        mostrarCasa(casa);
+
+
+    }catch(error){
+
+        console.error(
+            "Erro:",
+            error
+        );
+
+        mostrarErro(
+            "Erro de conexão",
+            "Não foi possível conectar aos registros de Westeros."
+        );
+
+    }
+
+}
+
+
+
+/* ==================================================
+MOSTRAR CASA
+================================================== */
+
+function mostrarCasa(casa){
+
+
+    const atual =
+        Number(casa.membros_atual) || 0;
+
+
+    const maximo =
+        Number(casa.membros_maximo) || 0;
+
+
+    let porcentagem = 0;
+
+
+    if(maximo > 0){
+
+        porcentagem =
+            Math.min(
+                100,
+                (atual / maximo) * 100
+            );
+
+    }
+
+
+
+    /* ----------------------------------------------
+    Atualiza título da página
+    ---------------------------------------------- */
+
+    document.title =
+        `${casa.nome || "Casa"} — The Seven Kingdoms`;
+
+
+
+    /* ----------------------------------------------
+    Monta página
+    ---------------------------------------------- */
+
+    pageContent.innerHTML = `
+
+        <section class="house-card">
+
+
+            <!-- ==============================
+            CABEÇALHO
+            =============================== -->
+
+            <header class="house-header">
+
+
+                <div class="house-symbol">
+
+                    ${escaparHTML(
+                        casa.simbolo || "🏰"
+                    )}
+
+                </div>
+
+
+                <div class="house-region">
+
+                    ${escaparHTML(
+                        casa.regiao || "Região desconhecida"
+                    )}
+
+                </div>
+
+
+                <h1 class="house-name">
+
+                    ${escaparHTML(
+                        casa.nome || "Casa"
+                    )}
+
+                </h1>
+
+
+                <div class="house-seat">
+
+                    Sede:
+                    <strong>
+                        ${escaparHTML(
+                            casa.sede || "Não informada"
+                        )}
+                    </strong>
+
+                </div>
+
+
+            </header>
+
+
+
+            <!-- ==============================
+            INFORMAÇÕES
+            =============================== -->
+
+            <div class="house-content">
+
+
+                <div class="info-box">
+
+                    <div class="info-label">
+
+                        Governante
+
+                    </div>
+
+
+                    <div class="info-value">
+
+                        ${escaparHTML(
+                            casa.governante ||
+                            "Não informado"
+                        )}
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="info-box">
+
+                    <div class="info-label">
+
+                        Região
+
+                    </div>
+
+
+                    <div class="info-value">
+
+                        ${escaparHTML(
+                            casa.regiao ||
+                            "Não informada"
+                        )}
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="info-box">
+
+                    <div class="info-label">
+
+                        Sede
+
+                    </div>
+
+
+                    <div class="info-value">
+
+                        ${escaparHTML(
+                            casa.sede ||
+                            "Não informada"
+                        )}
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="info-box">
+
+                    <div class="info-label">
+
+                        Identificador
+
+                    </div>
+
+
+                    <div class="info-value">
+
+                        ${escaparHTML(
+                            casa.slug
+                        )}
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- ==============================
+            MEMBROS
+            =============================== -->
+
+            <section class="members">
+
+
+                <div class="members-title">
+
+                    MEMBROS DA CASA
+
+                </div>
+
+
+                <div class="members-number">
+
+                    ${atual}
+
+                    <span>
+                        / ${maximo}
+                    </span>
+
+                </div>
+
+
+                <div class="members-bar">
+
+                    <div
+                        class="members-progress"
+                        style="width:${porcentagem}%">
+
+                    </div>
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- ==============================
+            DESCRIÇÃO
+            =============================== -->
+
+            <section class="description">
+
+
+                <div class="description-title">
+
+                    SOBRE A CASA
+
+                </div>
+
+
+                <p>
+
+                    ${escaparHTML(
+                        casa.descricao ||
+                        "Nenhuma descrição foi registrada."
+                    )}
+
+                </p>
+
+
+            </section>
+
+
+
+            <!-- ==============================
+            RODAPÉ
+            =============================== -->
+
+            <footer class="house-footer">
+
+
+                <a
+                    href="mapa.html"
+                    class="footer-link">
+
+                    ← VOLTAR AO MAPA
+
+                </a>
+
+
+                <div class="footer-text">
+
+                    THE SEVEN KINGDOMS
+
+                </div>
+
+
+            </footer>
+
+
+        </section>
+
+    `;
+
+}
+
+
+
+/* ==================================================
+ERRO
+================================================== */
+
+function mostrarErro(
+    titulo,
+    mensagem
+){
+
+    pageContent.innerHTML = `
+
+        <div class="error">
+
+            <div class="error-symbol">
+
+                🏰
+
+            </div>
+
+
+            <h1>
+
+                ${escaparHTML(titulo)}
+
+            </h1>
+
+
+            <p>
+
+                ${escaparHTML(mensagem)}
+
+            </p>
+
+
+            <a href="mapa.html">
+
+                ← VOLTAR AO MAPA
+
+            </a>
+
+        </div>
+
+    `;
+
+}
+
+
+
+/* ==================================================
+INICIAR
+================================================== */
+
+carregarCasa();
+
+</script>
+
+
+</body>
+
+</html>
+```
